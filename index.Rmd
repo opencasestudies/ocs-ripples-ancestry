@@ -14,8 +14,27 @@ ancestry_props <- read_delim("~/Documents/resources/papers/ripples/NC.admixture_
 colnames(ancestry_props) <- c("pop", "id", paste0("k", c(2:7)))
 ancestry_props <- ancestry_props %>%
   separate(col = id, into = c("id", "k1"), sep="\t") %>%
-  mutate(k1 = as.double(k1))
+  mutate(k1 = as.double(k1),
+         pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
+                         pop == "ASW" ~ "African American",
+                         pop == "CHB" ~ "Han Chinese",
+                         pop == "Egyptians" ~ "Egyptian",
+                         pop == "ESN" ~ "Esan",
+                         pop == "GBR" ~ "British",
+                         pop == "GIH" ~ "Gujarati",
+                         pop == "GWD" ~ "Mandinka",
+                         pop == "LWK" ~ "Luhya",
+                         pop == "MSL" ~ "Mende",
+                         pop == "MXL" ~ "Mexican",
+                         pop == "Nama/Khoe-San" ~ "Nama",
+                         pop == "RwandeseUgandan" ~ "Rwandese",
+                         pop == "TSI" ~ "Italian",
+                         pop == "YRI" ~ "Yoruba",
+                         .default = pop),
+                      levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
+            )
 
+ancestry_props_temp <- ancestry_props
 ```
 Need to add superpopulation labels and sort by those.
 
@@ -33,4 +52,10 @@ ancestry_props %>%
         strip.text.y.left = element_text(angle = 0)) +
   ylab("")
 
+```
+
+```{r}
+left_join(ancestry_props_temp %>% select(!starts_with("k")) %>%  rownames_to_column(), ancestry_props_temp %>% select(starts_with("k")) %>% mutate(which_k = names(.)[max.col(.)]) %>% rownames_to_column() %>% select(rowname, which_k), by="rowname") %>% group_by(pop, which_k) %>% summarize(count = n()) %>% ungroup() %>% group_by(pop) %>% top_n(1, count) %>% ggplot(aes(x = -1, y = fct_rev(pop), fill = which_k)) + geom_col(width=1) + theme_bw() +
+theme(axis.text.x = element_blank(),
+           axis.ticks.x=element_blank(), legend.position = "bottom") + xlab("") + ylab("") + xlim(c(-1,0))
 ```
