@@ -9,13 +9,18 @@ output: html_document
 library(readr)
 library(ggplot2)
 library(tidyverse)
+library(patchwork)
 
 ancestry_props <- read_delim("~/Documents/resources/papers/ripples/NC.admixture_results.with_fam.Q", col_names = FALSE, delim=" ")
 colnames(ancestry_props) <- c("pop", "id", paste0("k", c(2:7)))
 ancestry_props <- ancestry_props %>%
   separate(col = id, into = c("id", "k1"), sep="\t") %>%
-  mutate(k1 = as.double(k1),
-         pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
+  mutate(k1 = as.double(k1))
+
+ancestry_props_prelim <- ancestry_props
+
+ancestry_props <- ancestry_props %>%
+         mutate(pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
                          pop == "ASW" ~ "African American",
                          pop == "CHB" ~ "Han Chinese",
                          pop == "Egyptians" ~ "Egyptian",
@@ -30,7 +35,7 @@ ancestry_props <- ancestry_props %>%
                          pop == "RwandeseUgandan" ~ "Rwandese",
                          pop == "TSI" ~ "Italian",
                          pop == "YRI" ~ "Yoruba",
-                         .default = pop),
+                         TRUE ~ pop),
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
             )
 
@@ -39,23 +44,73 @@ ancestry_props_temp <- ancestry_props
 Need to add superpopulation labels and sort by those.
 
 
-```{r}
-ancestry_props %>% 
+```{r fig.width = 5, fig.height = 10}
+plot1 <- ancestry_props %>% 
   pivot_longer(starts_with("k"), values_to = "prop", names_to = "which_k") %>%
   ggplot(aes(y=id,
              x=prop,
-             fill = which_k,
+             fill = factor(which_k),
              group = pop)) +
-  geom_bar(stat = "identity", position = "stack") +
+  geom_bar(stat = "identity", position = "stack", width = 1) +
   facet_wrap(~pop, ncol=1, strip.position = "left", scale = "free_y") +
   theme(axis.text.y = element_blank(),
-        strip.text.y.left = element_text(angle = 0)) +
-  ylab("")
+        strip.text.y.left = element_text(angle = 0),
+        legend.position = "none") +
+  ylab("") +
+  scale_fill_manual(breaks = c("k1", "k2", "k3", "k4", "k5", "k6", "k7"), values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 
 ```
 
+#A41252 -- Maroon/Zulu color - k7
+#FFE6AD -- Mustard color - k2
+#056EB5 -- Blue/green color - k4
+#EC5D25 -- Purple color - k6
+#30A9E1 -- Green - k3
+#2BA06A -- Dodger blue - k5
+#2B284B -- Salmon/pink - k1
+
+What's with the discrepency we see on Zulu, Mandinka, and Mende? Zulu should have a predominant ancestry that others don't. Mende should be mostly if not all 
+
 ```{r}
-left_join(ancestry_props_temp %>% select(!starts_with("k")) %>%  rownames_to_column(), ancestry_props_temp %>% select(starts_with("k")) %>% mutate(which_k = names(.)[max.col(.)]) %>% rownames_to_column() %>% select(rowname, which_k), by="rowname") %>% group_by(pop, which_k) %>% summarize(count = n()) %>% ungroup() %>% group_by(pop) %>% top_n(1, count) %>% ggplot(aes(x = -1, y = fct_rev(pop), fill = which_k)) + geom_col(width=1) + theme_bw() +
-theme(axis.text.x = element_blank(),
-           axis.ticks.x=element_blank(), legend.position = "bottom") + xlab("") + ylab("") + xlim(c(-1,0))
+ancestry_props_prelim %>% 
+  group_by(pop) %>% 
+  summarize(across(starts_with("k"), mean)) %>% 
+  print(n=26)
+```
+
+```{r, fig.width = 2, fig.height=10}
+plot2 <- left_join(ancestry_props_temp %>% 
+            select(!starts_with("k")) %>%  
+            rownames_to_column(), 
+          ancestry_props_temp %>% 
+            select(starts_with("k")) %>% 
+            mutate(which_k = names(.)[max.col(.)]) %>% 
+            rownames_to_column() %>% 
+            select(rowname, which_k), 
+          by="rowname") %>% 
+  group_by(pop, which_k) %>% 
+  summarize(count = n()) %>% 
+  ungroup() %>% 
+  group_by(pop) %>% 
+  top_n(1, count) %>% 
+  ggplot(aes(x = -1, 
+             y = fct_rev(pop), 
+             fill = which_k)) + 
+  geom_col(width=1) + 
+  theme_bw() +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "none") + 
+  xlab("") + 
+  ylab("") + 
+  xlim(c(-1,0)) + 
+  scale_fill_manual(breaks = c("k1", "k2", "k3", "k4", "k5", "k6", "k7"), 
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+```
+
+```{r fig.width = 5.5, fig.height = 12}
+plot1 + plot2 + 
+  plot_layout(widths = c(5,0.5), heights=c(12))
 ```
