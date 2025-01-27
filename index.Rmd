@@ -11,7 +11,9 @@ library(ggplot2)
 library(tidyverse)
 library(patchwork)
 
-ancestry_props <- read_table("~/Documents/resources/papers/ripples/NC.admixture_results.with_fam.Q", col_names = c("pop", "id", paste0("k", 1:7)))
+#ancestry_props <- read_table("~/Documents/resources/papers/ripples/NC.admixture_results.with_fam.Q", col_names = c("pop", "id", paste0("k", 1:7)))
+ancestry_props <- 
+  read_table("~/course_repos/OCS/ocs-ripples-ancestry/data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q", col_names = c("pop", "id", paste0("k", 1:7)))
 ancestry_props_prelim <- ancestry_props
 
 ancestry_props <- ancestry_props %>%
@@ -28,11 +30,15 @@ ancestry_props <- ancestry_props %>%
                          pop == "MXL" ~ "Mexican",
                          pop == "Nama/Khoe-San" ~ "Nama",
                          pop == "RwandeseUgandan" ~ "Rwandese",
+                         pop == "uganda_gwas_unknown" ~ NA_character_,
+                         pop == "Batooro" ~ NA_character_,
+                         pop == "Nyanjiro(Tanzania)" ~ NA_character_,
                          pop == "TSI" ~ "Italian",
                          pop == "YRI" ~ "Yoruba",
                          TRUE ~ pop),
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
-            )
+            ) %>%
+  drop_na()
 
 ancestry_props_temp <- ancestry_props
 ```
@@ -52,7 +58,7 @@ plot1 <- ancestry_props %>%
         strip.text.y.left = element_text(angle = 0),
         legend.position = "none") +
   ylab("") +
-  scale_fill_manual(breaks = c("k1", "k2", "k3", "k4", "k5", "k6", "k7"), 
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"), 
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 
 ```
@@ -108,7 +114,7 @@ plot2 <- left_join(ancestry_props_temp %>%
   xlab("") + 
   ylab("") + 
   xlim(c(-1,0)) + 
-  scale_fill_manual(breaks = c("k1", "k2", "k3", "k4", "k5", "k6", "k7"), 
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"), 
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 ```
 
