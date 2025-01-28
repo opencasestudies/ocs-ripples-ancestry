@@ -10,10 +10,10 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 library(patchwork)
+library(here)
 
-#ancestry_props <- read_table("~/Documents/resources/papers/ripples/NC.admixture_results.with_fam.Q", col_names = c("pop", "id", paste0("k", 1:7)))
 ancestry_props <- 
-  read_table("~/course_repos/OCS/ocs-ripples-ancestry/data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q", col_names = c("pop", "id", paste0("k", 1:7)))
+  read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
 ancestry_props_prelim <- ancestry_props
 
 ancestry_props <- ancestry_props %>%
@@ -41,6 +41,7 @@ ancestry_props <- ancestry_props %>%
   drop_na()
 
 ancestry_props_temp <- ancestry_props
+write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE)
 ```
 Need to add superpopulation labels and sort by those.
 
@@ -63,28 +64,24 @@ plot1 <- ancestry_props %>%
 
 ```
 
-#A41252 -- Maroon/Zulu color - k7
+```{r}
+ggsave(here("img/mainplot.png"), plot=plot1)
+```
 
-#FFE6AD -- Mustard color - k2
+#A41252 -- Maroon/Zulu color - k2
+
+#FFE6AD -- Mustard color - k7
 
 #056EB5 -- Blue/green color - k4
 
-#EC5D25 -- Purple color - k6
+#EC5D25 -- Purple color - k3
 
-#30A9E1 -- Green - k3
+#30A9E1 -- Green - k1
 
 #2BA06A -- Dodger blue - k5
 
-#2B284B -- Salmon/pink - k1
+#2B284B -- Salmon/pink - k6
 
-What's with the discrepency we see on Zulu, Mandinka, and Mende? Zulu should have a predominant ancestry that others don't. Mende should be mostly if not all 
-
-```{r}
-ancestry_props_prelim %>% 
-  group_by(pop) %>% 
-  summarize(across(starts_with("k"), mean)) %>% 
-  print(n=26) %>% write_csv( "~/course_repos/OCS/ocs-ripples-ancestry/data/wrangled/ancestry_prop_avg.csv")
-```
 
 ```{r, fig.width = 2, fig.height=10}
 plot2 <- left_join(ancestry_props_temp %>% 
@@ -121,4 +118,8 @@ plot2 <- left_join(ancestry_props_temp %>%
 ```{r fig.width = 5.5, fig.height = 12}
 plot1 + plot2 + 
   plot_layout(widths = c(5,0.5), heights=c(12))
+```
+
+```{r}
+ggsave(here("img/ancestry_props.png"))
 ```
