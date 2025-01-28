@@ -115,7 +115,7 @@ plot2 <- toPlotExpanded %>%
   ggplot(aes(x = -1, 
              y = row.names(.), 
              fill = which_k)) + 
-  geom_col() +
+  geom_col(width=1) +
   facet_col(~pop,
             scales = "free_y",
             space = "free"
