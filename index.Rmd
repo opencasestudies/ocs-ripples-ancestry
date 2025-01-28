@@ -11,6 +11,7 @@ library(ggplot2)
 library(tidyverse)
 library(patchwork)
 library(here)
+library(ggforce) #for facet_col
 
 ancestry_props <- 
   read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
@@ -41,7 +42,7 @@ ancestry_props <- ancestry_props %>%
   drop_na()
 
 ancestry_props_temp <- ancestry_props
-write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE)
+write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE, sep = "\t")
 ```
 Need to add superpopulation labels and sort by those.
 
@@ -54,9 +55,14 @@ plot1 <- ancestry_props %>%
              fill = factor(which_k),
              group = pop)) +
   geom_bar(stat = "identity", position = "stack", width = 1) +
-  facet_wrap(~pop, ncol=1, strip.position = "left", scale = "free_y") +
+  facet_col(~pop, 
+             #ncol=1, #included in facet_wrap, but not facet_col 
+             strip.position = "left", 
+             scales = "free_y",
+            space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
   theme(axis.text.y = element_blank(),
         strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank(),
         legend.position = "none") +
   ylab("") +
   scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"), 
@@ -65,7 +71,7 @@ plot1 <- ancestry_props %>%
 ```
 
 ```{r}
-ggsave(here("img/mainplot.png"), plot=plot1)
+ggsave(here("img/mainplot.png"), plot=plot1, width = 5, height = 10,  units = "in")
 ```
 
 #A41252 -- Maroon/Zulu color - k2
@@ -82,9 +88,10 @@ ggsave(here("img/mainplot.png"), plot=plot1)
 
 #2B284B -- Salmon/pink - k6
 
+If I want to use facet_col to have a better idea of sample size, I think the second plot will need to know how many samples there are so it can likewise use that data. Have now done that with toPlotExpanded where that dataframe is `pop`, and `which_k` is the most predominant for that population, and the number of times that row is present is the number of samples for that population. This dataframe is made from a dataframe with 4 columns where there's `pop`, `which_k` (the predominant ADMIXTURE k for that population), `count` (the number of ids within that population that were predominantly represented by that k, and that was the highest among the ks for that population), and `n_ids` (the total number of samples/ids for that population) 
 
 ```{r, fig.width = 2, fig.height=10}
-plot2 <- left_join(ancestry_props_temp %>% 
+toPlot <- left_join(ancestry_props_temp %>% 
             select(!starts_with("k")) %>%  
             rownames_to_column(), 
           ancestry_props_temp %>% 
@@ -98,16 +105,29 @@ plot2 <- left_join(ancestry_props_temp %>%
   ungroup() %>% 
   group_by(pop) %>% 
   top_n(1, count) %>% 
+  left_join(ancestry_props_temp %>% 
+               group_by(pop) %>% 
+               summarize(n_ids = n()), by = "pop")
+  
+toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
+
+plot2 <- toPlotExpanded %>%
   ggplot(aes(x = -1, 
-             y = fct_rev(pop), 
+             y = row.names(.), 
              fill = which_k)) + 
-  geom_col(width=1) + 
+  geom_col() +
+  facet_col(~pop,
+            scales = "free_y",
+            space = "free"
+            ) + 
   theme_bw() +
   theme(axis.text.x = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.x = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = "none") + 
+        legend.position = "none",
+        strip.background = element_blank(),
+        strip.text.x = element_blank()) + 
   xlab("") + 
   ylab("") + 
   xlim(c(-1,0)) + 
@@ -121,5 +141,5 @@ plot1 + plot2 +
 ```
 
 ```{r}
-ggsave(here("img/ancestry_props.png"))
+ggsave(here("img/ancestry_props.png"), width = 5.5, height = 12, units = "in")
 ```
