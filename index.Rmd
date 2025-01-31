@@ -1,13 +1,359 @@
 ---
-title: "Ripples Ancestry Plot"
-author: "Kate Isaac"
-date: "2024-12-20"
-output: html_document
+title: "Open Case Studies : Title "
+css: style.css
+output:
+  html_document:
+    self_contained: yes
+    code_download: yes
+    highlight: tango
+    number_sections: no
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+
 ---
+<style>
+#TOC {
+  background: url("https://opencasestudies.github.io/img/icon.png");
+  background-size: contain;
+  padding-top: 240px !important;
+  background-repeat: no-repeat;
+}
+</style>
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
+                      message = FALSE, warning = FALSE, cache = FALSE,
+                      fig.align = "center", out.width = '90%')
+library(here)
+library(knitr)
+```
+
+
+#### {.outline }
+```{r, echo = FALSE, out.width = "800 px"}
+knitr::include_graphics(here::here("img", "mainplot.png"))
+```
+
+####
+
+All case studies should include a disclaimer about the project, licensing info, and proper citation. See below for examples:
+
+#### {.disclaimer_block}
+
+**Disclaimer**: The purpose of the [Open Case Studies](https://opencasestudies.github.io){target="_blank"} project is **to demonstrate the use of various data science methods, tools, and software in the context of messy, real-world data**. A given case study does not cover all aspects of the research process, is not claiming to be the most appropriate way to analyze a given data set, and should not be used in the context of making policy decisions without external consultation from scientific experts. 
+
+####
+
+#### {.license_block}
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 [(CC BY-NC 3.0)](https://creativecommons.org/licenses/by-nc/3.0/us/){target="_blank"}  United States License.
+
+####
+
+#### {.reference_block}
+
+To cite this case study please use:
+
+Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com/opencasestudies/ocs-bp-co2-emissions. Exploring CO2 emissions across time (Version v1.0.0).
+
+####
+
+In this space you should provide an open access link to the case study source files. This is necessary for users to get access to case study data, at a minimum. See the following example from the CO2 Emissions case study:
+
+To access the GitHub repository for this case study see here: https://github.com//opencasestudies/ocs-bp-co2-emissions.
+This case study is part of a series of public health case studies for the [Bloomberg American Health Initiative](https://americanhealth.jhu.edu/open-case-studies).
+
+# **Motivation**
+*** 
+Begin the case study by describing what will be analyzed and why.  
+
+You may use headers and sub-headers like such:
+
+## **Content Header**
+*** 
+
+Content content
+
+
+### **content header additional level**
+***
+Attach quotes:
+
+> Content for quotes
+
+Attach images:
+
+```{r, echo = FALSE, out.width="800px"}
+knitr::include_graphics(here::here("img","content_image.png"))
+```
+for large images from the web... might do this instead:
+
+<p align="center">
+  <img width="500" src="https://www.frontiersin.org/files/Articles/505570/fpubh-08-00014-HTML/image_m/fpubh-08-00014-t002.jpg">
+</p>
+
+... and provide a link to the image source:
+
+##### [[source](https://www.frontiersin.org/articles/10.3389/fpubh.2020.00014/full)]
+
+Use the following syntax scheme for stylizing text:
+
+<u>To underline something:</u>  
+**Bold**  
+*Italics*  
+<u>**underline and bold** </u>  
+<u>***underline and bold and italics*** </u>  
+
+Create a List:  
+1) make sure there are two spaces    
+2) after each item to create new line  
+
+Provide references for your images/content: 
+
+#### {.reference_block}
+
+Yanosky, J. D. et al. Spatio-temporal modeling of particulate air pollution in the conterminous United States using geographic and meteorological predictors. *Environ Health* 13, 63 (2014).
+
+####
+
+
+# **Main Questions**
+*** 
+List inside the main question block the main questions that we seek to answer with the case study analysis:
+
+#### {.main_question_block}
+<b><u> Our main question: </u></b>
+
+1) Question 1  
+2) Question 2 etc. (You may have more than 2)
+
+####
+
+# **Learning Objectives** 
+*** 
+In this section, discuss the data science and statistical skills, methods, and concepts that will be covered by this case study. An example from the CO2 emissions case study is provided here: 
+
+In this case study, we will explore CO2 emission data from around the world. 
+We will also focus on the US specifically to evaluate patterns of temperatures and natural disaster activity. 
+
+This case study will particularly focus on how to use different datasets that span different ranges of time, as well as how to create visualizations of patterns over time. 
+We will especially focus on using packages and functions from the [`tidyverse`](https://www.tidyverse.org/){target="_blank"}, such as `dplyr`, `tidyr`, and `ggplot2`. 
+
+The tidyverse is a library of packages created by RStudio. 
+While some students may be familiar with previous R programming packages, these packages make data science in R especially legible and intuitive.
+
+The skills, methods, and concepts that students will be familiar with by the end of this case study are:
+
+<u>**Data Science Learning Objectives:**</u>  
+
+1. Importing data from various types of Excel files and CSV files
+2. Apply action verbs in `dplyr` for data wrangling
+3. How to pivot between "long" and "wide" datasets
+4. Joining together multiple datasets using `dplyr`
+5. How to create effective longitudinal data visualizations with `ggplot2`
+6. How to add text, color, and labels to `ggplot2` plots
+7. How to create faceted `ggplot2` plots
+
+<u>**Statistical Learning Objectives:**</u>  
+
+1. Introduction to correlation coefficient as a summary statistic
+2. Relationship between correlation and linear regression
+3. Correlation is not causation
+
+```{r, out.width = "20%", echo = FALSE, fig.align = "center"}
+include_graphics("https://tidyverse.tidyverse.org/logo.png")
+```
+
+
+*** 
+After discussing the learning objectives, load all the packages used in the case study analysis in the code chunk below:
+
+We will begin by loading the packages that we will need:
 
 ```{r}
+library(here)
 library(readr)
-library(ggplot2)
+library(dplyr)
+library(DT)
+```
+
+
+Provide a link to the source and briefly explain its use for each package in the following table:
+
+ Package   | Use                                                                         
+---------- |-------------
+[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
+[readr](https://readr.tidyverse.org/){target="_blank"}      | to import the CSV file data
+
+
+The first time we use a function, we will use the `::` to indicate which package we are using. Unless we have overlapping function names, this is not necessary, but we will include it here to be informative about where the functions we will use come from.
+
+# **Context**
+*** 
+Provide some more details and background on the case study topic and its relation to public health/the world. 
+
+# **Limitations**
+*** 
+Describe any limitations that exist in this analysis whether it be due to the data itself, methods used, nature of the topic, etc. 
+
+There are some important considerations regarding this data analysis to keep in mind: 
+
+1) Limitation 1  
+
+2) Limitaiton 2  
+
+
+# **What are the data?**
+*** 
+Describe the data to be analyzed and where it came from in this section.
+
+If you want to make a table about variable info, use the following table template:
+
+Variable   | Details                                                                        
+---------- |-------------
+**variable1**  | Variable info  <br> -- more details <br> -- more detials <br>  **Example**: Content content  
+**variable2**  | Variable info  <br> -- more details <br> -- more detials <br>  **Example**: Content content
+
+# **Data Import**
+*** 
+Describe how to import your case study data files into R or Python:
+
+Within your case study project folder, put the data files as they came from the source into a 'data/raw/' subfolder and use the `here` package. See the following example: 
+
+```{r}
+pm <-readr::read_csv(here("data", "raw", "pm25_data.csv"))
+```
+
+At the end of the data import section, save the imported data as .rda files to allow users to stop and pick up where they left off: 
+
+```{r}
+save(pm, file = here::here("data", "imported", "pm25_data_imported.rda"))
+```
+
+
+# **Data Exploration and Wrangling**
+*** 
+At the beginning of the section, include the following message:
+
+If you have been following along but stopped, we could load our imported data like so:
+
+```{r}
+load(here::here("data", "imported", "pm25_data_imported.rda"))
+```
+
+Also provide guidance for users who may have skipped the previous section, see the following example: 
+
+***
+<details> <summary> If you skipped the data import section click here. </summary>
+
+An RDA version (stands for R data) of the data can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/imported) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/imported/co2_data_imported.rda). Download this file and then place it in your current working directory within a subdirectory called "imported" within a directory called "data" to use the following code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily.
+
+```{r, eval=FALSE}
+load(here::here("data", "imported", "co2_data_imported.rda"))
+```
+
+</details>
+***
+
+Use this section to walk through any exploration of the data conducted pre-analysis. Then, explain step-by-step the data wrangling process used to prepare the data for analysis. Note that not all case studies include a data exploration. Data exploration and wrangling may also be split into two sections. 
+
+We will also use the `%>%` pipe which can be used to define the input for later sequential steps. This will make more sense when we have multiple sequential steps using the same data object. To use the pipe notation we need to install and load dplyr as well.
+
+Can include DT tables too: 
+
+```{r}
+library(DT)
+DT::datatable(iris)
+```
+
+(note that you can`t use these inside a click expand details section.)
+
+Scrollable content:
+
+#### {.scrollable }
+```{r}
+# Scroll through the output!
+pm %>% 
+  distinct(state) %>%
+  print(n = 1e3)
+```
+####
+
+
+To make click expand section use:
+
+<details><summary> Click here to see more info </summary>
+
+text text
+
+</details>
+
+Note!!! You cannot use scroll features inside detail sections unless it is the last header section! Otherwise it will cause the other headers to be missing and other issues. 
+
+You can still do this if you leave an open details section like this and then have a section header at the same level as this section:
+
+<details><summary> Click here to see more info </summary>
+
+text text
+
+Scrollable content:
+
+#### {.scrollable }
+```{r}
+# Scroll through the output!
+pm %>% 
+  distinct(state) %>%
+  print(n = 1e3)
+```
+####
+
+At the end of this section, include the following:
+
+To allow users to skip import and wrangling we will save the data as an RDA file as well as a CSV file as this is often useful to send our data to collaborators. We will save this in a “wrangled” subdirectory of our “data” directory of our working directory.
+
+```{r}
+save(pm, file = here::here("data", "wrangled", "wrangled_data.rda")) 
+readr::write_csv(pm, path = here::here("data","wrangled", "wrangled_data.csv"))
+```
+
+Replace `pm` with the name of the data object created at the end of data wrangling. 
+
+# **Data Visualization**
+*** 
+At the beginning of the section, include the following message:
+
+If you have been following along but stopped, we could load our wrangled data like so:
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
+```
+
+Also provide guidance for users who may have skipped the previous section, see the following example: 
+
+***
+<details> <summary> If you skipped the data import section click here. </summary>
+
+An RDA file (stands for R data) of the data can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/wrangled) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/wrangled/wrangled_data.rda). Download this file and then place it in your current working directory within a subdirectory called "wrangled" within a subdirectory called "data" to use the following code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily.
+
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
+```
+
+</details>
+***
+
+# Plot
+```{r}
 library(tidyverse)
 library(patchwork)
 library(here)
@@ -74,19 +420,19 @@ plot1 <- ancestry_props %>%
 ggsave(here("img/mainplot.png"), plot=plot1, width = 5, height = 10,  units = "in")
 ```
 
-#A41252 -- Maroon/Zulu color - k2
+A41252 -- Maroon/Zulu color - k2
 
-#FFE6AD -- Mustard color - k7
+FFE6AD -- Mustard color - k7
 
-#056EB5 -- Blue/green color - k4
+056EB5 -- Blue/green color - k4
 
-#EC5D25 -- Purple color - k3
+EC5D25 -- Purple color - k3
 
-#30A9E1 -- Green - k1
+30A9E1 -- Green - k1
 
-#2BA06A -- Dodger blue - k5
+2BA06A -- Dodger blue - k5
 
-#2B284B -- Salmon/pink - k6
+2B284B -- Salmon/pink - k6
 
 If I want to use facet_col to have a better idea of sample size, I think the second plot will need to know how many samples there are so it can likewise use that data. Have now done that with toPlotExpanded where that dataframe is `pop`, and `which_k` is the most predominant for that population, and the number of times that row is present is the number of samples for that population. This dataframe is made from a dataframe with 4 columns where there's `pop`, `which_k` (the predominant ADMIXTURE k for that population), `count` (the number of ids within that population that were predominantly represented by that k, and that was the highest among the ks for that population), and `n_ids` (the total number of samples/ids for that population) 
 
@@ -143,3 +489,109 @@ plot1 + plot2 +
 ```{r}
 ggsave(here("img/ancestry_props.png"), width = 5.5, height = 12, units = "in")
 ```
+
+
+# **Data Analysis**
+*** 
+At the beginning of the section, include the following message:
+
+If you have been following along but stopped, we could load our wrangled data like so:
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
+```
+
+Also provide guidance for users who may have skipped the previous section, see the following example: 
+
+***
+<details> <summary> If you skipped the data import section click here. </summary>
+
+An RDA file (stands for R data) of the data can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/wrangled) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/wrangled/wrangled_data.rda). Download this file and then place it in your current working directory within a subdirectory called "wrangled" within a subdirectory called "data" to use the following code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily.
+
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
+```
+
+</details>
+***
+
+Use this section to walk through the methods and code used in the data analysis step-by-step. Explain how this analysis helps answer the main questions posed earlier in the case study. 
+
+## **content header**
+*** 
+### **content header additional level**
+***
+
+
+# **Summary**
+*** 
+## **Synopsis**
+***
+Briefly recap everything that was covered in the case study from the motivation to data analysis. Highlight the conclusions made and suggest any limitations or future work to be done.
+
+## **Summary Plot**
+***
+Construct a plot here that summarizes the conclusions found in the data, if applicable. 
+
+# **Suggested Homework**
+*** 
+Suggest extra exercises using this data for students to practice the skills used in the case study. 
+
+Examples from [CO2 case study](https://github.com/opencasestudies/ocs-bp-co2-emissions/): 
+
+Ask students to create a plot with labels showing the countries with the lowest CO2 emission levels.
+
+Ask students to plot CO2 emissions and other variables (e.g. energy use) on a scatter plot, calculate the Pearson's correlation coefficient, and discuss results. 
+
+# **Additional Information**
+***
+Use this section to provide any additional information or resources on the topics and methods covered in the case study. 
+
+## **Helpful Links**
+*** 
+
+review of [tidymodels](https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/){target="_blank"} 
+
+guide for [preprocessing with recipes](http://www.rebeccabarter.com/blog/2019-06-06_pre_processing/)
+
+[guide](https://briatte.github.io/ggcorr/) for using GGally to create correlation plots
+[guide](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/) for using parsnip to try different algorithms or engines
+[recipe functions](https://tidymodels.github.io/recipes/reference/index.html)
+
+<u>Terms and concepts covered:</u>  
+
+[Tidyverse](https://www.tidyverse.org/){target="_blank"}  
+[RStudio cheatsheets](https://rstudio.com/resources/cheatsheets/){target="_blank"}  
+[Inference](https://www.britannica.com/science/inference-statistics){target="_blank"}  
+[Regression](https://lindeloev.github.io/tests-as-linear/){target="_blank"}  
+[Different types of regression](https://www.analyticsvidhya.com/blog/2015/08/comprehensive-guide-regression/){target="_blank"}  
+[Ordinary least squares method](http://setosa.io/ev/ordinary-least-squares-regression/){target="_blank"}  
+[Residual](https://www.statisticshowto.datasciencecentral.com/residual/){target="_blank"}  
+
+<u>Packages used in this case study: </u>
+
+ Package   | Use                                                                         
+---------- |-------------
+[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data  
+[readr](https://readr.tidyverse.org/){target="_blank"}      | to import the CSV file data  
+[dplyr](https://dplyr.tidyverse.org/){target="_blank"}      | to arrange/filter/select/compare specific subsets of the data  
+[skimr](https://cran.r-project.org/web/packages/skimr/index.html){target="_blank"}      | to get an overview of data   
+[summarytools](https://cran.r-project.org/web/packages/skimr/index.html){target="_blank"}      | to get an overview of data in a different style   
+[pdftools](https://cran.r-project.org/web/packages/pdftools/pdftools.pdf){target="_blank"}   | to read a PDF into R   
+[magrittr](https://magrittr.tidyverse.org/articles/magrittr.html){target="_blank"}   | to use the `%<>%` pipping operator  
+[purrr](https://purrr.tidyverse.org/){target="_blank"}      | to perform functions on all columns of a tibble   
+[tibble](https://tibble.tidyverse.org/){target="_blank"}     | to create data objects that we can manipulate with  dplyr/stringr/tidyr/purrr  
+[tidyr](https://tidyr.tidyverse.org/){target="_blank"}      | to separate data within a column into multiple columns 
+[ggplot2](https://ggplot2.tidyverse.org/){target="_blank"}    | to make visualizations with multiple layers  
+
+## **Session Info**
+***
+
+```{r}
+devtools::session_info()
+```
+
+## **Acknowledgments**
+***
+
