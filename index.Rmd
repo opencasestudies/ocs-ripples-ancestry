@@ -183,6 +183,7 @@ We will begin by loading the packages that we will need:
 library(here)
 library(readr)
 library(dplyr)
+library(DT)
 ```
 
 
@@ -351,9 +352,144 @@ load(here::here("data", "wrangled", "wrangled_data.rda"))
 </details>
 ***
 
-Use this section to walk through step by step how the wrangled data was visualized. Explain how these visualizations improve understanding and help extract insights. 
+# Plot
+```{r}
+library(tidyverse)
+library(patchwork)
+library(here)
+library(ggforce) #for facet_col
 
-If any further wrangling was conducted in this section, please save the most recent version of the data similar to previous sections. 
+ancestry_props <- 
+  read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
+ancestry_props_prelim <- ancestry_props
+
+ancestry_props <- ancestry_props %>%
+         mutate(pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
+                         pop == "ASW" ~ "African American",
+                         pop == "CHB" ~ "Han Chinese",
+                         pop == "Egyptians" ~ "Egyptian",
+                         pop == "ESN" ~ "Esan",
+                         pop == "GBR" ~ "British",
+                         pop == "GIH" ~ "Gujarati",
+                         pop == "GWD" ~ "Mandinka",
+                         pop == "LWK" ~ "Luhya",
+                         pop == "MSL" ~ "Mende",
+                         pop == "MXL" ~ "Mexican",
+                         pop == "Nama/Khoe-San" ~ "Nama",
+                         pop == "RwandeseUgandan" ~ "Rwandese",
+                         pop == "uganda_gwas_unknown" ~ NA_character_,
+                         pop == "Batooro" ~ NA_character_,
+                         pop == "Nyanjiro(Tanzania)" ~ NA_character_,
+                         pop == "TSI" ~ "Italian",
+                         pop == "YRI" ~ "Yoruba",
+                         TRUE ~ pop),
+                      levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
+            ) %>%
+  drop_na()
+
+ancestry_props_temp <- ancestry_props
+write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE, sep = "\t")
+```
+Need to add superpopulation labels and sort by those.
+
+
+```{r fig.width = 5, fig.height = 10}
+plot1 <- ancestry_props %>% 
+  pivot_longer(starts_with("k"), values_to = "prop", names_to = "which_k") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k),
+             group = pop)) +
+  geom_bar(stat = "identity", position = "stack", width = 1) +
+  facet_col(~pop, 
+             #ncol=1, #included in facet_wrap, but not facet_col 
+             strip.position = "left", 
+             scales = "free_y",
+            space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
+  theme(axis.text.y = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank(),
+        legend.position = "none") +
+  ylab("") +
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"), 
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+
+```
+
+```{r}
+ggsave(here("img/mainplot.png"), plot=plot1, width = 5, height = 10,  units = "in")
+```
+
+A41252 -- Maroon/Zulu color - k2
+
+FFE6AD -- Mustard color - k7
+
+056EB5 -- Blue/green color - k4
+
+EC5D25 -- Purple color - k3
+
+30A9E1 -- Green - k1
+
+2BA06A -- Dodger blue - k5
+
+2B284B -- Salmon/pink - k6
+
+If I want to use facet_col to have a better idea of sample size, I think the second plot will need to know how many samples there are so it can likewise use that data. Have now done that with toPlotExpanded where that dataframe is `pop`, and `which_k` is the most predominant for that population, and the number of times that row is present is the number of samples for that population. This dataframe is made from a dataframe with 4 columns where there's `pop`, `which_k` (the predominant ADMIXTURE k for that population), `count` (the number of ids within that population that were predominantly represented by that k, and that was the highest among the ks for that population), and `n_ids` (the total number of samples/ids for that population) 
+
+```{r, fig.width = 2, fig.height=10}
+toPlot <- left_join(ancestry_props_temp %>% 
+            select(!starts_with("k")) %>%  
+            rownames_to_column(), 
+          ancestry_props_temp %>% 
+            select(starts_with("k")) %>% 
+            mutate(which_k = names(.)[max.col(.)]) %>% 
+            rownames_to_column() %>% 
+            select(rowname, which_k), 
+          by="rowname") %>% 
+  group_by(pop, which_k) %>% 
+  summarize(count = n()) %>% 
+  ungroup() %>% 
+  group_by(pop) %>% 
+  top_n(1, count) %>% 
+  left_join(ancestry_props_temp %>% 
+               group_by(pop) %>% 
+               summarize(n_ids = n()), by = "pop")
+  
+toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
+
+plot2 <- toPlotExpanded %>%
+  ggplot(aes(x = -1, 
+             y = row.names(.), 
+             fill = which_k)) + 
+  geom_col(width=1) +
+  facet_col(~pop,
+            scales = "free_y",
+            space = "free"
+            ) + 
+  theme_bw() +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "none",
+        strip.background = element_blank(),
+        strip.text.x = element_blank()) + 
+  xlab("") + 
+  ylab("") + 
+  xlim(c(-1,0)) + 
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"), 
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+```
+
+```{r fig.width = 5.5, fig.height = 12}
+plot1 + plot2 + 
+  plot_layout(widths = c(5,0.5), heights=c(12))
+```
+
+```{r}
+ggsave(here("img/ancestry_props.png"), width = 5.5, height = 12, units = "in")
+```
+
 
 # **Data Analysis**
 *** 
@@ -458,3 +594,4 @@ devtools::session_info()
 
 ## **Acknowledgments**
 ***
+
