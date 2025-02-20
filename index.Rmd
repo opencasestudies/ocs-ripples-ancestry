@@ -364,7 +364,8 @@ ancestry_props <-
 ancestry_props_prelim <- ancestry_props
 
 ancestry_props <- ancestry_props %>%
-         mutate(pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
+         mutate(pop = factor(case_when(
+                         pop == "ACB" ~ "African Caribbean",
                          pop == "ASW" ~ "African American",
                          pop == "CHB" ~ "Han Chinese",
                          pop == "Egyptians" ~ "Egyptian",
@@ -385,7 +386,7 @@ ancestry_props <- ancestry_props %>%
                          TRUE ~ pop),
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
             ) %>%
-  drop_na()
+  drop_na() # dropping a few samples that had no data
 
 ancestry_props_temp <- ancestry_props
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE, sep = "\t")
@@ -405,7 +406,7 @@ plot1 <- ancestry_props %>%
              #ncol=1, #included in facet_wrap, but not facet_col 
              strip.position = "left", 
              scales = "free_y",
-            space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
+             space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
   theme(axis.text.y = element_blank(),
         strip.text.y.left = element_text(angle = 0),
         strip.background = element_blank(),
@@ -467,8 +468,7 @@ plot2 <- toPlotExpanded %>%
             space = "free"
             ) + 
   theme_bw() +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
+  theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         legend.position = "none",
         strip.background = element_blank(),
