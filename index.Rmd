@@ -1,5 +1,5 @@
 ---
-title: "Open Case Studies : Title "
+title: "Open Case Studies : The Biology of Ancestry "
 css: style.css
 output:
   html_document:
@@ -63,14 +63,14 @@ This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 [
 
 To cite this case study please use:
 
-Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com/opencasestudies/ocs-bp-co2-emissions. Exploring CO2 emissions across time (Version v1.0.0).
+Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2025). https://github.com/opencasestudies/ocs-bp-co2-emissions. The Biology of Ancestry (Version v1.0.0).
 
 ####
 
 In this space you should provide an open access link to the case study source files. This is necessary for users to get access to case study data, at a minimum. See the following example from the CO2 Emissions case study:
 
-To access the GitHub repository for this case study see here: https://github.com//opencasestudies/ocs-bp-co2-emissions.
-This case study is part of a series of public health case studies for the [Bloomberg American Health Initiative](https://americanhealth.jhu.edu/open-case-studies).
+To access the GitHub repository for this case study see here: https://github.com/opencasestudies/ocs-ripples-ancestry.
+This case study is published as part of the [Reducing Inequities by Promoting Participatory Learning Experiences in Sciences (RIPPLES) Project](https://www.fredhutch.org/en/news/center-news/2024/09/science-education-partnership-ripples-grant.html) funded by R25GM154358, a Science Education Partnership Award (SEPA) from the National Institute of General Medical Sciences (NIGMS). The contents of this case study are solely the responsibility of the authors and do not represent the official views of the NIGMS or NIH.
 
 # **Motivation**
 *** 
