@@ -67,7 +67,6 @@ Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2025). https://github
 
 ####
 
-In this space you should provide an open access link to the case study source files. This is necessary for users to get access to case study data, at a minimum. See the following example from the CO2 Emissions case study:
 
 To access the GitHub repository for this case study see here: https://github.com/opencasestudies/ocs-ripples-ancestry.
 This case study is published as part of the [Reducing Inequities by Promoting Participatory Learning Experiences in Sciences (RIPPLES) Project](https://www.fredhutch.org/en/news/center-news/2024/09/science-education-partnership-ripples-grant.html) funded by R25GM154358, a Science Education Partnership Award (SEPA) from the National Institute of General Medical Sciences (NIGMS). The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch, NIGMS, or NIH.
