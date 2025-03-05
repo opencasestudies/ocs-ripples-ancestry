@@ -1,5 +1,5 @@
 ---
-title: "Open Case Studies : Title "
+title: "Open Case Studies : The Biology of Ancestry "
 css: style.css
 output:
   html_document:
@@ -63,14 +63,13 @@ This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 [
 
 To cite this case study please use:
 
-Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com/opencasestudies/ocs-bp-co2-emissions. Exploring CO2 emissions across time (Version v1.0.0).
+Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2025). https://github.com/opencasestudies/ocs-bp-co2-emissions. The Biology of Ancestry (Version v1.0.0).
 
 ####
 
-In this space you should provide an open access link to the case study source files. This is necessary for users to get access to case study data, at a minimum. See the following example from the CO2 Emissions case study:
 
-To access the GitHub repository for this case study see here: https://github.com//opencasestudies/ocs-bp-co2-emissions.
-This case study is part of a series of public health case studies for the [Bloomberg American Health Initiative](https://americanhealth.jhu.edu/open-case-studies).
+To access the GitHub repository to see the source materials and data that went into making the case study, please see here: https://github.com/opencasestudies/ocs-ripples-ancestry.
+This case study is published as part of the [Reducing Inequities by Promoting Participatory Learning Experiences in Sciences (RIPPLES) Project](https://www.fredhutch.org/en/news/center-news/2024/09/science-education-partnership-ripples-grant.html) funded by R25GM154358, a Science Education Partnership Award (SEPA) from the National Institute of General Medical Sciences (NIGMS). The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch, NIGMS, or NIH.
 
 # **Motivation**
 *** 
@@ -364,7 +363,8 @@ ancestry_props <-
 ancestry_props_prelim <- ancestry_props
 
 ancestry_props <- ancestry_props %>%
-         mutate(pop = factor(case_when(pop == "ACB" ~ "African Caribbean",
+         mutate(pop = factor(case_when(
+                         pop == "ACB" ~ "African Caribbean",
                          pop == "ASW" ~ "African American",
                          pop == "CHB" ~ "Han Chinese",
                          pop == "Egyptians" ~ "Egyptian",
@@ -385,7 +385,7 @@ ancestry_props <- ancestry_props %>%
                          TRUE ~ pop),
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
             ) %>%
-  drop_na()
+  drop_na() # dropping a few samples that had no data
 
 ancestry_props_temp <- ancestry_props
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"), row.names = FALSE, quote = FALSE, sep = "\t")
@@ -405,7 +405,7 @@ plot1 <- ancestry_props %>%
              #ncol=1, #included in facet_wrap, but not facet_col 
              strip.position = "left", 
              scales = "free_y",
-            space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
+             space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
   theme(axis.text.y = element_blank(),
         strip.text.y.left = element_text(angle = 0),
         strip.background = element_blank(),
@@ -467,10 +467,8 @@ plot2 <- toPlotExpanded %>%
             space = "free"
             ) + 
   theme_bw() +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.ticks.y = element_blank(),
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
         legend.position = "none",
         strip.background = element_blank(),
         strip.text.x = element_blank()) + 
