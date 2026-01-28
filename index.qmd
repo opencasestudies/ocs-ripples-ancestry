@@ -1,36 +1,307 @@
 ---
-title: "**Website Name**"
+title: "Open Case Studies: The Biology of Ancestry"
 output:
   html_document
 ---
 
-<div class = "banner_color">
-Banner text!  
-</div>
+#### {.outline}
 
-### **About**
+![](img/mainplot.png){fig-alt="" width=800 .lightbox}
 
-This website was created with the [OTTR_Quarto website template](https://github.com/ottrproject/OTTR_Quarto). 
+####
 
-This enables simpler creation of websites that have automated checks for broken URLs and spelling errors, as well as automated rendering of all html files. No need to worry about git conflicts for html files! See [ottrproject.org](https://www.ottrproject.org/) for more docs and details. 
+Add disclaimer and license
 
-Here is how you can include images in your website pages (this one is saved in `resources/images` to keep things tidy:
 
-```{r, fig.align='center', fig.alt= "Example image", echo = FALSE, out.width="30%"}
-knitr::include_graphics("resources/images/example_image.png")
+#### {.reference_block}
+
+To cite this case study, please use:
+
+Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). https://github.com/opencasestudies/ocs-ripples-ancestry. The Biology of Ancestry (Version v1.0.0).
+
+####
+
+To access the GitHub repository to see teh source materials and data that went into making the case study, please see here: https://github.com/opencasestudies/ocs-ripples-ancestry.
+This case study is published as part of the [Reducing Inequities by Promoting Participatory Learning Experiences in Sciences (RIPPLES) Project](https://www.fredhutch.org/en/news/center-news/2024/09/science-education-partnership-ripples-grant.html) funded in part by R25GM15358, a Science Education Partnership Award (SEPA) from the National Institute of General Medical Sciences (NIGMS). The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch, NIGMS, or NIH.
+
+# **Motivation**
+***
+
+This case study explores human *genomic variation*, especially with respect to *ancestry*.
+
+<!--
+  Add definition box with tabs for genomic variation and ancestry
+-->
+
+The human genome is composed of stretches of *nucleotides (A,C,G,T)*.  Genomic variation is caused by single-nucleotide changes (“point mutations”) or larger structural changes (duplication, insertion, deletion, inversion, translocation, etc.)
+
+<!--
+  Add definition box for nucleotides
+-->
+
+An example of a single nucleotide change would be A → G. (Add box about transition vs transversion.?) If a point mutation occurs fairly often within a population such that it is observed with a common frequency, it is termed a single nucleotide polymorphism or SNP. An example of a structural change would be a duplication where ACCGT would be duplicated and become ACCGTACCGT (though structural variants are typically defined as involving more than 50 nucleotides at a time). Some large structural changes may occur across multiple chromosomes (inter-chromosomal) rather than being within a single chromosome (intra-chromosomal).
+
+<!--
+  [Add figure showing examples of structural variants – simplifications of figure 1 here: https://pmc.ncbi.nlm.nih.gov/articles/PMC7131885/]
+-->
+
+Variation can be introduced through *mutation* or *recombination* during *meiosis*. Mutations may occur due to errors during the *replication* of genomic material, imperfect repair mechanisms, environmental factors or *mutagens* that damage genomic material (e.g., high-energy radiation or certain chemicals or viruses), or spontaneous changes. Not all variation will be passed on to offspring/children. Mutations may be somatic (occurring in cells that are not part of the reproductive system) or germline (occurring in cells that are part of the reproductive system). Germline mutations and meiotic recombination are examples of *heritable* variation that will be passed on to future generations.
+
+<!--
+  Add definition box with tabs for mutation, recombination, meiosis, replication, mutagens, and heritable
+-->
+
+Human genomes are large! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average if you compared the genomes of two individuals, there would be around 99.5% identity or matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off diagonal dots.
+
+<!--
+  Add definition box with tabs for reference genome and dotplot
+-->
+
+<!--
+Add figure showing identity
+-->
+
+## Why is variation important?
+
+Why should we care about human genomic variation, especially if there’s so much identity? Some variation is “functional” and leads to changes not just in the genome, but also in the *proteins* that are *translated* from the genetic material; however, not all variation is “functional”. These functional changes may impact how much of a protein is made, the protein structure and therefore its eventual role in the *cell*, or where and when the protein is expressed due to changes in regulatory elements. Certain diseases may be caused or worsened by genetic variation. Cancer is a common example of this where genes that control cell growth, division, or scheduled cell death are mutated and their proteins do not function properly to control this cell cycle, leading to tumors. For other diseases, (such as sickle-cell anemia and the Hemoglobin protein), a protein may not be expressed at the correct levels or the protein may be folded incorrectly because of its mutated structure, leading to inefficiencies in or the inability of the protein to perform its cellular essential function(s). Biological redundancy acts as a safety net such that the cell has backup systems that can mitigate issues by compensating or taking the place of nonfunctional components. But even with redundancy systems, mutations can lead to small changes with major consequences
+
+<!--
+  Add definition box with tabs for functional, proteins, translated, cell
+-->
+
+<details><summary>Different types of mutations</summary>
+
+**Single-nucleotide changes**
+
+Different types of single-nucleotide mutations are defined based on the effect of the mutation.
+
+* **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
+* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell. This impact could be due to how often a protein is produced because certain *codons* are less available or may take longer to process in translation; so while these mutations code for the same amino acid, they have an effect in the cell and aren't considered "silent".
+* **Missense mutations** result in an amino acid substitution which can impact protein structure and function.
+  * Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
+  * A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
+* **Nonsense mutations** introduce an early *stop codon* halting translation and producing a truncated, likely nonfunctional protein.
+
+**Single-nucleotide insertions or deletions (indels)**
+
+A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent codons.
+
+</details>
+
+Genetic variation isn’t of interest solely because of mutation and its relation to disease. Genetic variation is also considered necessary for survival. The Red Queen Hypothesis stipulates that species must constantly evolve and adapt to survive, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.). Given this, heritable variation (e.g., germline mutations or recombination during meiosis) is beneficial to the species by supporting evolution, allowing for the selection of advantageous traits necessary for adaptation and survival either due to competition or novel locations with their share of environmental challenges and unique resources. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because of the non-random survival due to the changes being advantageous.
+
+## Finding Relatedness
+
+Everyone within the human species inherited genomic material from two individuals and each of those individuals inherited genomic material from two other individuals, continuing backwards through the family history. And by expanding this to consider the evolution of species, this history traces back to shared or common ancestors of different species. If we consider two humans, we won’t have to go very far back to find a common ancestor, but comparing a human with an organism from another species, we will have to go back a longer amount of time to find a common ancestor. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and how individuals and species are related. Individuals that are more closely related will share more genomic material in common than those that are more distantly related. When comparing genomic material between individuals, sequence similarity or identity is a quantitative measure describing how much overlap or matching there is between the genomic material. Homology is a qualitative description inferred from the amount of similarity and suggests that the sequences or genomic material share a common ancestor. Models used to compare sequences take into account the different kinds of mutations and how commonly they occur.
+
+# **Main Questions**
+***
+List inside the main question block the main questions that we seek to answer with the case study analysis:
+
+#### {.main_question_block}
+<b><u> Our main question: </u></b>
+
+1) How can genomic data be used to explore the ancestry of an individual or population?
+2) How does the genetic makeup of different world populations compare?
+3) How can coding and computational biology/data science principles and tools help us investigate our question?
+
+####
+
+# **Learning Objectives**
+***
+
+<u>**Data Science Learning Objectives:**</u>
+
+1. Explain the differences and benefits of using R vs Google Sheets to work with data
+2. Describe how data can take different shapes: long and wide
+3. Recode data to change original values, using programming to reduce accidents
+4. Crease an ancestry plot (a special heatmap-like column plot that shows differences)
+5. Describe what different elements of the ancestry plot represent
+6. Combine two plots together
+
+<u>**Statistical Learning Objectives:**</u>
+
+1. Explain how clustering can help identify groups
+2. Summarizing means within a dataset
+
+<u>**Topical Learning Objectives:**</u>
+
+1. Describe how genomic data shows what human variation looks like
+2. Explain genetic similarities and differences between people
+3. Describe how racial and ancestry groups might differ
+4. Recognize the patterns of genetic variation across continents
+
+***
+
+We will begin by loading the packages that we will need:
+
+```{r}
+library(here)
+library(readr)
+library(dplyr)
+library(DT)
+library(tidyverse)
+library(ggplot2)
+install.packages(c("patchwork", "ggforce"))
+library(patchwork)
+library(ggforce) #for facet_col
 ```
 
- 
- 
-We will go through the following:
+ Package   | Use
+---------- |-------------
+[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
+[readr](https://readr.tidyverse.org/){target="_blank"}              | to import data files
+[dplyr](https://dplyr.tidyverse.org/){target="_blank"}              | to manipulate data
+[tidyverse](https://tidyverse.org/){target="_blank"}                | to manipulate and visualize data
+[patchwork](https://patchwork.data-imaginist.com/){target="_blank"} | to combine plots
+[ggforce](https://ggforce.data-imaginist.com/){target="_blank"}     | to extend the plotting capabilities of ggplot2
 
-1. How to set up your repository to enable the GitHub actions of the template. (Setup tab)
-2. How to host your website using GitHub (Hosting tab)
-3. How to modify your website structure (Structure tab)
-4. How to change your website style (Style tab)
-5. More information about GitHub Actions (Git Actions tab)
+The first time we use a function, we will use the `::` to indicate which package we are using. Unless we have overlapping function names, this is not necessary, but we will include it here to be informative about where the functions we will use come from.
 
-Click on each tab to learn more.
+# **Context**
+***
+Provide some more details and background on the case study topic and its relation to public health/the world.
 
+# **Limitations**
+***
 
+# **What are the data?**
+***
 
+# **Data Import**
+***
+
+```{r}
+ancestry_props <-
+  readr::read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
+ancestry_props_prelim <- ancestry_props
+```
+
+# **Data Wrangling**
+***
+
+```{r}
+
+ancestry_props <- ancestry_props %>%
+         dplyr::mutate(pop = factor(case_when(
+                         pop == "ACB" ~ "African Caribbean",
+                         pop == "ASW" ~ "African American",
+                         pop == "CHB" ~ "Han Chinese",
+                         pop == "Egyptians" ~ "Egyptian",
+                         pop == "ESN" ~ "Esan",
+                         pop == "GBR" ~ "British",
+                         pop == "GIH" ~ "Gujarati",
+                         pop == "GWD" ~ "Mandinka",
+                         pop == "LWK" ~ "Luhya",
+                         pop == "MSL" ~ "Mende",
+                         pop == "MXL" ~ "Mexican",
+                         pop == "Nama/Khoe-San" ~ "Nama",
+                         pop == "RwandeseUgandan" ~ "Rwandese",
+                         pop == "uganda_gwas_unknown" ~ NA_character_,
+                         pop == "Batooro" ~ NA_character_,
+                         pop == "Nyanjiro(Tanzania)" ~ NA_character_,
+                         pop == "TSI" ~ "Italian",
+                         pop == "YRI" ~ "Yoruba",
+                         TRUE ~ pop),
+                      levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
+            ) %>%
+  tidyr::drop_na() # dropping a few samples that had no data
+
+ancestry_props_temp <- ancestry_props
+```
+
+```{r}
+write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"),
+            row.names = FALSE,
+            quote = FALSE,
+            sep = "\t")
+```
+
+# **Data Visualization**
+***
+
+If you have been following along but stopped, we could load our wrangled data like so:
+
+```{r, eval = FALSE}
+load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
+```
+
+```{r fig.width = 5, fig.height = 10}
+plot1 <- ancestry_props %>%
+  pivot_longer(starts_with("k"), values_to = "prop", names_to = "which_k") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k),
+             group = pop)) +
+  geom_bar(stat = "identity", position = "stack", width = 1) +
+  facet_col(~pop,
+             #ncol=1, #included in facet_wrap, but not facet_col
+             strip.position = "left",
+             scales = "free_y",
+             space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
+  theme(axis.text.y = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank(),
+        legend.position = "none") +
+  ylab("") +
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+
+```
+
+```{r, fig.width = 2, fig.height=10}
+toPlot <- left_join(ancestry_props_temp %>%
+            select(!starts_with("k")) %>%
+            rownames_to_column(),
+          ancestry_props_temp %>%
+            select(starts_with("k")) %>%
+            mutate(which_k = names(.)[max.col(.)]) %>%
+            rownames_to_column() %>%
+            select(rowname, which_k),
+          by="rowname") %>%
+  group_by(pop, which_k) %>%
+  summarize(count = n()) %>%
+  ungroup() %>%
+  group_by(pop) %>%
+  top_n(1, count) %>%
+  left_join(ancestry_props_temp %>%
+               group_by(pop) %>%
+               summarize(n_ids = n()), by = "pop")
+
+toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
+
+plot2 <- toPlotExpanded %>%
+  ggplot(aes(x = -1,
+             y = row.names(.),
+             fill = which_k)) +
+  geom_col(width=1) +
+  facet_col(~pop,
+            scales = "free_y",
+            space = "free"
+            ) +
+  theme_bw() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none",
+        strip.background = element_blank(),
+        strip.text.x = element_blank()) +
+  xlab("") +
+  ylab("") +
+  xlim(c(-1,0)) +
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+```
+
+```{r fig.width = 5.5, fig.height = 12}
+plot1 + plot2 +
+  plot_layout(widths = c(5,0.5), heights=c(12))
+```
+
+# **Analysis**
+***
+
+# **Summary**
+***
+
+# **Suggested Homework**
+***
