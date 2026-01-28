@@ -141,7 +141,8 @@ library(readr)
 library(dplyr)
 library(DT)
 library(tidyverse)
-install.packages(c("patchwork", "ggforce"), repos = "http://cran.us.r-project.org")
+library(ggplot2)
+install.packages(c("patchwork", "ggforce"))
 library(patchwork)
 library(ggforce) #for facet_col
 ```
