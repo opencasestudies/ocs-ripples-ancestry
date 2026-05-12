@@ -245,7 +245,7 @@ library(dplyr)
 library(DT)
 library(tidyverse)
 library(ggplot2)
-install.packages(c("patchwork", "ggforce"), repos="https://cloud.r-project.org/")
+install.packages(c("patchwork", "ggforce"))
 library(patchwork)
 library(ggforce) #for facet_col
 ```
