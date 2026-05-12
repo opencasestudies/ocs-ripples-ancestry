@@ -17,13 +17,14 @@ glossary:
 Add disclaimer and license
 
 
-#### {.reference_block}
-
+:::{.reference_box}
+::::{.reference_box_header}
 To cite this case study, please use:
-
+::::
+::::{.inner_block}
 Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry). The Biology of Ancestry (Version v1.0.0).
-
-####
+::::
+:::
 
 To access the GitHub repository to see the source materials and data that went into making the case study, please see here: [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry).
 This case study is published as part of .... The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch or NIH.
@@ -74,6 +75,15 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 ## How do nucleotide changes happen?
 
 Variation can be introduced into the genome through *mutation* or *recombination* during *meiosis*. Mutations may occur due to errors during the *replication* of genomic material during cell division, imperfect repair mechanisms not catching mistakes, environmental factors or *mutagens* that damage genomic material (e.g., high-energy radiation or certain chemicals or viruses), or spontaneous/random changes.
+
+:::{.definition_box}
+::::{.definition_box_header}
+Mutations
+::::
+::::{.inner_block}
+Changes to the DNA ...
+::::
+:::
 
 No matter the cause of mutation, not all variations will be passed on to offspring/children. Mutations may be somatic (occurring in cells that are not part of the reproductive system) or germline (occurring in cells that are part of the reproductive system). Germline mutations and meiotic recombination are examples of *heritable* variation that will be passed on to future generations.
 
@@ -136,8 +146,6 @@ For other diseases a protein may not be expressed at the correct levels or the p
 
 As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.
 
-{{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
-
 ::: {.panel-tabset}
 
 ### Silent Mutations
@@ -179,6 +187,8 @@ Different types of single-nucleotide mutations are defined based on the effect o
 
 A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
 
+{{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
+
 :::
 
 </details>
@@ -187,7 +197,7 @@ A single nucleotide insertion or deletion (or one that is a length not a multipl
 
 ## Why do genetic changes sometimes persist in populations?
 
-<!-- Pick up here again -->
+**NOTE: Reviewed/Edited background material has only been brought over through here so far**
 
 Genetic variation isn’t of interest solely because of mutation and its relation to disease. Genetic variation is also considered necessary for survival. The Red Queen Hypothesis stipulates that species must constantly evolve and adapt to survive, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.). Given this, heritable variation (e.g., germline mutations or recombination during meiosis) is beneficial to the species by supporting evolution, allowing for the selection of advantageous traits necessary for adaptation and survival either due to competition or novel locations with their share of environmental challenges and unique resources. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because of the non-random survival due to the changes being advantageous.
 
@@ -206,7 +216,7 @@ List inside the main question block the main questions that we seek to answer wi
 
 1) How can genomic data be used to explore the ancestry of an individual or population?
 2) How does the genetic makeup of different world populations compare?
-3) How can coding and computational biology/data science principles and tools help us investigate our question?
+3) How can coding and computational biology/data science principles and tools help us investigate our questions?
 
 ####
 
@@ -405,6 +415,11 @@ plot1 + plot2 +
 
 # **Summary**
 ***
+
+# **Glossary**
+***
+
+{{< glossary table=true >}}
 
 # **Suggested Homework**
 ***
