@@ -45,15 +45,15 @@ The human genome (all of an individual's DNA) is made of stretches of *nucleotid
 
 Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotides ssequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severly that it stops doing its intended function, while others cana increase or decrease the amount of protein that is produced.
 
-<!--
-Add slide 1 image
--->
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.p#slide=id.p")
+```
 
 These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome. These variations can be caused by a change of a single nucleotide ("point mutations") or chnages involving more than one nucleotide.
 
-<!--
-Add slide 2 and 3 images
--->
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
+```
 
 An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide. If a point mutation occurs fairly often within a population such that it is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP.
 
@@ -63,14 +63,20 @@ Sometimes the mutations involve more than one nucleotide. An example of involvin
   [Add figure showing examples of structural variants – simplifications of figure 1 here: https://pmc.ncbi.nlm.nih.gov/articles/PMC7131885/]
 -->
 
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_28#slide=id.g3c938ed4e06_0_28")
+```
+
 ## How do nucleotide changes happen?
 
 Variation can be introduced into the genome through *mutation* or *recombination* during *meiosis*. Mutations may occur due to errors during the *replication* of genomic material during cell division, imperfect repair mechanisms not catching mistakes, environmental factors or *mutagens* that damage genomic material (e.g., high-energy radiation or certain chemicals or viruses), or spontaneous/random changes.
 
 No matter the cause of mutation, not all variations will be passed on to offspring/children. Mutations may be somatic (occurring in cells that are not part of the reproductive system) or germline (occurring in cells that are part of the reproductive system). Germline mutations and meiotic recombination are examples of *heritable* variation that will be passed on to future generations.
 
+{{< video https://youtu.be/vl6Vlf2thvI?si=gAvQY0jJFMu1yCNt >}}
+
 <!--
-Add video about mutations
+Add Berkeley resource: https://evolution.berkeley.edu/dna-and-mutations/types-of-mutations/
 -->
 
 <!--
@@ -91,6 +97,8 @@ Add figure showing identity
 
 Especially if there's so much similarity, why should we care about human genomic variation? Not all variations or mutations have an impact. Some variations can be “functional” and lead to changes not just in the genome, but also in the *proteins* that are *translated* from the genetic material. However, not all variation is “functional”; some changes don't impact the proteins that are translated from the genetic material. (See silent mutations belows).
 
+{{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
+
 Functional changes, on the other hand, may impact how much of a protein is made, the protein structure and therefore its eventual role in the *cell*, or where and when the protein is expressed due to changes in parts of the genome that help regulate gene transcription. Certain diseases may be caused or worsened by genetic variation. Cancer is a common example of this where genes that control cell growth, division, or scheduled cell death are mutated and their proteins do not function properly to control this cell cycle, leading to uncontrolled cell growth that develops into tumors.
 
 For other diseases a protein may not be expressed at the correct levels or the protein may be folded incorrectly because of its mutated structure, leading to inefficiencies in or the inability of the protein to perform its function(s). This is the case in the mutation that leads to sickle-cell anemia and changes in the hemoglobin protein. To protect against this, there are biological redundancies that act as a safety net. These create backup systems that can mitigate issues by compensating for or taking the place of nonfunctional components. But even with redundancies and safety nets, mutations can lead to small changes with major consequences.
@@ -99,21 +107,44 @@ For other diseases a protein may not be expressed at the correct levels or the p
   Add definition box with tabs for functional, proteins, translated, cell
 -->
 
-<details><summary>Different types of mutations</summary>
+<details><summary>Different types of (single nucleotide) mutations</summary>
 
 As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.
 
+{{< video https://www.khanacademy.org/test-prep/mcat/biomolecules/genetic-mutations/v/the-different-types-of-mutations >}}
 
-<!--
-Pick up here again
--->
+::: {.panel-tabset}
+
+### Silent Mutations
+
+Silent mutations have an underlying base pair change (i.e., a C to an A), but the amino acid building blocks of the protein remain unchanged. Since these mutations do not change the encoded amino acid, they are called silent. However, these silent mutations may still impact how often a protein is produced because certain tRNA anticodons are less available or may take longer to process in translation; so while they code for the same amino acid, they may not be truly "silent" and may have an effect in the cell. Such mutations are synonymous mutations.
+
+### Missense Mutations
+
+Missense mutations result in an amino acid substitution, which can impact protein structure and function. The single nucleotide change altered the amino acid that was encoded by that segment of DNA. This causes a substition in the amino acide encoded here for the protein. Some missense mutations are "conservative" where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.). A "non-conservative" missense mutation switches an amino acid to one with dissimilar biochemical properties - this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
+
+{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3DLoxOmFoQOQk&sa=D&source=docs&ust=1778603794886397&usg=AOvVaw2Wv87lQLFrPEjm5wI141CR >}}
+
+### Nonsense mutations
+
+Nonsense mutations introduce an early stop codon - halting translation prematurely. A stop codon typically signals the end of a segment of RNA that encodes a protein, signaling the end of translation. An early stop codon will prematurely stop the production of the protein and result in a shorter (or truncated), often non-functional protein.
+
+{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3DQe05MxqNlJk&sa=D&source=docs&ust=1778603794886548&usg=AOvVaw2WO_sOeGh8f_1usaZdbmbf >}}
+
+### Frameshift mutations
+
+A single nucleotide insertion or deletion (or one that is a length not a multiple of three, which is the length of a codon) may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
+
+{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3Dyv_vnMKdJzY&sa=D&source=docs&ust=1778603794886691&usg=AOvVaw2UQVY7SpMZ4-yLnlhQgLzG >}}
+
+### In summary
 
 **Single-nucleotide changes**
 
 Different types of single-nucleotide mutations are defined based on the effect of the mutation.
 
 * **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
-* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell. This impact could be due to how often a protein is produced because certain *codons* are less available or may take longer to process in translation; so while these mutations code for the same amino acid, they have an effect in the cell and aren't considered "silent".
+* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.
 * **Missense mutations** result in an amino acid substitution which can impact protein structure and function.
   * Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
   * A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
@@ -121,11 +152,19 @@ Different types of single-nucleotide mutations are defined based on the effect o
 
 **Single-nucleotide insertions or deletions (indels)**
 
-A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent codons.
+A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
+
+:::
 
 </details>
 
+## Why do genetic changes sometimes persist in populations?
+
+<!-- Pick up here again -->
+
 Genetic variation isn’t of interest solely because of mutation and its relation to disease. Genetic variation is also considered necessary for survival. The Red Queen Hypothesis stipulates that species must constantly evolve and adapt to survive, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.). Given this, heritable variation (e.g., germline mutations or recombination during meiosis) is beneficial to the species by supporting evolution, allowing for the selection of advantageous traits necessary for adaptation and survival either due to competition or novel locations with their share of environmental challenges and unique resources. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because of the non-random survival due to the changes being advantageous.
+
+
 
 ## Finding Relatedness
 
