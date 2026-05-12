@@ -107,7 +107,7 @@ For other diseases a protein may not be expressed at the correct levels or the p
   Add definition box with tabs for functional, proteins, translated, cell
 -->
 
-<details><summary>Different types of (single nucleotide) mutations</summary>
+<details open><summary>Different types of (single nucleotide) mutations</summary>
 
 As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.
 
