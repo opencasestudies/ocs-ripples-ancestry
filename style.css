@@ -2,6 +2,13 @@ li.toctree-l2:first-child {
     display: none;
 }
 
+.emphasis_block {
+    padding: 1em;
+    padding-top: .5em;
+    border: 1px grey;
+    background: #E8E8E8;
+    color: black;
+}
 
 .license_block {
     margin: .2em;
@@ -72,4 +79,3 @@ li.toctree-l2:first-child {
    background-color: #000000;
    display: inline-block;
 }
-
