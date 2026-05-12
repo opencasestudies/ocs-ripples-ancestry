@@ -107,11 +107,11 @@ For other diseases a protein may not be expressed at the correct levels or the p
   Add definition box with tabs for functional, proteins, translated, cell
 -->
 
-<details open><summary>Different types of (single nucleotide) mutations</summary>
+<details><summary>Different types of (single nucleotide) mutations</summary>
 
 As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.
 
-{{< video https://www.khanacademy.org/test-prep/mcat/biomolecules/genetic-mutations/v/the-different-types-of-mutations >}}
+{{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
 
 ::: {.panel-tabset}
 
@@ -123,21 +123,21 @@ Silent mutations have an underlying base pair change (i.e., a C to an A), but th
 
 Missense mutations result in an amino acid substitution, which can impact protein structure and function. The single nucleotide change altered the amino acid that was encoded by that segment of DNA. This causes a substition in the amino acide encoded here for the protein. Some missense mutations are "conservative" where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.). A "non-conservative" missense mutation switches an amino acid to one with dissimilar biochemical properties - this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
 
-{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3DLoxOmFoQOQk&sa=D&source=docs&ust=1778603794886397&usg=AOvVaw2Wv87lQLFrPEjm5wI141CR >}}
+{{< video https://www.youtube.com/watch?v=LoxOmFoQOQk >}}
 
-### Nonsense mutations
+### Nonsense Mutations
 
 Nonsense mutations introduce an early stop codon - halting translation prematurely. A stop codon typically signals the end of a segment of RNA that encodes a protein, signaling the end of translation. An early stop codon will prematurely stop the production of the protein and result in a shorter (or truncated), often non-functional protein.
 
-{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3DQe05MxqNlJk&sa=D&source=docs&ust=1778603794886548&usg=AOvVaw2WO_sOeGh8f_1usaZdbmbf >}}
+{{< video https://www.youtube.com/watch?v=Qe05MxqNlJk >}}
 
-### Frameshift mutations
+### Frameshift Mutations
 
 A single nucleotide insertion or deletion (or one that is a length not a multiple of three, which is the length of a codon) may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
 
-{{< video https://www.google.com/url?q=https://www.youtube.com/watch?v%3Dyv_vnMKdJzY&sa=D&source=docs&ust=1778603794886691&usg=AOvVaw2UQVY7SpMZ4-yLnlhQgLzG >}}
+{{< video https://www.youtube.com/watch?v=yv_vnMKdJzY >}}
 
-### In summary
+### Summary
 
 **Single-nucleotide changes**
 
