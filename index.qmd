@@ -45,13 +45,13 @@ The human genome (all of an individual's DNA) is made of stretches of *nucleotid
 
 Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotides ssequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severly that it stops doing its intended function, while others cana increase or decrease the amount of protein that is produced.
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.p#slide=id.p")
 ```
 
 These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome. These variations can be caused by a change of a single nucleotide ("point mutations") or chnages involving more than one nucleotide.
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
 ```
 
@@ -63,7 +63,7 @@ Sometimes the mutations involve more than one nucleotide. An example of involvin
   [Add figure showing examples of structural variants – simplifications of figure 1 here: https://pmc.ncbi.nlm.nih.gov/articles/PMC7131885/]
 -->
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width=100%}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_28#slide=id.g3c938ed4e06_0_28")
 ```
 
