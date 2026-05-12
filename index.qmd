@@ -4,7 +4,7 @@ output:
   html_document
 glossary:
   path: glossary.yml
-  popup: hover
+  popup: click
   show: true
 ---
 
@@ -21,11 +21,11 @@ Add disclaimer and license
 
 To cite this case study, please use:
 
-Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). https://github.com/opencasestudies/ocs-ripples-ancestry. The Biology of Ancestry (Version v1.0.0).
+Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry). The Biology of Ancestry (Version v1.0.0).
 
 ####
 
-To access the GitHub repository to see the source materials and data that went into making the case study, please see here: https://github.com/opencasestudies/ocs-ripples-ancestry.
+To access the GitHub repository to see the source materials and data that went into making the case study, please see here: [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry).
 This case study is published as part of .... The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch or NIH.
 
 # **Motivation**
@@ -39,7 +39,7 @@ This case study explores human {{< glossary "genomic variation" >}}, especially 
 
 ## What is the human genome?
 
-The human {{< glossary genome >}} (all of an individual's DNA) is made of stretches of {{< glossary "nucleotides (A,C,G,T)" display = nucleotides >}}. The nucleotides ultimately encode for {{< glossary protein >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
+The human {{< glossary genome >}} (all of an individual's DNA) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" >}}. The nucleotides ultimately encode for {{< glossary protein >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
 
 <!--
   Add definition box for nucleotides
@@ -245,7 +245,7 @@ library(dplyr)
 library(DT)
 library(tidyverse)
 library(ggplot2)
-install.packages(c("patchwork", "ggforce"))
+install.packages(c("patchwork", "ggforce"), repos="https://cloud.r-project.org/")
 library(patchwork)
 library(ggforce) #for facet_col
 ```
