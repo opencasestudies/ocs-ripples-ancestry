@@ -15,7 +15,7 @@ genomic variation: |
 nucleotides: |
   The basic building blocks of DNA with 3 components: a nitrogen containing base - Adenine (A), Cytosine (C), Guanine (G), or Thymine (T) + a five-carbon sugar + and a phosphate group
 protein: |
-  Proteins are essential for all living organisms, performing important tasks in the cell. They are important for immune responses, structural support, information transmission, and powering movement. Proteins are complex molecules comprised of a chain of amino acids. The sequence and identity of amino acids impact how a protein folds into its 3D structure. Proteins are the result of translation (DNA --> RNA --> Protein).
+  Proteins are essential for all living organisms, performing important tasks in the cell. They are important for immune responses, structural support, information transmission, and powering movement. Proteins are complex molecules comprised of a chain of amino acids. The sequence and identity of amino acids impact how a protein folds into its 3D structure and there many different possible structures. Proteins are the result of translation (DNA --> RNA --> Protein).
 RNA: |
   Single stranded ... RNA is the result of transcription (DNA --> RNA)
 transcription: |

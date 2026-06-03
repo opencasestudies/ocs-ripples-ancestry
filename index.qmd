@@ -54,7 +54,7 @@ Ancestry is a personal understanding of one's genomic heritage - a statement abo
 :::
 :::
 
-To explore these topics, we'll first ask questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?". Data representing genomic variation and ancestry will be discussed and ways to represent or visualize this data will be highlighted. In addition, ways to work with large amounts of data will be compared and contrasted, examining the pros and cons of techniques that either utilize more manual approaches or more general processing through computational work.
+To explore these topics, we'll first ask questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?". Data representing genomic variation and ancestry will be discussed and ways to represent or visualize this data will be highlighted. In addition, ways to work with data will be compared and contrasted, examining the pros and cons of techniques that either utilize more manual approaches or more  processing through computational work. Since the data we will be working with is not large, we can use these techniques in any case.
 
 ## What is the human genome?
 
@@ -68,7 +68,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 
 The human genome is diploid meaning that it has two copies of each of the 23 distinct {{< glossary chromosome display = "chromosomes" add_to_table=true >}} (1, 2, 3, ..., 21, 22, sex chromosome / X or Y) for a total of 46 chromosomes. The copies are not identical because they are inherited from different parents -- one from each. These chromosomes are housed in the nucleus of the cell. Chromosomes have DNA wound around specialized proteins called histones forming dense coils to compactly store the genomic information. Some regions of the chromosome are more tightly wound than others. DNA replication and transcription occur in the loosely wound/more accessible regions [@Pathak_Bordoni_2026].
 
-Recent work from the T2T project [@Nurk_et al_2022] completely sequenced the Human Genome and reported that
+Recent work from the T2T project [@Nurk_etal_2022] completely sequenced the Human Genome and reported that
 
 * it is 3.055 billion–base pairs or nucleotides in length.
 * there are 63,494 genes in the human genome (only 19,969 of which code for proteins).
