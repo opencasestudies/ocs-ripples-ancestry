@@ -1,4 +1,5 @@
 About.Rmd
+README.Rmd
 docs/*
 style-sets/*
 manuscript/*
