@@ -28,7 +28,7 @@ This case study is published as part of .... The contents of this case study are
 # **Motivation**
 ***
 
-This case study explores the topic of human {{< glossary "genomic variation" add_to_table=true >}}, especially with respect to {{< glossary ancestry add_to_table=true >}}.
+This case study explores the topic of human {{< glossary "genomic variation" >}}, especially with respect to {{< glossary ancestry >}}.
 
 :::{.definition_box}
 ::: {.panel-tabset}
@@ -53,15 +53,15 @@ To explore these topics, we'll first ask questions such as "What is the human ge
 
 ## What is the human genome?
 
-The human {{< glossary genome add_to_table=true >}} (all of an individual's {{< glossary DNA add_to_table=true >}}) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" add_to_table=true >}}. The nucleotides ultimately encode for {{< glossary protein add_to_table=true >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
+The human {{< glossary genome >}} (all of an individual's {{< glossary DNA >}}) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" >}}. The nucleotides ultimately encode for {{< glossary protein >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
 
-The Central Dogma is a theory describing how genetic information is stored and how it flows. DNA stores genetic information within the genome. DNA produces {{< glossary RNA add_to_table=TRUE >}} through a process called {{< glossary transcription >}}. Specific regions of the genome called {{< glossary genes add_to_table=true >}} are transcribed into RNA molecules. RNA produces proteins through a process called {{< glossary translation >}}.
+The Central Dogma is a theory describing how genetic information is stored and how it flows. DNA stores genetic information within the genome. DNA produces {{< glossary RNA >}} through a process called {{< glossary transcription >}}. Specific regions of the genome called {{< glossary genes >}} are transcribed into RNA molecules. RNA produces proteins through a process called {{< glossary translation >}}.
 
 ```{r, echo = FALSE, message= FALSE, warning = FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_10#slide=id.g3e81f594328_0_10")
 ```
 
-The human genome is diploid meaning that it has two copies of each of the 23 distinct {{< glossary chromosome display = "chromosomes" add_to_table=true >}} (1, 2, 3, ..., 21, 22, sex chromosome / X or Y) for a total of 46 chromosomes. The copies are not identical because they are inherited from different parents -- one from each. These chromosomes are housed in the nucleus of the cell. Chromosomes have DNA wound around specialized proteins called histones forming dense coils to compactly store the genomic information. Some regions of the chromosome are more tightly wound than others. DNA replication and transcription occur in the loosely wound/more accessible regions [@Pathak_Bordoni_2026].
+The human genome is diploid meaning that it has two copies of each of the 23 distinct {{< glossary chromosome display = "chromosomes" >}} (1, 2, 3, ..., 21, 22, sex chromosome / X or Y) for a total of 46 chromosomes. The copies are not identical because they are inherited from different parents -- one from each. These chromosomes are housed in the nucleus of the cell. Chromosomes have DNA wound around specialized proteins called histones forming dense coils to compactly store the genomic information. Some regions of the chromosome are more tightly wound than others. DNA replication and transcription occur in the loosely wound/more accessible regions [@Pathak_Bordoni_2026].
 
 Recent work from the T2T project [@Nurk_etal_2022] completely sequenced the Human Genome and reported that
 
@@ -143,18 +143,18 @@ Add Berkeley resource: https://evolution.berkeley.edu/dna-and-mutations/types-of
 -->
 
 <!--
-  Add definition box with tabs for mutation, recombination, meiosis, replication, mutagens, and heritable
+  Add definition box with tabs for recombination, meiosis, replication, mutagens, and heritable
 -->
 
-Human genomes are large (approximately 3.2 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average if you compared the genomes of two individuals, there would be around 99.5% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots.
+Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average if you compared the genomes of two individuals, there would be >99% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots.
 
 <!--
   Add definition box with tabs for reference genome and dotplot
 -->
 
-<!--
-Add figure showing identity
--->
+```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width="100%"}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_32#slide=id.g3e81f594328_0_32")
+```
 
 ## Why should we care about human genomic variation?
 
