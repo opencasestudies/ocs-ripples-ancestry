@@ -146,7 +146,7 @@ Add Berkeley resource: https://evolution.berkeley.edu/dna-and-mutations/types-of
   Add definition box with tabs for recombination, meiosis, replication, mutagens, and heritable
 -->
 
-Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average if you compared the genomes of two individuals, there would be >99% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots.
+Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average if you compared the genomes of two individuals, there would be >99% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots (or lines for larger variants like an insertion or duplication).
 
 <!--
   Add definition box with tabs for reference genome and dotplot
@@ -155,6 +155,18 @@ Human genomes are large (over 3 billion nucleotide base pairs)! And most of the 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_32#slide=id.g3e81f594328_0_32")
 ```
+
+<details><summary>More details about dotplots</summary>
+
+Besides comparing two human samples to each other, dotplots are also used to compare a human sample to a reference genome, reference genomes to each other, human samples or reference genomes to other species, or really any other species/sample comparison.
+
+Comparisons for less related samples produce more complex dotplots that represent larger structural variants like the inversions in the following example.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width="100%"}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_44#slide=id.g3e81f594328_0_44")
+```
+
+</details>
 
 ## Why should we care about human genomic variation?
 
