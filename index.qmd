@@ -454,7 +454,7 @@ plot1 + plot2 +
 
 ```{r}
 #| output: asis
-#| echo: FALSE
+#| echo: false
 
 library(yaml)
 
