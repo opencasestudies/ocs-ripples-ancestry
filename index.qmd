@@ -452,7 +452,10 @@ plot1 + plot2 +
 ## **Glossary**
 ***
 
-```{r, echo = FALSE}
+```{r}
+#| output: asis
+#| echo: FALSE
+
 library(yaml)
 
 glossary_table <- function(path = "glossary.yml") {
@@ -473,7 +476,7 @@ glossary_table <- function(path = "glossary.yml") {
 
   out <- c(out, "</table>")
 
-  knitr::asis_output(paste(out, collapse = "\n"))
+  cat(paste(out, collapse = "\n"))
 }
 
 glossary_table("glossary.yml")
