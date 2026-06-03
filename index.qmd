@@ -453,6 +453,7 @@ plot1 + plot2 +
 ***
 
 ```{r}
+
 #| output: asis
 #| echo: false
 
@@ -480,7 +481,7 @@ glossary_table <- function(path = "glossary.yml") {
 }
 
 glossary_table("glossary.yml")
-
+```
 
 
 ## **References**
