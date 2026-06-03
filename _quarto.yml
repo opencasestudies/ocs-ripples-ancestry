@@ -4,10 +4,6 @@ project:
 
 website:
   title: "Open Case Studies: The Biology of Ancestry"
-  navbar:
-    left:
-    - text: ""
-      href: index.html
 
 format:
   html:
