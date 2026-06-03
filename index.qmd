@@ -6,6 +6,7 @@ glossary:
   path: glossary.yml
   popup: click
   show: true
+bibliography: resources/references.bib
 ---
 
 #### {.outline}
@@ -32,35 +33,51 @@ This case study is published as part of .... The contents of this case study are
 # **Motivation**
 ***
 
-This case study explores human {{< glossary "genomic variation" add_to_table=true >}}, especially with respect to {{< glossary ancestry add_to_table=true >}}.
+This case study explores the topic of human {{< glossary "genomic variation" add_to_table=true >}}, especially with respect to {{< glossary ancestry add_to_table=true >}}.
+
+:::{.definition_box}
+::: {.panel-tabset}
+##
+::::{.definition_box_header}
+Human Genomic Variation
+::::
+::::{.inner_block}
+Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects [@GenomicVariationNIH].
+::::
+##
+::::{.definition_box_header}
+Ancestry
+::::
+::::{.inner_block}
+Ancestry is a personal understanding of one's genomic heritage - a statement about a person's relationship to other individuals in their genealogical history. Ancestry is often self-reported by an individual and is a personal concept focusing on the how or the process of their family history rather than a societal pattern [@Yudell2016].
+::::
+:::
+:::
 
 <!--
-  Add definition box with tabs for genomic variation and ancestry
+Possible addition given Hanako's concern that this section isn't long enough?
+Questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?" will be discussed. Data representing genomic variation and ancestry will be examined and ways to represent or visualize this data will be highlighted. In addition, ways to work with large amounts of data will be compared and contrasted, showing more manual approaches and more general processing through computational work.
 -->
 
 ## What is the human genome?
 
-The human {{< glossary genome add_to_table=true >}} (all of an individual's DNA) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" add_to_table=true >}}. The nucleotides ultimately encode for {{< glossary protein add_to_table=true >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
-
-<!--
-  Add definition box for nucleotides
--->
+The human {{< glossary genome add_to_table=true >}} (all of an individual's DNA) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" add_to_table=true >}}. The nucleotides ultimately encode for {{< glossary protein add_to_table=true >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the {{< glossary proteins add_to_table=true >}} they need for their body to function normally.
 
 ## What is genomic variation?
 
-Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotides ssequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severly that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
+Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.p#slide=id.p")
 ```
 
-These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome. These variations can be caused by a change of a single nucleotide ("point mutations") or chnages involving more than one nucleotide.
+These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome. These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide.
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
 ```
 
-An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide. If a point mutation occurs fairly often within a population such that it is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP.
+An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide (a "point mutation"). If a point mutation occurs fairly often within a population and is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP (pronounced "snip").
 
 Sometimes the mutations involve more than one nucleotide. An example of involving more than one nucleotide would be if ACCGT were to be repeated and become ACCGTACCGT (such changes with more than 50 nucleotides are called structural variants). Some large structural changes may even occur across multiple chromosomes (inter-chromosomal) rather than being within a single chromosome (intra-chromosomal).
 
@@ -123,7 +140,7 @@ Add summary here for the Central Dogma, including terms with defintions for
 * Replication
 * Transcription
 * Translation
-* {{< glossary Codon add_to_table=true >}}
+* {{< glossary codon add_to_table=true >}}
 * tRNA Anticodon
 
 {{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
@@ -148,6 +165,25 @@ As mentioned earlier, there are a few different types of mutations. Single-nucle
 
 ::: {.panel-tabset}
 
+### Summary
+
+**Single-nucleotide changes**
+
+Different types of single-nucleotide mutations are defined based on the effect of the mutation.
+
+* **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
+* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.
+* **Missense mutations** result in an amino acid substitution which can impact protein structure and function.
+  * Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
+  * A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
+* **Nonsense mutations** introduce an early *stop codon* halting translation and producing a truncated, likely nonfunctional protein.
+
+**Single-nucleotide insertions or deletions (indels)**
+
+A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
+
+{{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
+
 ### Silent Mutations
 
 Silent mutations have an underlying base pair change (i.e., a C to an A), but the amino acid building blocks of the protein remain unchanged. Since these mutations do not change the encoded amino acid, they are called silent. However, these silent mutations may still impact how often a protein is produced because certain tRNA anticodons are less available or may take longer to process in translation; so while they code for the same amino acid, they may not be truly "silent" and may have an effect in the cell. Such mutations are synonymous mutations.
@@ -169,25 +205,6 @@ Nonsense mutations introduce an early stop codon - halting translation premature
 A single nucleotide insertion or deletion (or one that is a length not a multiple of three, which is the length of a codon) may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
 
 {{< video https://www.youtube.com/watch?v=yv_vnMKdJzY >}}
-
-### Summary
-
-**Single-nucleotide changes**
-
-Different types of single-nucleotide mutations are defined based on the effect of the mutation.
-
-* **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
-* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.
-* **Missense mutations** result in an amino acid substitution which can impact protein structure and function.
-  * Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
-  * A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
-* **Nonsense mutations** introduce an early *stop codon* halting translation and producing a truncated, likely nonfunctional protein.
-
-**Single-nucleotide insertions or deletions (indels)**
-
-A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
-
-{{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
 
 :::
 
@@ -255,7 +272,7 @@ library(dplyr)
 library(DT)
 library(tidyverse)
 library(ggplot2)
-install.packages(c("patchwork", "ggforce"))
+install.packages(c("patchwork", "ggforce"), repos="https://cloud.r-project.org/")
 library(patchwork)
 library(ggforce) #for facet_col
 ```
@@ -416,10 +433,24 @@ plot1 + plot2 +
 # **Summary**
 ***
 
-# **Glossary**
+# **Suggested Homework**
+***
+
+# **Additional Information**
+
+## **Glossary**
 ***
 
 {{< glossary table=true >}}
 
-# **Suggested Homework**
+
+## **References**
 ***
+
+::: {#refs}
+:::
+
+## **Helpful Links**
+***
+
+Add additional resource links here
