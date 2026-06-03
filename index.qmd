@@ -32,14 +32,14 @@ This case study explores the topic of human {{< glossary "genomic variation" >}}
 
 :::{.definition_box}
 ::: {.panel-tabset}
-### Genomic Variation
+### Definition: Genomic Variation
 ::::{.definition_box_header}
 Human Genomic Variation
 ::::
 ::::{.inner_block}
 Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects [@GenomicVariationNIH].
 ::::
-### Ancestry
+### Definition: Ancestry
 ::::{.definition_box_header}
 Ancestry
 ::::
@@ -288,7 +288,7 @@ List inside the main question block the main questions that we seek to answer wi
 
 We will begin by loading the packages that we will need:
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(here)
 library(readr)
 library(dplyr)
@@ -324,7 +324,7 @@ Provide some more details and background on the case study topic and its relatio
 # **Data Import**
 ***
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ancestry_props <-
   readr::read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
 ancestry_props_prelim <- ancestry_props
@@ -402,7 +402,7 @@ plot1 <- ancestry_props %>%
 
 ```
 
-```{r, fig.width = 2, fig.height=10}
+```{r, fig.width = 2, fig.height=10, message=FALSE, warning=FALSE}
 toPlot <- left_join(ancestry_props_temp %>%
             select(!starts_with("k")) %>%
             rownames_to_column(),
