@@ -454,42 +454,30 @@ plot1 + plot2 +
 
 ```{r, echo = FALSE}
 library(yaml)
-library(htmltools)
 
-#' Create glossary table from glossary.yml
-#' @param path Path to glossary.yml
-#' @return HTML table as an htmltools::HTML object
 glossary_table <- function(path = "glossary.yml") {
 
-  # read YAML as named list
   g <- yaml::read_yaml(path)
-
-  # sort by term
   g_sorted <- g[order(names(g))]
 
-  # build table rows
-  rows <- Map(function(term, def) {
-    tags$tr(
-      tags$td(term),
-      tags$td(htmltools::HTML(def))
-    )
-  }, names(g_sorted), g_sorted)
-
-  # full table
-  tbl <- tags$table(
-    class = "glossary_table",
-    tags$tr(
-      tags$th("Term"),
-      tags$th("Definition")
-    ),
-    rows
+  out <- c(
+    "<table class='glossary_table'>",
+    "<tr><th><b>Term</b></th><th><b>Definition</b></th></tr>"
   )
 
-  HTML(as.character(tbl))
+  for (term in names(g_sorted)) {
+    def <- paste(g_sorted[[term]], collapse = "\n")
+    row <- sprintf("<tr><td>%s</td><td>%s</td></tr>", term, def)
+    out <- c(out, row)
+  }
+
+  out <- c(out, "</table>")
+
+  knitr::asis_output(paste(out, collapse = "\n"))
 }
 
 glossary_table("glossary.yml")
-```
+
 
 
 ## **References**
