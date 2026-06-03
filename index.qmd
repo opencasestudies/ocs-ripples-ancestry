@@ -2,11 +2,6 @@
 title: "Open Case Studies: The Biology of Ancestry"
 output:
   html_document
-glossary:
-  path: glossary.yml
-  popup: click
-  show: true
-bibliography: resources/references.bib
 ---
 
 #### {.outline}
@@ -105,7 +100,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
 
 <div class="notice">
-Mutation is just a term for any change to the DNA. Not all mutations are deletrious or bad. Many have no impact at all and some can be beneficial.
+Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
 </div>
 
 These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide.
