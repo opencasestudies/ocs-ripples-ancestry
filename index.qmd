@@ -37,14 +37,14 @@ This case study explores the topic of human {{< glossary "genomic variation" add
 
 :::{.definition_box}
 ::: {.panel-tabset}
-##
+### Genomic Variation
 ::::{.definition_box_header}
 Human Genomic Variation
 ::::
 ::::{.inner_block}
 Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects [@GenomicVariationNIH].
 ::::
-##
+### Ancestry
 ::::{.definition_box_header}
 Ancestry
 ::::
@@ -54,24 +54,61 @@ Ancestry is a personal understanding of one's genomic heritage - a statement abo
 :::
 :::
 
-<!--
-Possible addition given Hanako's concern that this section isn't long enough?
-Questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?" will be discussed. Data representing genomic variation and ancestry will be examined and ways to represent or visualize this data will be highlighted. In addition, ways to work with large amounts of data will be compared and contrasted, showing more manual approaches and more general processing through computational work.
--->
+To explore these topics, we'll first ask questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?". Data representing genomic variation and ancestry will be discussed and ways to represent or visualize this data will be highlighted. In addition, ways to work with large amounts of data will be compared and contrasted, examining the pros and cons of techniques that either utilize more manual approaches or more general processing through computational work.
 
 ## What is the human genome?
 
-The human {{< glossary genome add_to_table=true >}} (all of an individual's DNA) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" add_to_table=true >}}. The nucleotides ultimately encode for {{< glossary protein add_to_table=true >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the {{< glossary proteins add_to_table=true >}} they need for their body to function normally.
+The human {{< glossary genome add_to_table=true >}} (all of an individual's {{< glossary DNA add_to_table=true >}}) is made of stretches of {{< glossary nucleotides display = "nucleotides (A,C,G,T)" add_to_table=true >}}. The nucleotides ultimately encode for {{< glossary protein add_to_table=true >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
+
+The Central Dogma is a theory describing how genetic information is stored and how it flows. DNA stores genetic information within the genome. DNA produces {{< glossary RNA add_to_table=TRUE >}} through a process called {{< glossary transcription >}}. Specific regions of the genome called {{< glossary genes add_to_table=true >}} are transcribed into RNA molecules. RNA produces proteins through a process called {{< glossary translation >}}.
+
+```{r, echo = FALSE, message= FALSE, warning = FALSE, out.width="100%"}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_10#slide=id.g3e81f594328_0_10")
+```
+
+The human genome is diploid meaning that it has two copies of each of the 23 distinct {{< glossary chromosome display = "chromosomes" add_to_table=true >}} (1, 2, 3, ..., 21, 22, sex chromosome / X or Y) for a total of 46 chromosomes. The copies are not identical because they are inherited from different parents -- one from each. These chromosomes are housed in the nucleus of the cell. Chromosomes have DNA wound around specialized proteins called histones forming dense coils to compactly store the genomic information. Some regions of the chromosome are more tightly wound than others. DNA replication and transcription occur in the loosely wound/more accessible regions [@Pathak_Bordoni_2026].
+
+Recent work from the T2T project [@Nurk_et al_2022] completely sequenced the Human Genome and reported that
+
+* it is 3.055 billion–base pairs or nucleotides in length.
+* there are 63,494 genes in the human genome (only 19,969 of which code for proteins).
+* 53.94% of the genome is made up of repetitive DNA.
+
+Much of the human genome contains non-coding DNA instead of genes. This isn't to say that the DNA in these non-coding regions is doing nothing. Structural elements such as telomeres (which protect the end of chromosomes) are part of the non-coding regions. Regulatory elements are part of these non-coding regions as well. While they are not included in eventual protein products, they regulate when and how much RNA is produced in transcription.
+
+See the expandable section below further resources to review the Central Dogma.
+
+::: {.emphasis_block}
+
+<details><summary>Further Resources for the Central Dogma</summary>
+
+```{r, echo = FALSE, message= FALSE, warning = FALSE, out.width="100%"}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_1_4#slide=id.g3c938ed4e06_1_4")
+```
+
+{{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
+
+This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma) provides an overview of the Central Dogma as well as the transcription and translation processes [@khanacademy_centraldogma].
+
+</details>
+
+:::
 
 ## What is genomic variation?
 
-Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
+Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in the areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.p#slide=id.p")
 ```
 
-These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome. These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide.
+These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
+
+<div class="notice">
+Mutation is just a term for any change to the DNA. Not all mutations are deletrious or bad. Many have no impact at all and some can be beneficial.
+</div>
+
+These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide.
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
@@ -127,27 +164,6 @@ Add figure showing identity
 ## Why should we care about human genomic variation?
 
 Especially if there's so much similarity, why should we care about human genomic variation? Not all variations or mutations have an impact. Some variations can be “functional” and lead to changes not just in the genome, but also in the *proteins* that are *translated* from the genetic material. However, not all variation is “functional”; some changes don't impact the proteins that are translated from the genetic material. (See silent mutations belows).
-
-::: {.emphasis_block}
-
-<details><summary>The Central Dogma</summary>
-
-Add summary here for the Central Dogma, including terms with defintions for
-
-* DNA
-* RNA
-* Protein
-* Replication
-* Transcription
-* Translation
-* {{< glossary codon add_to_table=true >}}
-* tRNA Anticodon
-
-{{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
-
-</details>
-
-:::
 
 Functional changes, on the other hand, may impact how much of a protein is made, the protein structure and therefore its eventual role in the *cell*, or where and when the protein is expressed due to changes in parts of the genome that help regulate gene transcription. Certain diseases may be caused or worsened by genetic variation. Cancer is a common example of this where genes that control cell growth, division, or scheduled cell death are mutated and their proteins do not function properly to control this cell cycle, leading to uncontrolled cell growth that develops into tumors.
 

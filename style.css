@@ -126,3 +126,20 @@ li.toctree-l2:first-child {
    background-color: #000000;
    display: inline-block;
 }
+
+div.notice{
+  border: 4px #193a5c;
+  border-style: solid;
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  background-color: #e8ebee;
+}
+
+div.notice{
+  background-image: url("/assets/box_images/note.png");
+}
