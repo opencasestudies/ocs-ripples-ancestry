@@ -33,6 +33,7 @@ lightbox
 lightgreen
 missense
 Missense
+nucleotides
 Osuga
 OTTR
 polymorphism
