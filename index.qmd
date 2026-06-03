@@ -271,12 +271,9 @@ library(readr)
 library(dplyr)
 library(DT)
 library(tidyverse)
-.libPaths()
-remove.packages("ggplot2")
-install.packages("ggplot2", repos="https://cloud.r-project.org/")
 library(ggplot2)
-install.packages(c("patchwork", "ggforce"), repos="https://cloud.r-project.org/")
 library(patchwork)
+install.packages("ggforce", repos="https://cloud.r-project.org/")
 library(ggforce) #for facet_col
 ```
 
