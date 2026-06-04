@@ -214,13 +214,13 @@ A single nucleotide insertion or deletion (AKA an "indel") may introduce a **fra
 
 {{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
 
-| Mutation Type | Single Nucleotide Change | Amino Acid Change | Possible impact on cell due to change in protein abundance or structure |
-|:--------------|:------------------------:|:-----------------:|:-----------------------------------------------------------------------:|
-| Silent        | Substitution             |                   |                                                                         |
-| Synonymous    | Substitution             |                   | ✅                                                                      |
-| Missense      | Substitution             | ✅                | ✅                                                                      |
-| Nonsense      | Substitution             | Truncation        | Probably large impact due to likely non-functional protein              |
-| Frameshift    | Addition or Loss         | All following shift are changed | Likely large impact                                       |
+| Mutation Type | Single Nucleotide Change | Amino Acid Change       | Possible impact on cell due to change in protein abundance or structure |
+|:--------------|:------------------------:|:-----------------------:|:-----------------------------------------------------------------------:|
+| Silent        | Substitution             |                         |                                                                         |
+| Synonymous    | Substitution             |                         | ✅                                                                      |
+| Missense      | Substitution             | ✅                      | ✅                                                                      |
+| Nonsense      | Substitution             | Truncation              | Probably large impact due to likely non-functional protein              |
+| Frameshift    | Addition or Loss         | All following shift are changed | Likely large impact                                             |
 
 : Single Nucleotide Mutations Summary Table {.bordered}
 
