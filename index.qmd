@@ -217,8 +217,8 @@ A single nucleotide insertion or deletion (AKA an "indel") may introduce a **fra
 | Mutation Type | Single Nucleotide Change | Amino Acid Change | Possible impact on cell due to change in protein abundance or structure |
 |:--------------|:------------------------:|:-----------------:|:-----------------------------------------------------------------------:|
 | Silent        | Substitution             |                   |                                                                         |
-| Synonymous    | Substitution             |                   | :white_check_mark:                                                      |
-| Missense      | Substitution             | :white_check_mark:| :white_check_mark:                                                      |
+| Synonymous    | Substitution             |                   | ✅                                                                      |
+| Missense      | Substitution             | ✅                | ✅                                                                      |
 | Nonsense      | Substitution             | Truncation        | Probably large impact due to likely non-functional protein              |
 | Frameshift    | Addition or Loss         | All following shift are changed | Likely large impact                                       |
 

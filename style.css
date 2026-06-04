@@ -127,6 +127,10 @@ li.toctree-l2:first-child {
    display: inline-block;
 }
 
+table, th, td {
+  border-color: #000000 !important;
+}
+
 div.notice{
   border: 4px #193a5c;
   border-style: solid;

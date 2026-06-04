@@ -12,17 +12,23 @@ noise <- pmin(diff + sample(1:5000, size = length(diff), replace = TRUE), 5000)
 
 #come up with some random insertion points
 insert_indices <- sample(length(sample2) + 1, length(noise), replace = FALSE)
+insert_size <- 1.75
 
 #insert those noise points
+size <- rep(0.5, length(sample2))
 sample2_wnoise <- sample2
 for (i in seq_along(noise)) {
   sample2_wnoise <- append(sample2_wnoise, noise[i], after = insert_indices[i] - 1)
+  size <- append(size, insert_size, after = insert_indices[i] - 1)
 }
 
 # plot it
-to_plot <- data.frame(x=sample1, y=sample2_wnoise)
-to_plot %>% ggplot(aes(x=x, y=y)) +
-  geom_point(size=0.75) +
+to_plot <- data.frame(x=sample1, y=sample2_wnoise, size = size)
+to_plot %>% ggplot(aes(x=x, y=y, size = size)) +
+  geom_point(alpha=0.6) +
   theme_minimal() +
   xlab("Sample 1") +
-  ylab("Sample 2")
+  ylab("Sample 2") +
+  scale_size_identity() +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank())

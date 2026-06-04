@@ -7,9 +7,12 @@ website:
 
 format:
   html:
+    grid:
+      sidebar-width: 260px
     theme: cosmo
     css: style.css
     toc: true
+    toc-location: left
 
 glossary:
   path: glossary.yml
