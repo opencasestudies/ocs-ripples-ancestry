@@ -55,6 +55,10 @@ To explore these topics, we'll first ask questions such as "What is the human ge
 
 The human {{< glossary genome >}} (all of an individual's {{< glossary DNA >}}) is made of stretches of {{< glossary nucleotides display = "nucleotides (with bases A,C,G,T)" >}}. The nucleotides ultimately encode for {{< glossary protein >}} products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual's genome encodes all the proteins they need for their body to function normally.
 
+```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
+```
+
 The Central Dogma is a theory describing how genetic information is stored and how it flows. DNA stores genetic information within the genome. DNA produces {{< glossary RNA >}} through a process called {{< glossary transcription >}}. Specific regions of the genome called {{< glossary genes >}} are transcribed into RNA molecules. RNA produces proteins through a process called {{< glossary translation >}}.
 
 ```{r, echo = FALSE, message= FALSE, warning = FALSE, out.width="100%"}
@@ -101,7 +105,7 @@ Most of a person's genome is the same as another person's. All humans need the s
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.p#slide=id.p")
 ```
 
-::: {.column_margin}
+::: {.column-margin}
 Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
 :::
 
@@ -112,10 +116,6 @@ Mutation is just a term for any change to the DNA. Not all mutations are deleter
 </div>
 
 These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide. An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide.
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
-ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
-```
 
 If a point mutation occurs fairly often within a population and is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP (pronounced "snip").
 
