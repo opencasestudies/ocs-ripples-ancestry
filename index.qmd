@@ -101,11 +101,11 @@ This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-e
 
 Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in the areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
 
+These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
+
 ::: {.column-margin}
 Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
 :::
-
-These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
 
 <div class="notice">
 Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
@@ -274,19 +274,13 @@ To do this, individuals are often grouped based on their ancestry into populatio
 
 Because of the admixture that has been going on for multiple generations, how populations are partitioned into separate groups is subjective, with no definitive dividing line. An individual's view of their own ancestry will determine what population they identify as. This adds a cultural, religions, and sometimes geographical element to what used to be a strictly biological concept. People can identify with a culture that is more dominant in their life (this can be around race, ethnicity, religion, etc.) as well as where they grew up, as opposed to where their ancestors are from.
 
+**NOTE: Reviewed/Edited background material has only been brought over through here so far**
+
 Additionally, the definition of populations may also differ in scale. As mentioned earlier, ancestry can mean relationships across a couple of generations or tens of thousands of years. The 1000 Genome Project was an international research effort that aimed to create the most detailed reference of human genetic variation available at that time. Populations and superpopulations used by the 1000 Genomes Project that are both examples of creating population-esque categorizations. Superpopulations combine populations together, creating fewer overall categories. These categorizations don't have a single genetic or biological characteristic driving them, but rather are subjectively and arbitrarily defined groups. There are 26 ethnically or geographically defined groups in the 1000 Genomes Project. There are 5 superpopulations that are composite groups focusing on a broader continental definition - not based on an individual's current location, but instead their genetic ancestry. Given the mixing of populations throughout time, there may not be a single clear categorization for an individual into one of these populations or superpopulations.
 
 ## Can we use ancestry as a proxy in medical care?
 
 ## What does this all mean?
-
-**NOTE: Reviewed/Edited background material has only been brought over through here so far**
-
-
-
-## Finding Relatedness
-
-Everyone within the human species inherited genomic material from two individuals and each of those individuals inherited genomic material from two other individuals, continuing backwards through the family history. And by expanding this to consider the evolution of species, this history traces back to shared or common ancestors of different species. If we consider two humans, we won’t have to go very far back to find a common ancestor, but comparing a human with an organism from another species, we will have to go back a longer amount of time to find a common ancestor. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and how individuals and species are related. Individuals that are more closely related will share more genomic material in common than those that are more distantly related. When comparing genomic material between individuals, sequence similarity or identity is a quantitative measure describing how much overlap or matching there is between the genomic material. Homology is a qualitative description inferred from the amount of similarity and suggests that the sequences or genomic material share a common ancestor. Models used to compare sequences take into account the different kinds of mutations and how commonly they occur.
 
 # **Main Questions**
 ***
@@ -308,6 +302,18 @@ Everyone within the human species inherited genomic material from two individual
 
 # **Data Description**
 ***
+
+The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_et al_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009] was run on SNPs from ~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original data and analysis used 7 clusters, so the commentary analysis did as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.
+
+|                                     | Original Analysis | Commentary Analysis |
+|:------------------------------------|:-----------------:|:-------------------:|
+| Reference                           | @Li_et al_2008    | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
+| Number of samples                   | 938               | 1918                |
+| Number of populations               | 51                | Y                   |
+| Reported ancestry outside of Africa | 86.5%             | 15%                 |
+| Reported ancestry within Africa     | 13.5%             | 85%                 |
+| Clustering tool                     | *frappe*          | ADMIXTURE           |
+| Number of clusters                  | 7                 | 7                   |
 
 # **Learning Objectives**
 ***
