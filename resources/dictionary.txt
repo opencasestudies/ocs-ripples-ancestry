@@ -13,6 +13,7 @@ Dockerhub
 dotplot
 dotplots
 dplyr
+esque
 favicon
 frameshift
 Frameshift
@@ -26,6 +27,7 @@ GitHub
 Hanako
 histones
 HTTPS
+indel
 indels
 intra
 lightblue
@@ -42,6 +44,9 @@ readr
 Recode
 Rmd
 subdir
+subpopulation
+superpopulations
+Superpopulations
 tabset
 telomeres
 tidyverse
