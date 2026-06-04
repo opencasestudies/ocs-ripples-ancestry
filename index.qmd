@@ -210,39 +210,39 @@ Different types of single-nucleotide mutations are defined based on the effect o
 
 **Single-nucleotide insertions or deletions (indels)**
 
-A single nucleotide insertion or deletion (or one that is a length not a multiple of three -- 3 is the length of a codon) may introduce a **frameshift mutation**. Frameshift mutations often impact the structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
+A single nucleotide insertion or deletion (AKA an "indel") may introduce a **frameshift mutation**. Frameshift mutations often impact the structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.
 
 {{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
 
-| Mutation Type | Nucleotide Change | Amino Acid Change | Protein Abundance Change (Possibly) | Protein Function Change (Possibly) |
-|:--------------|:-----------------:|:-----------------:|:-----------------------------------:|:----------------------------------:|
-| Silent        | X                 |                   |                                     |                                    |
-| Synonymous    | X                 |                   | X                                   | X                                  |
-| Missense      | X                 | X                 | X                                   | X                                  |
-| Missense - Conservative| X        | X                 | ?                                   | ?                                  |
-| Missense - Non-conservative| X    | X                 | X                                   | X                                  |
-| Nonsense      | X                 | Stop Codon        | X                                   | likely non-functional              |
-| Frameshift    | indels mostly     | Lots              | X                                   | X                                  |
+| Mutation Type | Single Nucleotide Change | Amino Acid Change | Possible impact on cell due to change in protein abundance or structure |
+|:--------------|:------------------------:|:-----------------:|:-----------------------------------------------------------------------:|
+| Silent        | Substitution             |                   |                                                                         |
+| Synonymous    | Substitution             |                   | :white_check_mark:                                                      |
+| Missense      | Substitution             | :white_check_mark:| :white_check_mark:                                                      |
+| Nonsense      | Substitution             | Truncation        | Probably large impact due to likely non-functional protein              |
+| Frameshift    | Addition or Loss         | All following shift are changed | Likely large impact                                       |
 
-### Silent Mutations
+: Single Nucleotide Mutations Summary Table {.bordered}
+
+### Silent
 
 Silent mutations have an underlying base pair change (i.e., a C to an A), but the amino acid building blocks of the protein remain unchanged. Since these mutations do not change the encoded amino acid, they are called silent. However, these silent mutations may still impact how often a protein is produced because certain tRNA anticodons are less available or may take longer to process in translation; so while they code for the same amino acid, they may not be truly "silent" and may have an effect in the cell. Such mutations are called synonymous mutations.
 
-### Missense Mutations
+### Missense
 
 Missense mutations result in an amino acid substitution, which can impact protein structure and function. The single nucleotide change altered the amino acid that was encoded by that segment of DNA. This causes a substitution in the amino acid encoded for in that part of the protein. Some missense mutations are "conservative" where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.). A "non-conservative" missense mutation switches an amino acid to one with dissimilar biochemical properties - this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
 
 {{< video https://www.youtube.com/watch?v=LoxOmFoQOQk >}}
 
-### Nonsense Mutations
+### Nonsense
 
 Nonsense mutations introduce an early stop codon - halting translation prematurely. A stop codon typically signals the end of a segment of RNA that encodes a protein, signaling the end of translation. An early stop codon will prematurely stop the production of the protein and result in a shorter (or truncated), often non-functional protein.
 
 {{< video https://www.youtube.com/watch?v=Qe05MxqNlJk >}}
 
-### Frameshift Mutations
+### Frameshift
 
-A single nucleotide insertion or deletion (or one that is a length not a multiple of three, which is the length of a codon) may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
+A single nucleotide insertion or deletion (also known as an "indel"), or an insertion or deletion that is a length not a multiple of three (which is the length of a codon), may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
 
 {{< video https://www.youtube.com/watch?v=yv_vnMKdJzY >}}
 
@@ -254,17 +254,34 @@ A single nucleotide insertion or deletion (or one that is a length not a multipl
 
 ## Why do genetic changes sometimes persist in populations?
 
-**NOTE: Reviewed/Edited background material has only been brought over through here so far**
+Genetic variation is considered necessary for survival. Scientists hypothesize that species are under various selective pressures to adapt and retain genetic changes that allow them to survive and reproduce, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.) Given this, heritable variation (e.g., recombination during meiosis or germline mutations that are passed from generation to generation) can be beneficial by allowing for the selection of advantageous traits for adaptation leading to better survival. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because the changes can be advantageous.
 
-Genetic variation isn’t of interest solely because of mutation and its relation to disease. Genetic variation is also considered necessary for survival. The Red Queen Hypothesis stipulates that species must constantly evolve and adapt to survive, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.). Given this, heritable variation (e.g., germline mutations or recombination during meiosis) is beneficial to the species by supporting evolution, allowing for the selection of advantageous traits necessary for adaptation and survival either due to competition or novel locations with their share of environmental challenges and unique resources. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because of the non-random survival due to the changes being advantageous.
+Every person alive inherited genomic material from two indviduals, and each of those individuals inherited genomic material from two other individuals, continuing backwards through their family history. Each generation of people pass down genomic materials to the next. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and studying how individuals are related. Individuals who are more closely related will share more genomic material in common than those who are more distantly related.
 
-## How can we quantify ancestry?
+Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunitites there are for genetic variations to occur and accumulate. Ancestry is something that is determined and formed over time and through a process -- the process of genetic material being passed down. Therefore ancestry is defined as a "process-based concept" of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.
+
+## How can we describe ancestry?
+
+Ancestry captures a process that occurs over time and generations. When talking about ancestry, it can be complciated to quantify it. One way to do this is to compare the genomic material shared between individuals.
+
+When comparing genomic material between individuals, how similar or identical a sequence is between the two is a quantitative measure describing how much overlap or matching there is between the gneomic material. Homology is a qualitative description constructed from the amount of similarity and suggests that the sequences or genomic material share a common ancestor. The idea is that if two sequences look similar, they must have come from the same ancestor and diverged relatively recently, since there are few genetic variations that have accumulated. Models used to compare sequences take into account the different kinds of mutations and how commonly they occur.
+
+When thinking about ancestry, we often think about ancestral groups or populations instead of individuals (ex, what group or community an individual is related to or whether one group is related to another group or community). This also applies to studying similarities and differences in current groups based on their ancestry. For example, evaluating every human's blood pressure on earth would be nearly impossible. It would be much more feasible to study a representative sample of the general population. To create this representative sample, we would need to have individuals who represent different subpopulations within the greater population in our sample or we risk missing important information. Making a representative reference sample is important to make sure the results apply to the general population, and not just the subpopulation that was studied.
+
+To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid). Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
 
 ## How do you group humans?
+
+Because of the admixture that has been going on for multiple generations, how populations are partitioned into separate groups is subjective, with no definitive dividing line. An individual's view of their own ancestry will determine what population they identify as. This adds a cultural, religions, and sometimes geographical element to what used to be a strictly biological concept. People can identify with a culture that is more dominant in their life (this can be around race, ethnicity, religion, etc.) as well as where they grew up, as opposed to where their ancestors are from.
+
+Additionally, the definition of populations may also differ in scale. As mentioned earlier, ancestry can mean relationships across a couple of generations or tens of thousands of years. The 1000 Genome Project was an international research effort that aimed to create the most detailed reference of human genetic variation available at that time. Populations and superpopulations used by the 1000 Genomes Project that are both examples of creating population-esque categorizations. Superpopulations combine populations together, creating fewer overall categories. These categorizations don't have a single genetic or biological characteristic driving them, but rather are subjectively and arbitrarily defined groups. There are 26 ethnically or geographically defined groups in the 1000 Genomes Project. There are 5 superpopulations that are composite groups focusing on a broader continential definition - not based on an individual's current location, but instead their genetic ancestry. Given the mixing of populations throughout time, there may not be a single clear categorization for an individual into one of these populations or superpopulations.
 
 ## Can we use ancestry as a proxy in medical care?
 
 ## What does this all mean?
+
+**NOTE: Reviewed/Edited background material has only been brought over through here so far**
+
 
 
 ## Finding Relatedness
