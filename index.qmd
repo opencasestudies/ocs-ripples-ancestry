@@ -32,14 +32,14 @@ This case study explores the topic of human {{< glossary "genomic variation" >}}
 
 :::{.definition_box}
 ::: {.panel-tabset}
-### Definition: Genomic Variation
+### **Definition**: Genomic Variation
 ::::{.definition_box_header}
 Human Genomic Variation
 ::::
 ::::{.inner_block}
 Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects [@GenomicVariationNIH].
 ::::
-### Definition: Ancestry
+### **Definition**: Ancestry
 ::::{.definition_box_header}
 Ancestry
 ::::
@@ -69,9 +69,9 @@ The human genome is diploid meaning that it has two copies of each of the 23 dis
 
 Recent work from the T2T project [@Nurk_etal_2022] completely sequenced the Human Genome and reported that
 
-::: {.column-margin}
+<div class="notice">
 Note that the terms "nucleotide" and "base" are often used interchangeably since the base is a part of the nucleotide.
-:::
+</div>
 
 * it is 3.055 billion–base pairs or nucleotides in length.
 * there are 63,494 genes in the human genome (only 19,969 of which code for proteins).
@@ -85,13 +85,9 @@ See the expandable section below for further resources to review the Central Dog
 
 <details><summary>Further Resources for the Central Dogma</summary>
 
-```{r, echo = FALSE, message= FALSE, warning = FALSE, out.width="100%"}
-ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_1_4#slide=id.g3c938ed4e06_1_4")
-```
+This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma) provides an overview of the Central Dogma as well as the transcription and translation processes [@khanacademy_centraldogma].
 
 {{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
-
-This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma) provides an overview of the Central Dogma as well as the transcription and translation processes [@khanacademy_centraldogma].
 
 </details>
 
@@ -102,10 +98,6 @@ This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-e
 Most of a person's genome is the same as another person's. All humans need the same proteins to function. But very small parts of our genome, especially in the areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.
 
 These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
-
-::: {.column-margin}
-Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
-:::
 
 <div class="notice">
 Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
@@ -214,9 +206,11 @@ A single nucleotide insertion or deletion (AKA an "indel") may introduce a **fra
 
 {{< video https://www.youtube.com/watch?v=xYOK-yzUWSI&t=162s >}}
 
+### Comparison
+
 | Mutation Type | Single Nucleotide Change | Amino Acid Change       | Possible impact on cell due to change in protein abundance or structure |
 |:--------------|:------------------------:|:-----------------------:|:-----------------------------------------------------------------------:|
-| Silent        | Substitution             |                         |                                                                         |
+| Silent        | Substitution             |                         | No Impact                                                               |
 | Synonymous    | Substitution             |                         | ✅                                                                      |
 | Missense      | Substitution             | ✅                      | ✅                                                                      |
 | Nonsense      | Substitution             | Truncation              | Probably large impact due to likely non-functional protein              |
@@ -294,27 +288,6 @@ Additionally, the definition of populations may also differ in scale. As mention
 
 ####
 
-# **Context**
-***
-
-# **Limitations**
-***
-
-# **Data Description**
-***
-
-The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_etal_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009] was run on SNPs from ~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original data and analysis used 7 clusters, so the commentary analysis did as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.
-
-|                                     | Original Analysis | Commentary Analysis |
-|:------------------------------------|:-----------------:|:-------------------:|
-| Reference                           | @Li_etal_2008     | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
-| Number of samples                   | 938               | 1918                |
-| Number of populations               | 51                | Y                   |
-| Reported ancestry outside of Africa | 86.5%             | 15%                 |
-| Reported ancestry within Africa     | 13.5%             | 85%                 |
-| Clustering tool                     | *frappe*          | ADMIXTURE           |
-| Number of clusters                  | 7                 | 7                   |
-
 # **Learning Objectives**
 ***
 
@@ -375,6 +348,20 @@ Provide some more details and background on the case study topic and its relatio
 
 # **What are the data?**
 ***
+
+The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_etal_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009], which also estimates ancestry proportions for each sample, was run on SNPs from ~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original analysis used a tool called *frappe* [@Tang2005], specifying 7 clusters for the results, so the commentary analysis specified 7 clusters as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. Though a different tool was used by the original analysis to cluster the samples, the tools are very similar in how they work, but ADMIXTURE is faster. 
+
+|                                     | Original Analysis | Commentary Analysis |
+|:------------------------------------|:-----------------:|:-------------------:|
+| Reference                           | @Li_etal_2008     | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
+| Number of samples                   | 938               | 1918                |
+| Number of populations               | 51                | Y                   |
+| Reported ancestry outside of Africa | 86.5%             | 15%                 |
+| Reported ancestry within Africa     | 13.5%             | 85%                 |
+| Clustering tool                     | *frappe*          | ADMIXTURE           |
+| Number of clusters                  | 7                 | 7                   |
+
+The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.
 
 # **Data Import**
 ***
