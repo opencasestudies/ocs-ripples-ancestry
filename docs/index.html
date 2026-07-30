@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Website Name – OTTR Template Website</title>
+<title>Open Case Studies: The Biology of Ancestry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,11 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -39,12 +92,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/glossary/glossary.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -68,81 +125,62 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">OTTR Template Website</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-fa-home" role="img">
-</i> 
-<span class="menu-text"><strong>Website Name</strong></span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./setup.html"> 
-<span class="menu-text">1. Setup</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hosting.html"> 
-<span class="menu-text">2. Hosting</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./editing.html"> 
-<span class="menu-text">Editing</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./style.html"> 
-<span class="menu-text">3. Style</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./git_actions.html"> 
-<span class="menu-text">4. Git Actions</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://www.ottrproject.org/"> 
-<span class="menu-text">More ottr docs</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about"><strong>About</strong></a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><strong>Motivation</strong></a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-human-genome" id="toc-what-is-the-human-genome" class="nav-link" data-scroll-target="#what-is-the-human-genome">What is the human genome?</a></li>
+  <li><a href="#what-is-genomic-variation" id="toc-what-is-genomic-variation" class="nav-link" data-scroll-target="#what-is-genomic-variation">What is genomic variation?</a></li>
+  <li><a href="#how-do-nucleotide-changes-happen" id="toc-how-do-nucleotide-changes-happen" class="nav-link" data-scroll-target="#how-do-nucleotide-changes-happen">How do nucleotide changes happen?</a></li>
+  <li><a href="#why-should-we-care-about-human-genomic-variation" id="toc-why-should-we-care-about-human-genomic-variation" class="nav-link" data-scroll-target="#why-should-we-care-about-human-genomic-variation">Why should we care about human genomic variation?</a></li>
+  <li><a href="#why-do-genetic-changes-sometimes-persist-in-populations" id="toc-why-do-genetic-changes-sometimes-persist-in-populations" class="nav-link" data-scroll-target="#why-do-genetic-changes-sometimes-persist-in-populations">Why do genetic changes sometimes persist in populations?</a></li>
+  <li><a href="#how-can-we-describe-ancestry" id="toc-how-can-we-describe-ancestry" class="nav-link" data-scroll-target="#how-can-we-describe-ancestry">How can we describe ancestry?</a></li>
+  <li><a href="#how-do-you-group-humans" id="toc-how-do-you-group-humans" class="nav-link" data-scroll-target="#how-do-you-group-humans">How do you group humans?</a></li>
+  <li><a href="#can-we-use-ancestry-as-a-proxy-in-medical-care" id="toc-can-we-use-ancestry-as-a-proxy-in-medical-care" class="nav-link" data-scroll-target="#can-we-use-ancestry-as-a-proxy-in-medical-care">Can we use ancestry as a proxy in medical care?</a></li>
+  <li><a href="#what-does-this-all-mean" id="toc-what-does-this-all-mean" class="nav-link" data-scroll-target="#what-does-this-all-mean">What does this all mean?</a></li>
+  </ul></li>
+  <li><a href="#main-questions" id="toc-main-questions" class="nav-link" data-scroll-target="#main-questions"><strong>Main Questions</strong></a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><strong>Learning Objectives</strong></a></li>
+  <li><a href="#context" id="toc-context" class="nav-link" data-scroll-target="#context"><strong>Context</strong></a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><strong>Limitations</strong></a></li>
+  <li><a href="#what-are-the-data" id="toc-what-are-the-data" class="nav-link" data-scroll-target="#what-are-the-data"><strong>What are the data?</strong></a></li>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link" data-scroll-target="#data-import"><strong>Data Import</strong></a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><strong>Data Wrangling</strong></a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><strong>Data Visualization</strong></a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><strong>Analysis</strong></a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1"><strong>Summary</strong></a></li>
+  <li><a href="#suggested-homework" id="toc-suggested-homework" class="nav-link" data-scroll-target="#suggested-homework"><strong>Suggested Homework</strong></a></li>
+  <li><a href="#additional-information" id="toc-additional-information" class="nav-link" data-scroll-target="#additional-information"><strong>Additional Information</strong></a>
+  <ul class="collapse">
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary"><strong>Glossary</strong></a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><strong>References</strong></a></li>
+  <li><a href="#helpful-links" id="toc-helpful-links" class="nav-link" data-scroll-target="#helpful-links"><strong>Helpful Links</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Website Name</strong></h1>
+<h1 class="title">Open Case Studies: The Biology of Ancestry</h1>
 </div>
 
 
@@ -159,34 +197,704 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="banner_color">
-<p>Banner text!</p>
+<section id="section" class="level4 outline">
+<h4 class="outline anchored" data-anchor-id="section"></h4>
+<p><a href="img/mainplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/mainplot.png" class="img-fluid" alt="" width="800"></a></p>
+</section>
+<section id="section-1" class="level4">
+<h4 class="anchored" data-anchor-id="section-1"></h4>
+<p>Add disclaimer and license</p>
+<div class="reference_box">
+<div class="reference_box_header">
+<p>To cite this case study, please use:</p>
 </div>
-<section id="about" class="level3">
-<h3 class="anchored" data-anchor-id="about"><strong>About</strong></h3>
-<p>This website was created with the <a href="https://github.com/ottrproject/OTTR_Quarto">OTTR_Quarto website template</a>.</p>
-<p>This enables simpler creation of websites that have automated checks for broken URLs and spelling errors, as well as automated rendering of all html files. No need to worry about git conflicts for html files! See <a href="https://www.ottrproject.org/">ottrproject.org</a> for more docs and details.</p>
-<p>Here is how you can include images in your website pages (this one is saved in <code>resources/images</code> to keep things tidy:</p>
-<div class="cell" data-layout-align="center">
+<div class="inner_block">
+<p>Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). <a href="https://github.com/opencasestudies/ocs-ripples-ancestry">https://github.com/opencasestudies/ocs-ripples-ancestry</a>. The Biology of Ancestry (Version v1.0.0).</p>
+</div>
+</div>
+<p>To access the GitHub repository to see the source materials and data that went into making the case study, please see here: <a href="https://github.com/opencasestudies/ocs-ripples-ancestry">https://github.com/opencasestudies/ocs-ripples-ancestry</a>. This case study is published as part of …. The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch or NIH.</p>
+</section>
+<section id="motivation" class="level1">
+<h1><strong>Motivation</strong></h1>
+<hr>
+<p>This case study explores the topic of human <button class="glossary"><span class="def">Differences in DNA sequences or the genomes when comparing individuals either within a population or across different populations.</span>genomic variation</button>, especially with respect to <button class="glossary"><span class="def">An individual’s personal understanding of their genomic heritage, genealogy, or family history. Often self-reported.</span>ancestry</button>.</p>
+<div class="definition_box">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><strong>Definition</strong>: Genomic Variation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><strong>Definition</strong>: Ancestry</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="definition_box_header">
+<p>Human Genomic Variation</p>
+</div>
+<div class="inner_block">
+<p>Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects <span class="citation" data-cites="GenomicVariationNIH">(<a href="#ref-GenomicVariationNIH" role="doc-biblioref"><span>“Genetics Glossary: Genomic Variation,”</span> n.d.</a>)</span>.</p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="definition_box_header">
+<p>Ancestry</p>
+</div>
+<div class="inner_block">
+<p>Ancestry is a personal understanding of one’s genomic heritage - a statement about a person’s relationship to other individuals in their genealogical history. Ancestry is often self-reported by an individual and is a personal concept focusing on the how or the process of their family history rather than a societal pattern <span class="citation" data-cites="Yudell2016">(<a href="#ref-Yudell2016" role="doc-biblioref">Yudell et al. 2016</a>)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>To explore these topics, we’ll first ask questions such as “What is the human genome?”, “What is genomic variation?”, and “Why should we care about human genomic variation?”. Data representing genomic variation and ancestry will be discussed and ways to represent or visualize this data will be highlighted. In addition, ways to work with data will be compared and contrasted, examining the pros and cons of techniques that either utilize more manual approaches or more&nbsp; processing through computational work. Since the data we will be working with is not large, we can use these techniques in any case.</p>
+<section id="what-is-the-human-genome" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-human-genome">What is the human genome?</h2>
+<p>The human <button class="glossary"><span class="def">All of an individual’s DNA</span>genome</button> (all of an individual’s <button class="glossary"><span class="def">Double stranded helix …</span>DNA</button>) is made of stretches of <button class="glossary"><span class="def">The basic building blocks of DNA with 3 components: a nitrogen containing base - Adenine (A), Cytosine (C), Guanine (G), or Thymine (T) + a five-carbon sugar + and a phosphate group</span>nucleotides (with bases A,C,G,T)</button>. The nucleotides ultimately encode for <button class="glossary"><span class="def">Proteins are essential for all living organisms, performing important tasks in the cell. They are important for immune responses, structural support, information transmission, and powering movement. Proteins are complex molecules comprised of a chain of amino acids. The sequence and identity of amino acids impact how a protein folds into its 3D structure and there many different possible structures. Proteins are the result of translation (DNA –&gt; RNA –&gt; Protein).</span>protein</button> products that function in the body in important ways. Proteins include enzymes like amylase to break down food, peptide hormones such as insulin to regulate blood sugar, and structural proteins such as keratin in skin and nails. An individual’s genome encodes all the proteins they need for their body to function normally.</p>
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="resources/images/example_image.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%" alt="Example image"></p>
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_p.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We will go through the following:</p>
+<p>The Central Dogma is a theory describing how genetic information is stored and how it flows. DNA stores genetic information within the genome. DNA produces <button class="glossary"><span class="def">Single stranded … RNA is the result of transcription (DNA –&gt; RNA)</span>RNA</button> through a process called <button class="glossary"><span class="def">The process by which RNA is produced from DNA.</span>transcription</button>. Specific regions of the genome called <button class="glossary"><span class="def">Elements of DNA that are transcribed into RNA. They …</span>genes</button> are transcribed into RNA molecules. RNA produces proteins through a process called <button class="glossary"><span class="def">The process by which protein is produced from RNA.</span>translation</button>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_g3e81f594328_0_10.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The human genome is diploid meaning that it has two copies of each of the 23 distinct <button class="glossary"><span class="def">DNA that is compactly stored by being wound around histone proteins. Found in the nucleus of the cell. Humans have 23 pairs of chromosomes.</span>chromosomes</button> (1, 2, 3, …, 21, 22, sex chromosome / X or Y) for a total of 46 chromosomes. The copies are not identical because they are inherited from different parents – one from each. These chromosomes are housed in the nucleus of the cell. Chromosomes have DNA wound around specialized proteins called histones forming dense coils to compactly store the genomic information. Some regions of the chromosome are more tightly wound than others. DNA replication and transcription occur in the loosely wound/more accessible regions <span class="citation" data-cites="Pathak_Bordoni_2026">(<a href="#ref-Pathak_Bordoni_2026" role="doc-biblioref">Pathak and Bordoni 2026</a>)</span>.</p>
+<p>Recent work from the T2T project <span class="citation" data-cites="Nurk_etal_2022">(<a href="#ref-Nurk_etal_2022" role="doc-biblioref">Nurk et al. 2022</a>)</span> completely sequenced the Human Genome and reported that</p>
+<div class="notice">
+<p>Note that the terms “nucleotide” and “base” are often used interchangeably since the base is a part of the nucleotide.</p>
+</div>
+<ul>
+<li>it is 3.055 billion–base pairs or nucleotides in length.</li>
+<li>there are 63,494 genes in the human genome (only 19,969 of which code for proteins).</li>
+<li>53.94% of the genome is made up of repetitive DNA.</li>
+</ul>
+<p>Much of the human genome contains non-coding DNA instead of genes. This isn’t to say that the DNA in these non-coding regions is doing nothing. Structural elements such as telomeres (which protect the end of chromosomes) are part of the non-coding regions. Regulatory elements are part of these non-coding regions as well. While they are not included in eventual protein products, they regulate when and how much RNA is produced in transcription.</p>
+<p>See the expandable section below for further resources to review the Central Dogma.</p>
+<div class="emphasis_block">
+<details>
+<summary>
+Further Resources for the Central Dogma
+</summary>
+<p>This <a href="https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma">Khan Academy lesson</a> provides an overview of the Central Dogma as well as the transcription and translation processes <span class="citation" data-cites="khanacademy_centraldogma">(<a href="#ref-khanacademy_centraldogma" role="doc-biblioref"><span>“Intro to Gene Expression (Central Dogma) (Article),”</span> n.d.</a>)</span>.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/TatNfCyQ52Q" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</section>
+<section id="what-is-genomic-variation" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-genomic-variation">What is genomic variation?</h2>
+<p>Most of a person’s genome is the same as another person’s. All humans need the same proteins to function. But very small parts of our genome, especially in the areas that do not code for proteins, can vary across individuals. This genomic variation is caused by changes in the nucleotide sequences that can cause differences in how a protein functions or the amount of protein created. Some variations can change the function of a protein so severely that it stops doing its intended function, while others can increase or decrease the amount of protein that is produced.</p>
+<p>These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.</p>
+<div class="notice">
+<p>Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.</p>
+</div>
+<p>These variations can be caused by a change of a single nucleotide (“point mutations”) or changes involving more than one nucleotide. An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_g3c938ed4e06_0_9.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If a point mutation occurs fairly often within a population and is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP (pronounced “snip”).</p>
+<p>Sometimes mutations involve more than one nucleotide. An example of a mutation involving more than one nucleotide would be if a chunk of DNA, like ACCGT, were to be repeated and become ACCGTACCGT (such changes with more than 50 nucleotides are called structural variants). Some large structural changes (like the Translocation shown in the figure below) may even occur across multiple chromosomes (inter-chromosomal) rather than being within a single chromosome (intra-chromosomal).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_g3c938ed4e06_0_28.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="how-do-nucleotide-changes-happen" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-nucleotide-changes-happen">How do nucleotide changes happen?</h2>
+<p>Variation can be introduced into the genome through <em>mutation</em> or <em>recombination</em> during <em>meiosis</em>. Mutations may occur due to errors during the <em>replication</em> of genomic material during cell division, imperfect repair mechanisms not catching mistakes, environmental factors or <em>mutagens</em> that damage genomic material (e.g., high-energy radiation or certain chemicals or viruses), or spontaneous/random changes.</p>
+<div class="definition_box">
+<div class="definition_box_header">
+<p>Mutations</p>
+</div>
+<div class="inner_block">
+<p>Changes to the DNA …</p>
+</div>
+</div>
+<p>No matter the cause of mutation, not all variations will be passed on to offspring/children. Mutations may be somatic (occurring in cells that are not part of the reproductive system) or germline (occurring in cells that are part of the reproductive system). Germline mutations and meiotic recombination are examples of <em>heritable</em> variation that will be passed on to future generations.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/vl6Vlf2thvI?si=gAvQY0jJFMu1yCNt" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<!--
+Add Berkeley resource: https://evolution.berkeley.edu/dna-and-mutations/types-of-mutations/
+-->
+<!--
+  Add definition box with tabs for recombination, meiosis, replication, mutagens, and heritable
+-->
+<p>Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a <em>reference genome</em>. On average, if you compared the genomes of two individuals, there would be &gt;99% matching between the two. This is often visualized with a <em>dotplot</em> where highly identical genomes will have a dense, diagonal line with some off-diagonal dots (or lines for larger variants like an insertion or duplication).</p>
+<!--
+  Add definition box with tabs for reference genome and dotplot
+-->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_g3e81f594328_0_32.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="emphasis_block">
+<details>
+<summary>
+More details about dotplots
+</summary>
+<p>Besides comparing two human samples to each other, dotplots are also used to compare a human sample to a reference genome, reference genomes to each other, human samples or reference genomes to other species, or really any other species/sample comparison.</p>
+<p>Comparisons for less related samples produce more complex dotplots that represent larger structural variants like the inversions in the following example.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html//1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8_g3e81f594328_0_44.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="why-should-we-care-about-human-genomic-variation" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-we-care-about-human-genomic-variation">Why should we care about human genomic variation?</h2>
+<p>Especially if there’s so much similarity, why should we care about human genomic variation? Not all variations or mutations have an impact. Some variations can be “functional” and lead to changes not just in the genome, but also in the <em>proteins</em> that are <em>translated</em> from the genetic material. However, not all variation is “functional”; some changes don’t impact the proteins that are translated from the genetic material. (See silent mutations below).</p>
+<p>Functional changes, on the other hand, may impact how much of a protein is made, the protein structure, and therefore its eventual role in the <em>cell</em>, or where and when the protein is expressed due to changes in parts of the genome that help regulate gene transcription. Certain diseases may be caused or worsened by genetic variation. Cancer is a common example of this, where genes that control cell growth, division, or scheduled cell death are mutated, and their proteins do not function properly to control the cell cycle, leading to uncontrolled cell growth that develops into tumors.</p>
+<p>For other diseases, a protein may not be expressed at the correct levels or the protein may be folded incorrectly because of its mutated structure, leading to inefficiencies in or the inability of the protein to perform its function(s). This is the case in the mutation that leads to sickle-cell anemia and changes in the hemoglobin protein. To protect against this, there are biological redundancies that act as a safety net. These create backup systems that can mitigate issues by compensating for or taking the place of nonfunctional components. But even with redundancies and safety nets, mutations can lead to small changes with major consequences.</p>
+<!--
+  Add definition box with tabs for functional, proteins, translated, cell
+-->
+<div class="emphasis_block">
+<details>
+<summary>
+Different types of (single-nucleotide) mutations
+</summary>
+<p>As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Summary</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Comparison</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Silent</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Missense</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Nonsense</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">Frameshift</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><strong>Single-nucleotide changes</strong></p>
+<p>Different types of single-nucleotide mutations are defined based on the effect of the mutation.</p>
+<ul>
+<li><strong>Silent mutations</strong> have an underlying nucleotide change, but the <em>amino acid</em> building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true “silent” mutation, there is no effect on the cell.</li>
+<li><strong>Synonymous mutations</strong>: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.</li>
+<li><strong>Missense mutations</strong> result in an amino acid substitution, which can impact protein structure and function.
+<ul>
+<li>Some missense mutations are <strong>“conservative”</strong> where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).</li>
+<li>A <strong>“non-conservative”</strong> missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.</li>
+</ul></li>
+<li><strong>Nonsense mutations</strong> introduce an early <em>stop codon</em>, halting translation and producing a truncated, likely nonfunctional protein.</li>
+</ul>
+<p><strong>Single-nucleotide insertions or deletions (indels)</strong></p>
+<p>A single nucleotide insertion or deletion (AKA an “indel”) may introduce a <strong>frameshift mutation</strong>. Frameshift mutations often impact the structure and function of proteins because of the shifting of the reading frame during translation for all subsequent codons after the insertion or deletion.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/xYOK-yzUWSI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<table class="table-bordered caption-top table">
+<caption>Single Nucleotide Mutations Summary Table</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 18%">
+<col style="width: 17%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mutation Type</th>
+<th style="text-align: center;">Single Nucleotide Change</th>
+<th style="text-align: center;">Amino Acid Change</th>
+<th style="text-align: center;">Possible impact on cell due to change in protein abundance or structure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Silent</td>
+<td style="text-align: center;">Substitution</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">No Impact</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Synonymous</td>
+<td style="text-align: center;">Substitution</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missense</td>
+<td style="text-align: center;">Substitution</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nonsense</td>
+<td style="text-align: center;">Substitution</td>
+<td style="text-align: center;">Truncation</td>
+<td style="text-align: center;">Probably large impact due to likely non-functional protein</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frameshift</td>
+<td style="text-align: center;">Addition or Loss</td>
+<td style="text-align: center;">All following shift are changed</td>
+<td style="text-align: center;">Likely large impact</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Silent mutations have an underlying base pair change (i.e., a C to an A), but the amino acid building blocks of the protein remain unchanged. Since these mutations do not change the encoded amino acid, they are called silent. However, these silent mutations may still impact how often a protein is produced because certain tRNA anticodons are less available or may take longer to process in translation; so while they code for the same amino acid, they may not be truly “silent” and may have an effect in the cell. Such mutations are called synonymous mutations.</p>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<p>Missense mutations result in an amino acid substitution, which can impact protein structure and function. The single nucleotide change altered the amino acid that was encoded by that segment of DNA. This causes a substitution in the amino acid encoded for in that part of the protein. Some missense mutations are “conservative” where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.). A “non-conservative” missense mutation switches an amino acid to one with dissimilar biochemical properties - this is likely to have a greater impact on protein structure and function than a conservative missense mutation.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/LoxOmFoQOQk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p>Nonsense mutations introduce an early stop codon - halting translation prematurely. A stop codon typically signals the end of a segment of RNA that encodes a protein, signaling the end of translation. An early stop codon will prematurely stop the production of the protein and result in a shorter (or truncated), often non-functional protein.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Qe05MxqNlJk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<p>A single nucleotide insertion or deletion (also known as an “indel”), or an insertion or deletion that is a length not a multiple of three (which is the length of a codon), may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks – the reading frame. A shift in the reading frame can greatly impact how a protein is made.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/yv_vnMKdJzY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="why-do-genetic-changes-sometimes-persist-in-populations" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-genetic-changes-sometimes-persist-in-populations">Why do genetic changes sometimes persist in populations?</h2>
+<p>Genetic variation is considered necessary for survival. Scientists hypothesize that species are under various selective pressures to adapt and retain genetic changes that allow them to survive and reproduce, especially when competing with other species (e.g., predators vs prey, virus-host interactions, etc.) Given this, heritable variation (e.g., recombination during meiosis or germline mutations that are passed from generation to generation) can be beneficial by allowing for the selection of advantageous traits for adaptation leading to better survival. In other words, evolution depends upon the random accidents and mistakes that are mutations being maintained within a population because the changes can be advantageous.</p>
+<p>Every person alive inherited genomic material from two individuals, and each of those individuals inherited genomic material from two other individuals, continuing backwards through their family history. Each generation of people pass down genomic materials to the next. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and studying how individuals are related. Individuals who are more closely related will share more genomic material in common than those who are more distantly related.</p>
+<p>Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunities there are for genetic variations to occur and accumulate. Ancestry is something that is determined and formed over time and through a process – the process of genetic material being passed down. Therefore ancestry is defined as a “process-based concept” of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.</p>
+</section>
+<section id="how-can-we-describe-ancestry" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-we-describe-ancestry">How can we describe ancestry?</h2>
+<p>Ancestry captures a process that occurs over time and generations. When talking about ancestry, it can be complicated to quantify it. One way to do this is to compare the genomic material shared between individuals.</p>
+<p>When comparing genomic material between individuals, how similar or identical a sequence is between the two is a quantitative measure describing how much overlap or matching there is between the genomic material. Homology is a qualitative description constructed from the amount of similarity and suggests that the sequences or genomic material share a common ancestor. The idea is that if two sequences look similar, they must have come from the same ancestor and diverged relatively recently, since there are few genetic variations that have accumulated. Models used to compare sequences take into account the different kinds of mutations and how commonly they occur.</p>
+<p>When thinking about ancestry, we often think about ancestral groups or populations instead of individuals (ex, what group or community an individual is related to or whether one group is related to another group or community). This also applies to studying similarities and differences in current groups based on their ancestry. For example, evaluating every human’s blood pressure on earth would be nearly impossible. It would be much more feasible to study a representative sample of the general population. To create this representative sample, we would need to have individuals who represent different subpopulations within the greater population in our sample or we risk missing important information. Making a representative reference sample is important to make sure the results apply to the general population, and not just the subpopulation that was studied.</p>
+<p>To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid). Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.</p>
+</section>
+<section id="how-do-you-group-humans" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-you-group-humans">How do you group humans?</h2>
+<p>Because of the admixture that has been going on for multiple generations, how populations are partitioned into separate groups is subjective, with no definitive dividing line. An individual’s view of their own ancestry will determine what population they identify as. This adds a cultural, religions, and sometimes geographical element to what used to be a strictly biological concept. People can identify with a culture that is more dominant in their life (this can be around race, ethnicity, religion, etc.) as well as where they grew up, as opposed to where their ancestors are from.</p>
+<p><strong>NOTE: Reviewed/Edited background material has only been brought over through here so far</strong></p>
+<p>Additionally, the definition of populations may also differ in scale. As mentioned earlier, ancestry can mean relationships across a couple of generations or tens of thousands of years. The 1000 Genome Project was an international research effort that aimed to create the most detailed reference of human genetic variation available at that time. Populations and superpopulations used by the 1000 Genomes Project that are both examples of creating population-esque categorizations. Superpopulations combine populations together, creating fewer overall categories. These categorizations don’t have a single genetic or biological characteristic driving them, but rather are subjectively and arbitrarily defined groups. There are 26 ethnically or geographically defined groups in the 1000 Genomes Project. There are 5 superpopulations that are composite groups focusing on a broader continental definition - not based on an individual’s current location, but instead their genetic ancestry. Given the mixing of populations throughout time, there may not be a single clear categorization for an individual into one of these populations or superpopulations.</p>
+</section>
+<section id="can-we-use-ancestry-as-a-proxy-in-medical-care" class="level2">
+<h2 class="anchored" data-anchor-id="can-we-use-ancestry-as-a-proxy-in-medical-care">Can we use ancestry as a proxy in medical care?</h2>
+</section>
+<section id="what-does-this-all-mean" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-this-all-mean">What does this all mean?</h2>
+</section>
+</section>
+<section id="main-questions" class="level1">
+<h1><strong>Main Questions</strong></h1>
+<hr>
+<section id="section-2" class="level4 main_question_block">
+<h4 class="main_question_block anchored" data-anchor-id="section-2"></h4>
+<p><b><u> Our main question: </u></b></p>
 <ol type="1">
-<li>How to set up your repository to enable the GitHub actions of the template. (Setup tab)</li>
-<li>How to host your website using GitHub (Hosting tab)</li>
-<li>How to modify your website structure (Structure tab)</li>
-<li>How to change your website style (Style tab)</li>
-<li>More information about GitHub Actions (Git Actions tab)</li>
+<li>How can genomic data be used to explore the ancestry of an individual or population?</li>
+<li>How does the genetic makeup of different world populations compare?</li>
+<li>How can coding and computational biology/data science principles and tools help us investigate our questions?</li>
 </ol>
-<p>Click on each tab to learn more.</p>
+</section>
+<section id="section-3" class="level4">
+<h4 class="anchored" data-anchor-id="section-3"></h4>
+</section>
+</section>
+<section id="learning-objectives" class="level1">
+<h1><strong>Learning Objectives</strong></h1>
+<hr>
+<p><u><strong>Data Science Learning Objectives:</strong></u></p>
+<ol type="1">
+<li>Explain the differences and benefits of using R vs Google Sheets to work with data</li>
+<li>Describe how data can take different shapes: long and wide</li>
+<li>Recode data to change original values, using programming to reduce accidents</li>
+<li>Crease an ancestry plot (a special heatmap-like column plot that shows differences)</li>
+<li>Describe what different elements of the ancestry plot represent</li>
+<li>Combine two plots together</li>
+</ol>
+<p><u><strong>Statistical Learning Objectives:</strong></u></p>
+<ol type="1">
+<li>Explain how clustering can help identify groups</li>
+<li>Summarizing means within a dataset</li>
+</ol>
+<p><u><strong>Topical Learning Objectives:</strong></u></p>
+<ol type="1">
+<li>Describe how genomic data shows what human variation looks like</li>
+<li>Explain genetic similarities and differences between people</li>
+<li>Describe how racial and ancestry groups might differ</li>
+<li>Recognize the patterns of genetic variation across continents</li>
+</ol>
+<hr>
+<p>We will begin by loading the packages that we will need:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggforce"</span>, <span class="at">repos=</span><span class="st">"https://cloud.r-project.org/"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce) <span class="co">#for facet_col</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/jennybc/here_here" target="_blank">here</a></td>
+<td>to easily load and save data</td>
+</tr>
+<tr class="even">
+<td><a href="https://readr.tidyverse.org/" target="_blank">readr</a></td>
+<td>to import data files</td>
+</tr>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/" target="_blank">dplyr</a></td>
+<td>to manipulate data</td>
+</tr>
+<tr class="even">
+<td><a href="https://tidyverse.org/" target="_blank">tidyverse</a></td>
+<td>to manipulate and visualize data</td>
+</tr>
+<tr class="odd">
+<td><a href="https://patchwork.data-imaginist.com/" target="_blank">patchwork</a></td>
+<td>to combine plots</td>
+</tr>
+<tr class="even">
+<td><a href="https://ggforce.data-imaginist.com/" target="_blank">ggforce</a></td>
+<td>to extend the plotting capabilities of ggplot2</td>
+</tr>
+</tbody>
+</table>
+<p>The first time we use a function, we will use the <code>::</code> to indicate which package we are using. Unless we have overlapping function names, this is not necessary, but we will include it here to be informative about where the functions we will use come from.</p>
+</section>
+<section id="context" class="level1">
+<h1><strong>Context</strong></h1>
+<hr>
+<p>Provide some more details and background on the case study topic and its relation to public health/the world.</p>
+</section>
+<section id="limitations" class="level1">
+<h1><strong>Limitations</strong></h1>
+<hr>
+</section>
+<section id="what-are-the-data" class="level1">
+<h1><strong>What are the data?</strong></h1>
+<hr>
+<p>The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary <span class="citation" data-cites="Carlson_Henn_Al-Hindi_Ramachandran_2022">(<a href="#ref-Carlson_Henn_Al-Hindi_Ramachandran_2022" role="doc-biblioref">Carlson et al. 2022</a>)</span> which expands upon data and a previous analysis presented by a broader team <span class="citation" data-cites="Li_etal_2008">(<a href="#ref-Li_etal_2008" role="doc-biblioref">Li et al. 2008</a>)</span>. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) <span class="citation" data-cites="Alexander_2009">(<a href="#ref-Alexander_2009" role="doc-biblioref">Alexander, Novembre, and Lange 2009</a>)</span>, which also estimates ancestry proportions for each sample, was run on SNPs from ~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original analysis used a tool called <em>frappe</em> <span class="citation" data-cites="Tang2005">(<a href="#ref-Tang2005" role="doc-biblioref">Tang et al. 2005</a>)</span>, specifying 7 clusters for the results, so the commentary analysis specified 7 clusters as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. Though a different tool was used by the original analysis to cluster the samples, the tools are very similar in how they work, but ADMIXTURE is faster.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 24%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Original Analysis</th>
+<th style="text-align: center;">Commentary Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Reference</td>
+<td style="text-align: center;"><span class="citation" data-cites="Li_etal_2008">Li et al. (<a href="#ref-Li_etal_2008" role="doc-biblioref">2008</a>)</span></td>
+<td style="text-align: center;"><span class="citation" data-cites="Carlson_Henn_Al-Hindi_Ramachandran_2022">Carlson et al. (<a href="#ref-Carlson_Henn_Al-Hindi_Ramachandran_2022" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of samples</td>
+<td style="text-align: center;">938</td>
+<td style="text-align: center;">1918</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of populations</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Reported ancestry outside of Africa</td>
+<td style="text-align: center;">86.5%</td>
+<td style="text-align: center;">15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reported ancestry within Africa</td>
+<td style="text-align: center;">13.5%</td>
+<td style="text-align: center;">85%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clustering tool</td>
+<td style="text-align: center;"><em>frappe</em></td>
+<td style="text-align: center;">ADMIXTURE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of clusters</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">7</td>
+</tr>
+</tbody>
+</table>
+<p>The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.</p>
+</section>
+<section id="data-import" class="level1">
+<h1><strong>Data Import</strong></h1>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ancestry_props <span class="ot">&lt;-</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">read_table</span>(<span class="fu">here</span>(<span class="st">"data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"</span>), <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"pop"</span>, <span class="st">"id"</span>, <span class="fu">paste0</span>(<span class="st">"k"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ancestry_props_prelim <span class="ot">&lt;-</span> ancestry_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-wrangling" class="level1">
+<h1><strong>Data Wrangling</strong></h1>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ancestry_props <span class="ot">&lt;-</span> ancestry_props <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>         dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pop =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"ACB"</span> <span class="sc">~</span> <span class="st">"African Caribbean"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"ASW"</span> <span class="sc">~</span> <span class="st">"African American"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"CHB"</span> <span class="sc">~</span> <span class="st">"Han Chinese"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"Egyptians"</span> <span class="sc">~</span> <span class="st">"Egyptian"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"ESN"</span> <span class="sc">~</span> <span class="st">"Esan"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"GBR"</span> <span class="sc">~</span> <span class="st">"British"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"GIH"</span> <span class="sc">~</span> <span class="st">"Gujarati"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"GWD"</span> <span class="sc">~</span> <span class="st">"Mandinka"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"LWK"</span> <span class="sc">~</span> <span class="st">"Luhya"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"MSL"</span> <span class="sc">~</span> <span class="st">"Mende"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"MXL"</span> <span class="sc">~</span> <span class="st">"Mexican"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"Nama/Khoe-San"</span> <span class="sc">~</span> <span class="st">"Nama"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"RwandeseUgandan"</span> <span class="sc">~</span> <span class="st">"Rwandese"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"uganda_gwas_unknown"</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"Batooro"</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"Nyanjiro(Tanzania)"</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"TSI"</span> <span class="sc">~</span> <span class="st">"Italian"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                         pop <span class="sc">==</span> <span class="st">"YRI"</span> <span class="sc">~</span> <span class="st">"Yoruba"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                         <span class="cn">TRUE</span> <span class="sc">~</span> pop),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Nama"</span>, <span class="st">"Zulu"</span>, <span class="st">"Mende"</span>, <span class="st">"Esan"</span>, <span class="st">"Yoruba"</span>, <span class="st">"Mandinka"</span>, <span class="st">"African Caribbean"</span>, <span class="st">"African American"</span>, <span class="st">"Banyarwanda"</span>, <span class="st">"Banyankole"</span>, <span class="st">"Bakiga"</span>, <span class="st">"Barundi"</span>, <span class="st">"Rwandese"</span>, <span class="st">"Baganda"</span>, <span class="st">"Luhya"</span>, <span class="st">"Gumuz"</span>, <span class="st">"Somali"</span>, <span class="st">"Wolayta"</span>, <span class="st">"Oromo"</span>, <span class="st">"Amhara"</span>, <span class="st">"Egyptian"</span>, <span class="st">"Gujarati"</span>, <span class="st">"Mexican"</span>, <span class="st">"British"</span>, <span class="st">"Italian"</span>, <span class="st">"Han Chinese"</span>))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() <span class="co"># dropping a few samples that had no data</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ancestry_props_temp <span class="ot">&lt;-</span> ancestry_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(ancestry_props, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data/wrangled/ADMIXTURE_ancestry_props.Q"</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-visualization" class="level1">
+<h1><strong>Data Visualization</strong></h1>
+<hr>
+<p>If you have been following along but stopped, we could load our wrangled data like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"wrangled"</span>, <span class="st">"ADMIXTURE_ancestry_props.Q"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> ancestry_props <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"k"</span>), <span class="at">values_to =</span> <span class="st">"prop"</span>, <span class="at">names_to =</span> <span class="st">"which_k"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>id,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span>prop,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="fu">factor</span>(which_k),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> pop)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_col</span>(<span class="sc">~</span>pop,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>             <span class="co">#ncol=1, #included in facet_wrap, but not facet_col</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">strip.position =</span> <span class="st">"left"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">space =</span> <span class="st">"free"</span>) <span class="sc">+</span> <span class="co">#argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"k6"</span>, <span class="st">"k7"</span>, <span class="st">"k1"</span>, <span class="st">"k4"</span>, <span class="st">"k5"</span>, <span class="st">"k3"</span>, <span class="st">"k2"</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#2B284B"</span>, <span class="st">"#FFE6AD"</span>, <span class="st">"#30A9E1"</span>, <span class="st">"#056EB5"</span>, <span class="st">"#2BA06A"</span>, <span class="st">"#EC5D25"</span>, <span class="st">"#A41252"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>toPlot <span class="ot">&lt;-</span> <span class="fu">left_join</span>(ancestry_props_temp <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"k"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rownames_to_column</span>(),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          ancestry_props_temp <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"k"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">which_k =</span> <span class="fu">names</span>(.)[<span class="fu">max.col</span>(.)]) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rownames_to_column</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">select</span>(rowname, which_k),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">by=</span><span class="st">"rowname"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pop, which_k) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pop) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">1</span>, count) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ancestry_props_temp <span class="sc">%&gt;%</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">group_by</span>(pop) <span class="sc">%&gt;%</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>               <span class="fu">summarize</span>(<span class="at">n_ids =</span> <span class="fu">n</span>()), <span class="at">by =</span> <span class="st">"pop"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>toPlotExpanded <span class="ot">&lt;-</span> toPlot[<span class="fu">rep</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(toPlot)), toPlot<span class="sc">$</span>n_ids), <span class="fu">c</span>(<span class="st">"pop"</span>, <span class="st">"which_k"</span>)]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> toPlotExpanded <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="fu">row.names</span>(.),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> which_k)) <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_col</span>(<span class="sc">~</span>pop,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">space =</span> <span class="st">"free"</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"k6"</span>, <span class="st">"k7"</span>, <span class="st">"k1"</span>, <span class="st">"k4"</span>, <span class="st">"k5"</span>, <span class="st">"k3"</span>, <span class="st">"k2"</span>),</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#2B284B"</span>, <span class="st">"#FFE6AD"</span>, <span class="st">"#30A9E1"</span>, <span class="st">"#056EB5"</span>, <span class="st">"#2BA06A"</span>, <span class="st">"#EC5D25"</span>, <span class="st">"#A41252"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2 <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">0.5</span>), <span class="at">heights=</span><span class="fu">c</span>(<span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="528"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis" class="level1">
+<h1><strong>Analysis</strong></h1>
+<hr>
+</section>
+<section id="summary-1" class="level1">
+<h1><strong>Summary</strong></h1>
+<hr>
+</section>
+<section id="suggested-homework" class="level1">
+<h1><strong>Suggested Homework</strong></h1>
+<hr>
+</section>
+<section id="additional-information" class="level1">
+<h1><strong>Additional Information</strong></h1>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary"><strong>Glossary</strong></h2>
+<hr>
+<table class="glossary_table caption-top table" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th"><strong>Term</strong></td>
+<td data-quarto-table-cell-role="th"><strong>Definition</strong></td>
+</tr>
+<tr class="even">
+<td>ancestry</td>
+<td>An individual's personal understanding of their genomic heritage, genealogy, or family history. Often self-reported.</td>
+</tr>
+<tr class="odd">
+<td>chromosome</td>
+<td>DNA that is compactly stored by being wound around histone proteins. Found in the nucleus of the cell. Humans have 23 pairs of chromosomes.</td>
+</tr>
+<tr class="even">
+<td>codon</td>
+<td>Stretch of 3 nucleotides in RNA that is "read" during translation -- each codon corresponding to a specific amino acid in the protein product</td>
+</tr>
+<tr class="odd">
+<td>DNA</td>
+<td>Double stranded helix ...</td>
+</tr>
+<tr class="even">
+<td>genes</td>
+<td>Elements of DNA that are transcribed into RNA. They ...</td>
+</tr>
+<tr class="odd">
+<td>genome</td>
+<td>All of an individual's DNA</td>
+</tr>
+<tr class="even">
+<td>genomic variation</td>
+<td>Differences in DNA sequences or the genomes when comparing individuals either within a population or across different populations.</td>
+</tr>
+<tr class="odd">
+<td>nucleotides</td>
+<td>The basic building blocks of DNA with 3 components: a nitrogen containing base - Adenine (A), Cytosine (C), Guanine (G), or Thymine (T) + a five-carbon sugar + and a phosphate group</td>
+</tr>
+<tr class="even">
+<td>protein</td>
+<td>Proteins are essential for all living organisms, performing important tasks in the cell. They are important for immune responses, structural support, information transmission, and powering movement. Proteins are complex molecules comprised of a chain of amino acids. The sequence and identity of amino acids impact how a protein folds into its 3D structure and there many different possible structures. Proteins are the result of translation (DNA --&gt; RNA --&gt; Protein).</td>
+</tr>
+<tr class="odd">
+<td>RNA</td>
+<td>Single stranded ... RNA is the result of transcription (DNA --&gt; RNA)</td>
+</tr>
+<tr class="even">
+<td>transcription</td>
+<td>The process by which RNA is produced from DNA.</td>
+</tr>
+<tr class="odd">
+<td>translation</td>
+<td>The process by which protein is produced from RNA.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<hr>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Alexander_2009" class="csl-entry" role="listitem">
+Alexander, David H., John Novembre, and Kenneth Lange. 2009. <span>“Fast Model-Based Estimation of Ancestry in Unrelated Individuals.”</span> <em>Genome Research</em> 19 (9): 1655–64. <a href="https://doi.org/10.1101/gr.094052.109">https://doi.org/10.1101/gr.094052.109</a>.
+</div>
+<div id="ref-Carlson_Henn_Al-Hindi_Ramachandran_2022" class="csl-entry" role="listitem">
+Carlson, Jedidiah, Brenna M. Henn, Dana R. Al-Hindi, and Sohini Ramachandran. 2022. <span>“Counter the Weaponization of Genetics Research by Extremists.”</span> <em>Nature</em> 610 (7932): 444–47. <a href="https://doi.org/10.1038/d41586-022-03252-z">https://doi.org/10.1038/d41586-022-03252-z</a>.
+</div>
+<div id="ref-GenomicVariationNIH" class="csl-entry" role="listitem">
+<span>“Genetics Glossary: Genomic Variation.”</span> n.d. <a href="https://www.genome.gov/genetics-glossary/Genomic-Variation">https://www.genome.gov/genetics-glossary/Genomic-Variation</a>.
+</div>
+<div id="ref-khanacademy_centraldogma" class="csl-entry" role="listitem">
+<span>“Intro to Gene Expression (Central Dogma) (Article).”</span> n.d. <em>Khan Academy</em>. <a href="https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma">https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma</a>.
+</div>
+<div id="ref-Li_etal_2008" class="csl-entry" role="listitem">
+Li, Jun Z., Devin M. Absher, Hua Tang, Audrey M. Southwick, Amanda M. Casto, Sohini Ramachandran, Howard M. Cann, et al. 2008. <span>“Worldwide Human Relationships Inferred from Genome-Wide Patterns of Variation.”</span> <em>Science</em> 319 (5866): 1100–1104. <a href="https://doi.org/10.1126/science.1153717">https://doi.org/10.1126/science.1153717</a>.
+</div>
+<div id="ref-Nurk_etal_2022" class="csl-entry" role="listitem">
+Nurk, Sergey, Sergey Koren, Arang Rhie, Mikko Rautiainen, Andrey V. Bzikadze, Alla Mikheenko, Mitchell R. Vollger, et al. 2022. <span>“The Complete Sequence of a Human Genome.”</span> <em>Science</em> 376 (6588): 44–53. <a href="https://doi.org/10.1126/science.abj6987">https://doi.org/10.1126/science.abj6987</a>.
+</div>
+<div id="ref-Pathak_Bordoni_2026" class="csl-entry" role="listitem">
+Pathak, Isha, and Bruno Bordoni. 2026. <span>“Genetics, Chromosomes.”</span> In <em>StatPearls</em>. Treasure Island (FL): StatPearls Publishing. <a href="http://www.ncbi.nlm.nih.gov/books/NBK557784/">http://www.ncbi.nlm.nih.gov/books/NBK557784/</a>.
+</div>
+<div id="ref-Tang2005" class="csl-entry" role="listitem">
+Tang, Hua, Jie Peng, Pei Wang, and Neil J. Risch. 2005. <span>“Estimation of Individual Admixture: Analytical and Study Design Considerations.”</span> <em>Genetic Epidemiology</em> 28 (4): 289–301. <a href="https://doi.org/10.1002/gepi.20064">https://doi.org/10.1002/gepi.20064</a>.
+</div>
+<div id="ref-Yudell2016" class="csl-entry" role="listitem">
+Yudell, Michael, Dorothy Roberts, Rob DeSalle, and Sarah Tishkoff. 2016. <span>“Taking Race Out of Human Genetics.”</span> <em>Science</em> 351 (6273): 564–65. <a href="https://doi.org/10.1126/science.aac4951">https://doi.org/10.1126/science.aac4951</a>.
+</div>
+</div>
+</section>
+<section id="helpful-links" class="level2">
+<h2 class="anchored" data-anchor-id="helpful-links"><strong>Helpful Links</strong></h2>
+<hr>
+<p>Add additional resource links here</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -611,6 +1319,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
