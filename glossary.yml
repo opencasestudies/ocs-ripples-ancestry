@@ -1,0 +1,24 @@
+ancestry: |
+  An individual's personal understanding of their genomic heritage, genealogy, or family history. Often self-reported.
+chromosome: |
+  DNA that is compactly stored by being wound around histone proteins. Found in the nucleus of the cell. Humans have 23 pairs of chromosomes.
+codon: |
+  Stretch of 3 nucleotides in RNA that is "read" during translation -- each codon corresponding to a specific amino acid in the protein product
+DNA: |
+  Double stranded helix ...
+genes: |
+  Elements of DNA that are transcribed into RNA. They ...
+genome: |
+  All of an individual's DNA
+genomic variation: |
+  Differences in DNA sequences or the genomes when comparing individuals either within a population or across different populations.
+nucleotides: |
+  The basic building blocks of DNA with 3 components: a nitrogen containing base - Adenine (A), Cytosine (C), Guanine (G), or Thymine (T) + a five-carbon sugar + and a phosphate group
+protein: |
+  Proteins are essential for all living organisms, performing important tasks in the cell. They are important for immune responses, structural support, information transmission, and powering movement. Proteins are complex molecules comprised of a chain of amino acids. The sequence and identity of amino acids impact how a protein folds into its 3D structure and there many different possible structures. Proteins are the result of translation (DNA --> RNA --> Protein).
+RNA: |
+  Single stranded ... RNA is the result of transcription (DNA --> RNA)
+transcription: |
+  The process by which RNA is produced from DNA.
+translation: |
+  The process by which protein is produced from RNA.
