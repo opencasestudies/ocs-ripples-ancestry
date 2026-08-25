@@ -12,6 +12,8 @@ genome: |
   All of an individual's DNA
 genomic variation: |
   Differences in DNA sequences or the genomes when comparing individuals either within a population or across different populations.
+mutation: |
+  Changes in the DNA (typically the sequence) that occur due to replication errors and exposure to mutagens (things or substances that cause mutations, such as UV sunlight)
 nucleotides: |
   The basic building blocks of DNA with 3 components: a nitrogen containing base - Adenine (A), Cytosine (C), Guanine (G), or Thymine (T) + a five-carbon sugar + and a phosphate group
 protein: |
