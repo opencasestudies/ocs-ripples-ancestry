@@ -399,20 +399,37 @@ The data provided from the commentary analysis authors lists the reported ancest
 
 ------------------------------------------------------------------------
 
+When reading in the data, we want to ensure that we specify the names of the headers so that the first row of data is included within the data itself and not treated as a header. 
+
 ```{r, message=FALSE, warning=FALSE}
 ancestry_props <-
   readr::read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
+
 ancestry_props_prelim <- ancestry_props
 ```
 
 # **Data Wrangling**
-
 ------------------------------------------------------------------------
+First let's take a look at our data. In R we can do that by using the `head` function which shows us the top 6 lines of the data. Or we can click on the data from the Environment pane of R Studio if we are using R Studio. 
 
 ```{r}
+head(ancestry_props)
+```
 
+Let's use the `distinct` function to check that we have all the distinct populations we expect. 
+
+```{r}
+distinct(ancestry_props, pop) 
+```
+We want the names of our populations to match that of the paper, we know from the authors what some of these abbreviations stand for and we can tell that some are just slightly different like `Egyptions` vs `Egyption`. Here we will modify the pop column (also known as variable) to reflect the full name. To do this we need to use the `mutate` function to change the variable and we need the `case_when` function to help us recode those abbreviated values to the full name. We will also include a .default = pop statement so that anything we don't specify stays as it was. 
+
+This is really powerful beacuse instead of going in and replacing every value where these occured by hand, we can do it very quickly in R and we have a record of how we changed the data.
+
+
+
+```{r}
 ancestry_props <- ancestry_props %>%
-         dplyr::mutate(pop = factor(case_when(
+         dplyr::mutate(pop = case_when(
                          pop == "ACB" ~ "African Caribbean",
                          pop == "ASW" ~ "African American",
                          pop == "CHB" ~ "Han Chinese",
@@ -431,14 +448,38 @@ ancestry_props <- ancestry_props %>%
                          pop == "Nyanjiro(Tanzania)" ~ NA_character_,
                          pop == "TSI" ~ "Italian",
                          pop == "YRI" ~ "Yoruba",
-                         TRUE ~ pop),
+                         .default = pop))
+
+
+```
+
+We can check our work by using the `distinct` function again to see how unique values for `pop` we have now:
+
+```{r}
+distinct(ancestry_props, pop)
+```
+
+Next, we want to make our data a class called factor because this allows us to order our data in a specific way. We can do so using the `factor` function and we can specify the order of our levels for the populations. 
+
+```{r}
+
+ancestry_props <- ancestry_props %>%
+         dplyr::mutate(pop = factor(pop,
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
-            ) %>%
+            ) 
+
+```
+
+Next we want to remove rows where we had NA values. We would always want to be careful about what these mean and if we should remove them. In our case we can't use them to recreate the plot, so we will drop them. Again this step could take quite a bit of time in Excel or Google Sheets (depending on how manually we did it) and we could accidentally remove rows that we don't want to remove!
+```{r}
+
+ancestry_props <- ancestry_props %>%
   tidyr::drop_na() # dropping a few samples that had no data
 
 ancestry_props_temp <- ancestry_props
 ```
 
+Now let's save our clean data using the write. table function. 
 ```{r}
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"),
             row.names = FALSE,
@@ -456,9 +497,39 @@ If you have been following along but stopped, we could load our wrangled data li
 load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
 
+
+To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the orginal column names will be used as values. 
+```{r}
+ancestry_long <- ancestry_props %>%
+  pivot_longer(cols = starts_with("k"), values_to = "prop", names_to = "which_k")
+
+```
+
+Let's check our work with `head` again.
+
+```{r}
+head(ancestry_long)
+
+```
+
+Nice now we have all our k values in one column and another column indicating what k it came from. 
+
+Now we will use this to make a plot. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id` on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
+
+```{r}
+ ancestry_long %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k)))+
+  geom_bar(stat = "identity") 
+
+```
+
+
+OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot. 
+
 ```{r fig.width = 5, fig.height = 10}
-plot1 <- ancestry_props %>%
-  pivot_longer(starts_with("k"), values_to = "prop", names_to = "which_k") %>%
+plot1 <- ancestry_long %>%
   ggplot(aes(y=id,
              x=prop,
              fill = factor(which_k),
