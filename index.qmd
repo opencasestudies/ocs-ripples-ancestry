@@ -265,6 +265,9 @@ Nonsense mutations introduce an early stop codon - halting translation premature
 
 A single nucleotide insertion or deletion (also known as an "indel"), or an insertion or deletion that is a length not a multiple of three (which is the length of a codon), may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks -- the reading frame. A shift in the reading frame can greatly impact how a protein is made.
 
+
+
+Here you can see a video about what happens with an insertion at the DNA, mRNA, and amino acid level:
 {{< video https://www.youtube.com/watch?v=yv_vnMKdJzY >}}
 :::
 
@@ -277,9 +280,11 @@ Genetic variation is considered necessary for survival. Scientists hypothesize t
 
 Every person alive inherited genomic material from two individuals, and each of those individuals inherited genomic material from two other individuals, continuing backwards through their family history. Each generation of people pass down genomic materials to the next. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and studying how individuals are related. Individuals who are more closely related will share more genomic material in common than those who are more distantly related.
 
-Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunities there are for genetic variations to occur and accumulate. Ancestry is something that is determined and formed over time and through a process -- the process of genetic material being passed down. Therefore ancestry is defined as a "process-based concept" of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.
+Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunities there are for genetic variations to occur and accumulate. **Ancestry** is something that is determined and formed over time and through a process -- the process of genetic material being passed down. Therefore ancestry is defined as a "process-based concept" of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.
 
-## How can we describe ancestry?
+
+
+## How can we describe or quantify ancestry?
 
 Ancestry captures a process that occurs over time and generations. When talking about ancestry, it can be complicated to quantify it. One way to do this is to compare the genomic material shared between individuals.
 
@@ -287,7 +292,14 @@ When comparing genomic material between individuals, how similar or identical a 
 
 When thinking about ancestry, we often think about ancestral groups or populations instead of individuals (ex, what group or community an individual is related to or whether one group is related to another group or community). This also applies to studying similarities and differences in current groups based on their ancestry. For example, evaluating every human's blood pressure on earth would be nearly impossible. It would be much more feasible to study a representative sample of the general population. To create this representative sample, we would need to have individuals who represent different subpopulations within the greater population in our sample or we risk missing important information. Making a representative reference sample is important to make sure the results apply to the general population, and not just the subpopulation that was studied.
 
-To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid). Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
+To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid).Diploid individuals are those with two complete sets of chromosomes (one from each parent) – for example humans. Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
+
+:::definition_box
+Admixture
+::::::inner_box
+::::::
+:::
+
 
 ## How do you group humans?
 
@@ -383,6 +395,8 @@ Provide some more details and background on the case study topic and its relatio
 
 The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_etal_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009], which also estimates ancestry proportions for each sample, was run on SNPs from \~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original analysis used a tool called *frappe* [@Tang2005], specifying 7 clusters for the results, so the commentary analysis specified 7 clusters as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. Though a different tool was used by the original analysis to cluster the samples, the tools are very similar in how they work, but ADMIXTURE is faster.
 
+Ultimately they both calculate the proportion of an individual's genetic ancestry that is from a predefined ancestry group. The number of clusters indicates the number of predefined ancestry groups. In this case they chose 7 groups to account for the genetic variation across all of their samples across the world to investigate.  
+
 |   | Original Analysis | Commentary Analysis |
 |:---------------------------------|:----------------:|:------------------:|
 | Reference | @Li_etal_2008 | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
@@ -394,6 +408,25 @@ The data for this case study comes from the authors (primarily Dana R. Al-Hindi)
 | Number of clusters | 7 | 7 |
 
 The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.
+
+The data includes 1913 rows and 9 columns with the following information:
+
+1) **pop:** A column about the population where a sample came from, with values like Egyption or British.
+2) **id:** A column with the European Genome-phenome Archive (EGAN) ID number. This is a way of identifying a person's genomic data. So each row represents a genetic sample from an individual person.
+3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
+
+So if we take a look at a few individual rows of the table we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
+
+Let's take a look at a few now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
+
+```{r}
+slice(ancestry_props, 500) 
+```
+
+We can see that most of the genomic variation appears to match up wtih cluster 3 and 5. these have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual 
+
+
+
 
 # **Data Import**
 
@@ -514,7 +547,7 @@ head(ancestry_long)
 
 Nice now we have all our k values in one column and another column indicating what k it came from. 
 
-Now we will use this to make a plot. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id` on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
+Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
 
 ```{r}
  ancestry_long %>%
