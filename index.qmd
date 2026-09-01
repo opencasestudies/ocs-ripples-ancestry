@@ -411,7 +411,7 @@ The data provided from the commentary analysis authors lists the reported ancest
 
 The data includes 1913 rows and 9 columns with the following information:
 
-1) **pop:** A column about the population where a sample came from, with values like Egyption or British.
+1) **pop:** A column about the population where a sample came from, with values like Egyptian or British.
 2) **id:** A column with the European Genome-phenome Archive (EGAN) ID number. This is a way of identifying a person's genomic data. So each row represents a genetic sample from an individual person.
 3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
 
@@ -458,7 +458,7 @@ distinct(ancestry_props, pop)
 ```
 We want the names of our populations to match that of the paper, we know from the authors what some of these abbreviations stand for and we can tell that some are just slightly different like `Egyptions` vs `Egyption`. Here we will modify the pop column (also known as variable) to reflect the full name. To do this we need to use the `mutate` function to change the variable and we need the `case_when` function to help us recode those abbreviated values to the full name. We will also include a .default = pop statement so that anything we don't specify stays as it was. 
 
-This is really powerful beacuse instead of going in and replacing every value where these occured by hand, we can do it very quickly in R and we have a record of how we changed the data.
+This is really powerful because instead of going in and replacing every value where these occurred by hand, we can do it very quickly in R and we have a record of how we changed the data.
 
 
 
@@ -533,7 +533,7 @@ load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
 
 
-To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the orginal column names will be used as values. 
+To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
 ```{r}
 ancestry_long <- ancestry_props %>%
   pivot_longer(cols = starts_with("k"), values_to = "prop", names_to = "which_k")
