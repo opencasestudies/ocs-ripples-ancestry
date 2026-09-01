@@ -415,8 +415,8 @@ The data includes 1913 rows and 9 columns with the following information:
 2) **id:** A column with the European Genome-phenome Archive (EGAN) ID number. This is a way of identifying a person's genomic data. So each row represents a genetic sample from an individual person.
 3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
 
-So if we take a look at a few individual rows of the table we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
 
+If we take a look at a few individual rows of the table, which we will do in a moment, we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
 
 
 
@@ -440,7 +440,16 @@ Let's take a look at a few rows now. We can use the `slice` function to get the 
 slice(ancestry_props, 500) 
 ```
 
-We can see that most of the genomic variation appears to match up with cluster 3 and 5. these have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual 
+
+We can see that most of the genomic variation appears to match up with cluster 3 and 5. these have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual is mostly attributable to the 5th cluster, or in other words, this person would fit pretty well with that group based on genetic variation, however, other individuals do not group as easily.
+
+Let's take a look at another row, let's look at the 20th row.
+
+```{r}
+slice(ancestry_props, 20) 
+```
+
+Now this individual groups more with 2 clusters, with .38 for k3, and .62 for K6. In this case this person doesn't fit as well within an individual cluster, however, the proportion for each of these clusters, still allows us to identify their genetic variation relative to the other individuals. You can see that we could identify more ancestral groups than just 7 based on how much well an individual matches with these groups. 
 
 
 # **Data Wrangling**
