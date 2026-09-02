@@ -4,50 +4,67 @@ output:
   html_document
 ---
 
-#### {.outline}
+####  {.outline}
 
-![](img/mainplot.png){fig-alt="" width=800 .lightbox}
+![](img/mainplot.png){.lightbox fig-alt="" width="800"}
 
-####
+#### 
 
-Add disclaimer and license
-
-
-:::{.reference_box}
-::::{.reference_box_header}
-To cite this case study, please use:
+:::: disclaimer_block
+::: license_box_header
+The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch or NIH.
+:::
 ::::
-::::{.inner_block}
-Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry). The Biology of Ancestry (Version v1.0.0).
-::::
+
+:::: license_block
+::: license_box_header
+License
 :::
 
-To access the GitHub repository to see the source materials and data that went into making the case study, please see here: [https://github.com/opencasestudies/ocs-ripples-ancestry](https://github.com/opencasestudies/ocs-ripples-ancestry).
-This case study is published as part of .... The contents of this case study are solely the responsibility of the authors and do not represent the official views of the Fred Hutch or NIH.
+This work is published under CC By-NC, you can reuse it for free with attribution, but you can not use the materials for commercial purposes.
+::::
+
+::::: reference_box
+::: reference_box_header
+To cite this case study, please use:
+:::
+
+::: inner_block
+Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). <https://github.com/opencasestudies/ocs-ripples-ancestry>. The Biology of Ancestry (Version v1.0.0).
+:::
+:::::
+
+To access the GitHub repository to see the source materials and data that went into making the case study, please see here: <https://github.com/opencasestudies/ocs-ripples-ancestry>.
 
 # **Motivation**
-***
+
+------------------------------------------------------------------------
 
 This case study explores the topic of human {{< glossary "genomic variation" >}}, especially with respect to {{< glossary ancestry >}}.
 
-:::{.definition_box}
-::: {.panel-tabset}
+:::::::: definition_box
+::::::: panel-tabset
 ### **Definition**: Genomic Variation
-::::{.definition_box_header}
+
+::: definition_box_header
 Human Genomic Variation
-::::
-::::{.inner_block}
+:::
+
+::: inner_block
 Genomics variation refers to DNA sequence differences among individuals within a population or when comparing different populations. Human genomic variation focuses specifically on variation within the human species. Some variants influence biological function (potentially causing disease), while others have no biological effects [@GenomicVariationNIH].
-::::
+:::
+
 ### **Definition**: Ancestry
-::::{.definition_box_header}
+
+::: definition_box_header
 Ancestry
-::::
-::::{.inner_block}
+:::
+
+::: inner_block
 Ancestry is a personal understanding of one's genomic heritage - a statement about a person's relationship to other individuals in their genealogical history. Ancestry is often self-reported by an individual and is a personal concept focusing on the how or the process of their family history rather than a societal pattern [@Yudell2016].
-::::
 :::
-:::
+:::::::
+::::::::
 
 To explore these topics, we'll first ask questions such as "What is the human genome?", "What is genomic variation?", and "Why should we care about human genomic variation?". Data representing genomic variation and ancestry will be discussed and ways to represent or visualize this data will be highlighted. In addition, ways to work with data will be compared and contrasted, examining the pros and cons of techniques that either utilize more manual approaches or more  processing through computational work. Since the data we will be working with is not large, we can use these techniques in any case.
 
@@ -69,28 +86,28 @@ The human genome is diploid meaning that it has two copies of each of the 23 dis
 
 Recent work from the T2T project [@Nurk_etal_2022] completely sequenced the Human Genome and reported that
 
-<div class="notice">
+::: notice
 Note that the terms "nucleotide" and "base" are often used interchangeably since the base is a part of the nucleotide.
-</div>
+:::
 
-* it is 3.055 billion–base pairs or nucleotides in length.
-* there are 63,494 genes in the human genome (only 19,969 of which code for proteins).
-* 53.94% of the genome is made up of repetitive DNA.
+- it is 3.055 billion–base pairs or nucleotides in length.
+- there are 63,494 genes in the human genome (only 19,969 of which code for proteins).
+- 53.94% of the genome is made up of repetitive DNA.
 
 Much of the human genome contains non-coding DNA instead of genes. This isn't to say that the DNA in these non-coding regions is doing nothing. Structural elements such as telomeres (which protect the end of chromosomes) are part of the non-coding regions. Regulatory elements are part of these non-coding regions as well. While they are not included in eventual protein products, they regulate when and how much RNA is produced in transcription.
 
 See the expandable section below for further resources to review the Central Dogma.
 
-::: {.emphasis_block}
+::: emphasis_block
+<details>
 
-<details><summary>Further Resources for the Central Dogma</summary>
+<summary>Further Resources for the Central Dogma</summary>
 
 This [Khan Academy lesson](https://www.khanacademy.org/science/ap-biology/gene-expression-and-regulation/translation/a/intro-to-gene-expression-central-dogma) provides an overview of the Central Dogma as well as the transcription and translation processes [@khanacademy_centraldogma].
 
 {{< video https://www.youtube.com/watch?v=TatNfCyQ52Q >}}
 
 </details>
-
 :::
 
 ## What is genomic variation?
@@ -99,11 +116,11 @@ Most of a person's genome is the same as another person's. All humans need the s
 
 These variations in a genome are caused by mutations. Mutations are any changes in the DNA or nucleotides that make up the genome.
 
-<div class="notice">
+::: notice
 Mutation is just a term for any change to the DNA. Not all mutations are deleterious or bad. Many have no impact at all and some can be beneficial.
-</div>
+:::
 
-These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide. An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide.
+These variations can be caused by a change of a single nucleotide ("point mutations") or changes involving more than one nucleotide. An example of a single nucleotide change would be changing a base from C → T or adding or removing a single nucleotide (pronounced "snip").
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_9#slide=id.g3c938ed4e06_0_9")
@@ -111,7 +128,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 
 If a point mutation occurs fairly often within a population and is observed with a common frequency, it is termed a single-nucleotide polymorphism or SNP (pronounced "snip").
 
-Sometimes mutations involve more than one nucleotide. An example of a mutation involving more than one nucleotide would be if a chunk of DNA, like ACCGT, were to be repeated and become ACCGTACCGT (such changes with more than 50 nucleotides are called structural variants). Some large structural changes (like the Translocation shown in the figure below) may even occur across multiple chromosomes (inter-chromosomal) rather than being within a single chromosome (intra-chromosomal).
+Sometimes mutations involve more than one nucleotide. An example of a mutation involving more than one nucleotide would be if a chunk of DNA, like ACCGT, were to be repeated and become ACCGTACCGT (such changes with more than 50 nucleotides are called **structural variants**). Some large structural changes (like the Translocation shown in the figure below) may even occur across multiple chromosomes (inter-chromosomal) rather than being within a single chromosome (intra-chromosomal).
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3c938ed4e06_0_28#slide=id.g3c938ed4e06_0_28")
@@ -121,39 +138,48 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 
 Variation can be introduced into the genome through *mutation* or *recombination* during *meiosis*. Mutations may occur due to errors during the *replication* of genomic material during cell division, imperfect repair mechanisms not catching mistakes, environmental factors or *mutagens* that damage genomic material (e.g., high-energy radiation or certain chemicals or viruses), or spontaneous/random changes.
 
-:::{.definition_box}
-::::{.definition_box_header}
+::::: definition_box
+::: definition_box_header
 Mutations
-::::
-::::{.inner_block}
-Changes to the DNA ...
-::::
 :::
+
+::: inner_block
+Changes to the DNA that can either be a single nucleotide change, larger changes involving segments of nucleotides, or in some cases changes to other chemical modifications of the DNA that change how tightly it is wound. See this [article](https://www.nature.com/scitable/topicpage/dna-is-constantly-changing-through-the-process-6524898/) for more information. 
+:::
+:::::
 
 No matter the cause of mutation, not all variations will be passed on to offspring/children. Mutations may be somatic (occurring in cells that are not part of the reproductive system) or germline (occurring in cells that are part of the reproductive system). Germline mutations and meiotic recombination are examples of *heritable* variation that will be passed on to future generations.
 
 {{< video https://youtu.be/vl6Vlf2thvI?si=gAvQY0jJFMu1yCNt >}}
 
+```{=html}
 <!--
 Add Berkeley resource: https://evolution.berkeley.edu/dna-and-mutations/types-of-mutations/
 -->
+```
 
+```{=html}
 <!--
   Add definition box with tabs for recombination, meiosis, replication, mutagens, and heritable
 -->
+```
 
-Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average, if you compared the genomes of two individuals, there would be >99% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots (or lines for larger variants like an insertion or duplication).
+Human genomes are large (over 3 billion nucleotide base pairs)! And most of the genome is identical when comparing two individuals or an individual to a *reference genome*. On average, if you compared the genomes of two individuals, there would be \>99% matching between the two. This is often visualized with a *dotplot* where highly identical genomes will have a dense, diagonal line with some off-diagonal dots (or lines for larger variants like an insertion or duplication).
 
+```{=html}
 <!--
   Add definition box with tabs for reference genome and dotplot
 -->
+```
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width="100%"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3e81f594328_0_32#slide=id.g3e81f594328_0_32")
 ```
-::: {.emphasis_block}
 
-<details><summary>More details about dotplots</summary>
+::: emphasis_block
+<details>
+
+<summary>More details about dotplots</summary>
 
 Besides comparing two human samples to each other, dotplots are also used to compare a human sample to a reference genome, reference genomes to each other, human samples or reference genomes to other species, or really any other species/sample comparison.
 
@@ -164,7 +190,6 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 ```
 
 </details>
-
 :::
 
 ## Why should we care about human genomic variation?
@@ -175,30 +200,32 @@ Functional changes, on the other hand, may impact how much of a protein is made,
 
 For other diseases, a protein may not be expressed at the correct levels or the protein may be folded incorrectly because of its mutated structure, leading to inefficiencies in or the inability of the protein to perform its function(s). This is the case in the mutation that leads to sickle-cell anemia and changes in the hemoglobin protein. To protect against this, there are biological redundancies that act as a safety net. These create backup systems that can mitigate issues by compensating for or taking the place of nonfunctional components. But even with redundancies and safety nets, mutations can lead to small changes with major consequences.
 
+```{=html}
 <!--
   Add definition box with tabs for functional, proteins, translated, cell
 -->
+```
 
-::: {.emphasis_block}
+:::: emphasis_block
+<details>
 
-<details><summary>Different types of (single-nucleotide) mutations</summary>
+<summary>Different types of (single-nucleotide) mutations</summary>
 
 As mentioned earlier, there are a few different types of mutations. Single-nucleotide polymorphisms are single-base pair differences, while larger structural mutations change more than one nucleotide. Within the group of single-nucleotide mutations, there are different types that are defined based on the effect of the mutation.
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Summary
 
 **Single-nucleotide changes**
 
 Different types of single-nucleotide mutations are defined based on the effect of the mutation.
 
-* **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
-* **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.
-* **Missense mutations** result in an amino acid substitution, which can impact protein structure and function.
-  * Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
-  * A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
-* **Nonsense mutations** introduce an early *stop codon*, halting translation and producing a truncated, likely nonfunctional protein.
+- **Silent mutations** have an underlying nucleotide change, but the *amino acid* building blocks of the protein remain unchanged. Not only does the protein remain unchanged, but for a true "silent" mutation, there is no effect on the cell.
+- **Synonymous mutations**: Synonymous mutations have an underlying nucleotide change, and the amino acid building blocks of the protein remain unchanged. They differ from silent mutations, however, because these have an impact on the cell.
+- **Missense mutations** result in an amino acid substitution, which can impact protein structure and function.
+  - Some missense mutations are **“conservative”** where the amino acid substitution is switching one amino acid for another similar one with similar biochemical properties (e.g., size, charge, etc.).
+  - A **“non-conservative”** missense mutation switches an amino acid to one with dissimilar biochemical properties – this is likely to have a greater impact on protein structure and function than a conservative missense mutation.
+- **Nonsense mutations** introduce an early *stop codon*, halting translation and producing a truncated, likely nonfunctional protein.
 
 **Single-nucleotide insertions or deletions (indels)**
 
@@ -208,15 +235,15 @@ A single nucleotide insertion or deletion (AKA an "indel") may introduce a **fra
 
 ### Comparison
 
-| Mutation Type | Single Nucleotide Change | Amino Acid Change       | Possible impact on cell due to change in protein abundance or structure |
-|:--------------|:------------------------:|:-----------------------:|:-----------------------------------------------------------------------:|
-| Silent        | Substitution             |                         | No Impact                                                               |
-| Synonymous    | Substitution             |                         | ✅                                                                      |
-| Missense      | Substitution             | ✅                      | ✅                                                                      |
-| Nonsense      | Substitution             | Truncation              | Probably large impact due to likely non-functional protein              |
-| Frameshift    | Addition or Loss         | All following shift are changed | Likely large impact                                             |
+| Mutation Type | Single Nucleotide Change | Amino Acid Change | Possible impact on cell due to change in protein abundance or structure |
+|:-------------|:------------:|:------------:|:------------------------------:|
+| Silent | Substitution |  | No Impact |
+| Synonymous | Substitution |  | ✅ |
+| Missense | Substitution | ✅ | ✅ |
+| Nonsense | Substitution | Truncation | Probably large impact due to likely non-functional protein |
+| Frameshift | Addition or Loss | All following shift are changed | Likely large impact |
 
-: Single Nucleotide Mutations Summary Table {.bordered}
+: Single Nucleotide Mutations Summary Table
 
 ### Silent
 
@@ -236,15 +263,16 @@ Nonsense mutations introduce an early stop codon - halting translation premature
 
 ### Frameshift
 
-A single nucleotide insertion or deletion (also known as an "indel"), or an insertion or deletion that is a length not a multiple of three (which is the length of a codon), may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks --  the reading frame. A shift in the reading frame can greatly impact how a protein is made.
+A single nucleotide insertion or deletion (also known as an "indel"), or an insertion or deletion that is a length not a multiple of three (which is the length of a codon), may introduce a frameshift mutation. Frameshift mutations often impact structure and function to a higher degree than missense mutations because these cause downstream impacts, shifting the reading frame during translation for all subsequent RNA codons. When genetic material is read to create a protein, it is read in three-nucleotide chunks -- the reading frame. A shift in the reading frame can greatly impact how a protein is made.
 
+
+
+Here you can see a video about what happens with an insertion at the DNA, mRNA, and amino acid level:
 {{< video https://www.youtube.com/watch?v=yv_vnMKdJzY >}}
-
 :::
 
 </details>
-
-:::
+::::
 
 ## Why do genetic changes sometimes persist in populations?
 
@@ -252,9 +280,11 @@ Genetic variation is considered necessary for survival. Scientists hypothesize t
 
 Every person alive inherited genomic material from two individuals, and each of those individuals inherited genomic material from two other individuals, continuing backwards through their family history. Each generation of people pass down genomic materials to the next. Since genomic material is what is passed down from ancestors, genomic material is what is compared when considering ancestry and studying how individuals are related. Individuals who are more closely related will share more genomic material in common than those who are more distantly related.
 
-Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunities there are for genetic variations to occur and accumulate. Ancestry is something that is determined and formed over time and through a process -- the process of genetic material being passed down. Therefore ancestry is defined as a "process-based concept" of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.
+Additionally, the length of time is important because time is needed for genetic variation to accumulate. The longer the amount of time or number of generations between two individuals, the more genetic variation there will be. With more time and more generations between two individuals, the more opportunities there are for genetic variations to occur and accumulate. **Ancestry** is something that is determined and formed over time and through a process -- the process of genetic material being passed down. Therefore ancestry is defined as a "process-based concept" of how someone is related to other individuals in their genealogical history. Ancestry is a biological concept that captures the process of genomic material being passed down from generation to generation. But ancestry can mean many different things. It can capture the closer relationships between individuals and their ancestors, as well as the deeper history of people or species over thousands and tens of thousands of years, as they migrated, mixed, and moved.
 
-## How can we describe ancestry?
+
+
+## How can we describe or quantify ancestry?
 
 Ancestry captures a process that occurs over time and generations. When talking about ancestry, it can be complicated to quantify it. One way to do this is to compare the genomic material shared between individuals.
 
@@ -262,7 +292,14 @@ When comparing genomic material between individuals, how similar or identical a 
 
 When thinking about ancestry, we often think about ancestral groups or populations instead of individuals (ex, what group or community an individual is related to or whether one group is related to another group or community). This also applies to studying similarities and differences in current groups based on their ancestry. For example, evaluating every human's blood pressure on earth would be nearly impossible. It would be much more feasible to study a representative sample of the general population. To create this representative sample, we would need to have individuals who represent different subpopulations within the greater population in our sample or we risk missing important information. Making a representative reference sample is important to make sure the results apply to the general population, and not just the subpopulation that was studied.
 
-To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid). Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
+To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid).Diploid individuals are those with two complete sets of chromosomes (one from each parent) – for example humans. Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
+
+:::definition_box
+Admixture
+::::::inner_box
+::::::
+:::
+
 
 ## How do you group humans?
 
@@ -277,42 +314,45 @@ Additionally, the definition of populations may also differ in scale. As mention
 ## What does this all mean?
 
 # **Main Questions**
-***
 
-#### {.main_question_block}
+------------------------------------------------------------------------
+
+####  {.main_question_block}
+
 <b><u> Our main question: </u></b>
 
-1) How can genomic data be used to explore the ancestry of an individual or population?
-2) How does the genetic makeup of different world populations compare?
-3) How can coding and computational biology/data science principles and tools help us investigate our questions?
+1)  How can genomic data be used to explore the ancestry of an individual or population?
+2)  How does the genetic makeup of different world populations compare?
+3)  How can coding and computational biology/data science principles and tools help us investigate our questions?
 
-####
+#### 
 
 # **Learning Objectives**
-***
+
+------------------------------------------------------------------------
 
 <u>**Data Science Learning Objectives:**</u>
 
-1. Explain the differences and benefits of using R vs Google Sheets to work with data
-2. Describe how data can take different shapes: long and wide
-3. Recode data to change original values, using programming to reduce accidents
-4. Crease an ancestry plot (a special heatmap-like column plot that shows differences)
-5. Describe what different elements of the ancestry plot represent
-6. Combine two plots together
+1.  Explain the differences and benefits of using R vs Google Sheets to work with data
+2.  Describe how data can take different shapes: long and wide
+3.  Recode data to change original values, using programming to reduce accidents and to document changes, rather than changing values manually
+4.  Crease an ancestry plot (a special heatmap-like column plot that shows differences)
+5.  Describe what different elements of the ancestry plot represent
+6.  Combine two plots together
 
 <u>**Statistical Learning Objectives:**</u>
 
-1. Explain how clustering can help identify groups
-2. Summarizing means within a dataset
+1.  Explain how clustering can help identify groups
+2.  Summarizing means within a dataset
 
 <u>**Topical Learning Objectives:**</u>
 
-1. Describe how genomic data shows what human variation looks like
-2. Explain genetic similarities and differences between people
-3. Describe how racial and ancestry groups might differ
-4. Recognize the patterns of genetic variation across continents
+1.  Describe how genomic data shows what human variation looks like
+2.  Explain genetic similarities and differences between people
+3.  Describe how racial and ancestry groups might differ
+4.  Recognize the patterns of genetic variation across continents
 
-***
+------------------------------------------------------------------------
 
 We will begin by loading the packages that we will need:
 
@@ -328,57 +368,123 @@ install.packages("ggforce", repos="https://cloud.r-project.org/")
 library(ggforce) #for facet_col
 ```
 
- Package   | Use
----------- |-------------
-[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
-[readr](https://readr.tidyverse.org/){target="_blank"}              | to import data files
-[dplyr](https://dplyr.tidyverse.org/){target="_blank"}              | to manipulate data
-[tidyverse](https://tidyverse.org/){target="_blank"}                | to manipulate and visualize data
-[patchwork](https://patchwork.data-imaginist.com/){target="_blank"} | to combine plots
-[ggforce](https://ggforce.data-imaginist.com/){target="_blank"}     | to extend the plotting capabilities of ggplot2
+| Package | Use |
+|-------------------------------|----------------------------------------|
+| [here](https://github.com/jennybc/here_here){target="_blank"} | to easily load and save data |
+| [readr](https://readr.tidyverse.org/){target="_blank"} | to import data files |
+| [dplyr](https://dplyr.tidyverse.org/){target="_blank"} | to manipulate data |
+| [tidyverse](https://tidyverse.org/){target="_blank"} | to manipulate and visualize data |
+| [patchwork](https://patchwork.data-imaginist.com/){target="_blank"} | to combine plots |
+| [ggforce](https://ggforce.data-imaginist.com/){target="_blank"} | to extend the plotting capabilities of ggplot2 |
 
 The first time we use a function, we will use the `::` to indicate which package we are using. Unless we have overlapping function names, this is not necessary, but we will include it here to be informative about where the functions we will use come from.
 
 # **Context**
-***
+
+------------------------------------------------------------------------
+
 Provide some more details and background on the case study topic and its relation to public health/the world.
 
 # **Limitations**
-***
+
+------------------------------------------------------------------------
 
 # **What are the data?**
-***
 
-The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_etal_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009], which also estimates ancestry proportions for each sample, was run on SNPs from ~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original analysis used a tool called *frappe* [@Tang2005], specifying 7 clusters for the results, so the commentary analysis specified 7 clusters as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. Though a different tool was used by the original analysis to cluster the samples, the tools are very similar in how they work, but ADMIXTURE is faster. 
+------------------------------------------------------------------------
 
-|                                     | Original Analysis | Commentary Analysis |
-|:------------------------------------|:-----------------:|:-------------------:|
-| Reference                           | @Li_etal_2008     | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
-| Number of samples                   | 938               | 1918                |
-| Number of populations               | 51                | Y                   |
-| Reported ancestry outside of Africa | 86.5%             | 15%                 |
-| Reported ancestry within Africa     | 13.5%             | 85%                 |
-| Clustering tool                     | *frappe*          | ADMIXTURE           |
-| Number of clusters                  | 7                 | 7                   |
+The data for this case study comes from the authors (primarily Dana R. Al-Hindi) of a commentary [@Carlson_Henn_Al-Hindi_Ramachandran_2022] which expands upon data and a previous analysis presented by a broader team [@Li_etal_2008]. Specifically, for the commentary analysis, a clustering tool (ADMIXTURE) [@Alexander_2009], which also estimates ancestry proportions for each sample, was run on SNPs from \~1900 individuals without providing any prior ancestry information besides the number of clusters that the program should produce. The original analysis used a tool called *frappe* [@Tang2005], specifying 7 clusters for the results, so the commentary analysis specified 7 clusters as well. The original analysis had 938 samples, 86.5% of which had reported ancestry outside of Africa, with the remaining 13.5% having reported ancestry from within Africa. To make the point that the proportion of categories within a sample will impact the end result, the commentary analysis inverted those numbers, using 85% of samples with reported ancestry within Africa and only 15% with reported ancestry outside of Africa. Though a different tool was used by the original analysis to cluster the samples, the tools are very similar in how they work, but ADMIXTURE is faster.
+
+Ultimately they both calculate the proportion of an individual's genetic ancestry that is from a predefined ancestry group. The number of clusters indicates the number of predefined ancestry groups. In this case they chose 7 groups to account for the genetic variation across all of their samples across the world to investigate.  
+
+|   | Original Analysis | Commentary Analysis |
+|:---------------------------------|:----------------:|:------------------:|
+| Reference | @Li_etal_2008 | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
+| Number of samples | 938 | 1918 |
+| Number of populations | 51 | Y |
+| Reported ancestry outside of Africa | 86.5% | 15% |
+| Reported ancestry within Africa | 13.5% | 85% |
+| Clustering tool | *frappe* | ADMIXTURE |
+| Number of clusters | 7 | 7 |
 
 The data provided from the commentary analysis authors lists the reported ancestry/population group for each sample, as well as the resulting estimated proportion of ancestry for that sample for each of the 7 clusters.
 
+The data includes 1913 rows and 9 columns with the following information:
+
+1) **pop:** A column about the population where a sample came from, with values like Egyptian or British.
+2) **id:** A column with the European Genome-phenome Archive (EGAN) ID number. This is a way of identifying a person's genomic data. So each row represents a genetic sample from an individual person.
+3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
+
+
+If we take a look at a few individual rows of the table, which we will do in a moment, we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
+
+
+## Clustering
+
+Let's take a minute to dive deeper into what these K columns mean. 
+
+Consider that you have a bag of Halloween candy. Perhaps you want to figure out a way to divide that candy into groups so that you vary the kind of candy you eat until you are out of candy. There are actually many ways you could divide the candy by differnt features. For example, you could divide it based on if it contains chocolate or has a fruit flavor, or you could divide it by texture, if it is crunchy or chewy, or perhaps you want to share with your Aunt who only likes candy that isn't too sweet or with your cousin who really like sour candy. As you can see there are many ways in which we could group the candy. 
+
+In order to group people by ancestry, we can group them by their SNPs. As discussed SNP variants may have been introduced through mutation and then may have continued to persist in specific population or may have largely disappeared because of migration patterns. For example, if a population of a small number of people migrated to an isolated geographical location, any rarer SNPs may become more numerous among later generations that are decedent from these original settlers.  
+
+We can try to group people by evaluating which SNP variants co-occur or seem to distinguish different groups. Going back to our candy example, we might find that a cherry flavor often co-occurs with chewy textures. These two features could help us to group our candy. We may have some candy that has a cherry flavor that are not chewy, but the two features together may help to create the optimal number of groups that we are trying to achieve for our candy sharing and pacing problems. We can use math to help us identify a more optimal number of population groups based on our SNPs. Clustering algorithms help us to reduce the mathematical distances of individuals within our groups or in other words, find clusters that have more similar individuals and keep the clusters generally less overlapping. So the data that we have has identified that 7 clusters generally distinguishes the individuals into groups quite well.  Since humans are quite genetically similar, allowing for individuals to overlap across the clusters is helpful. Therefore, as we will see an individual could have a portion of its SNPs overlap more closely with more han one cluster. 
+
+
+
+
 # **Data Import**
-***
+
+------------------------------------------------------------------------
+
+When reading in the data, we want to ensure that we specify the names of the headers so that the first row of data is included within the data itself and not treated as a header. 
 
 ```{r, message=FALSE, warning=FALSE}
 ancestry_props <-
   readr::read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
+
 ancestry_props_prelim <- ancestry_props
 ```
 
-# **Data Wrangling**
-***
+Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
 
 ```{r}
+slice(ancestry_props, 500) 
+```
 
+
+We can see that most of the genomic variation appears to match up with cluster 3 and 5. these have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual is mostly attributable to the 5th cluster, or in other words, this person would fit pretty well with that group based on genetic variation, however, other individuals do not group as easily.
+
+Let's take a look at another row, let's look at the 20th row.
+
+```{r}
+slice(ancestry_props, 20) 
+```
+
+Now this individual groups more with 2 clusters, with .38 for k3, and .62 for K6. In this case this person doesn't fit as well within an individual cluster, however, the proportion for each of these clusters, still allows us to identify their genetic variation relative to the other individuals. You can see that we could identify more ancestral groups than just 7 based on how much well an individual matches with these groups. 
+
+
+# **Data Wrangling**
+------------------------------------------------------------------------
+First let's take a look at our data. In R we can do that by using the `head` function which shows us the top 6 lines of the data. Or we can click on the data from the Environment pane of R Studio if we are using R Studio. 
+
+```{r}
+head(ancestry_props)
+```
+
+Let's use the `distinct` function to check that we have all the distinct populations we expect. 
+
+```{r}
+distinct(ancestry_props, pop) 
+```
+We want the names of our populations to match that of the paper, we know from the authors what some of these abbreviations stand for and we can tell that some are just slightly different like `Egyptions` vs `Egyption`. Here we will modify the pop column (also known as variable) to reflect the full name. To do this we need to use the `mutate` function to change the variable and we need the `case_when` function to help us recode those abbreviated values to the full name. We will also include a .default = pop statement so that anything we don't specify stays as it was. 
+
+This is really powerful because instead of going in and replacing every value where these occurred by hand, we can do it very quickly in R and we have a record of how we changed the data.
+
+
+
+```{r}
 ancestry_props <- ancestry_props %>%
-         dplyr::mutate(pop = factor(case_when(
+         dplyr::mutate(pop = case_when(
                          pop == "ACB" ~ "African Caribbean",
                          pop == "ASW" ~ "African American",
                          pop == "CHB" ~ "Han Chinese",
@@ -397,14 +503,38 @@ ancestry_props <- ancestry_props %>%
                          pop == "Nyanjiro(Tanzania)" ~ NA_character_,
                          pop == "TSI" ~ "Italian",
                          pop == "YRI" ~ "Yoruba",
-                         TRUE ~ pop),
+                         .default = pop))
+
+
+```
+
+We can check our work by using the `distinct` function again to see how unique values for `pop` we have now:
+
+```{r}
+distinct(ancestry_props, pop)
+```
+
+Next, we want to make our data a class called factor because this allows us to order our data in a specific way. We can do so using the `factor` function and we can specify the order of our levels for the populations. 
+
+```{r}
+
+ancestry_props <- ancestry_props %>%
+         dplyr::mutate(pop = factor(pop,
                       levels = c("Nama", "Zulu", "Mende", "Esan", "Yoruba", "Mandinka", "African Caribbean", "African American", "Banyarwanda", "Banyankole", "Bakiga", "Barundi", "Rwandese", "Baganda", "Luhya", "Gumuz", "Somali", "Wolayta", "Oromo", "Amhara", "Egyptian", "Gujarati", "Mexican", "British", "Italian", "Han Chinese"))
-            ) %>%
+            ) 
+
+```
+
+Next we want to remove rows where we had NA values. We would always want to be careful about what these mean and if we should remove them. In our case we can't use them to recreate the plot, so we will drop them. Again this step could take quite a bit of time in Excel or Google Sheets (depending on how manually we did it) and we could accidentally remove rows that we don't want to remove!
+```{r}
+
+ancestry_props <- ancestry_props %>%
   tidyr::drop_na() # dropping a few samples that had no data
 
 ancestry_props_temp <- ancestry_props
 ```
 
+Now let's save our clean data using the write. table function. 
 ```{r}
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"),
             row.names = FALSE,
@@ -413,7 +543,8 @@ write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.
 ```
 
 # **Data Visualization**
-***
+
+------------------------------------------------------------------------
 
 If you have been following along but stopped, we could load our wrangled data like so:
 
@@ -421,9 +552,39 @@ If you have been following along but stopped, we could load our wrangled data li
 load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
 
+
+To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+```{r}
+ancestry_long <- ancestry_props %>%
+  pivot_longer(cols = starts_with("k"), values_to = "prop", names_to = "which_k")
+
+```
+
+Let's check our work with `head` again.
+
+```{r}
+head(ancestry_long)
+
+```
+
+Nice now we have all our k values in one column and another column indicating what k it came from. 
+
+Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
+
+```{r}
+ ancestry_long %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k)))+
+  geom_bar(stat = "identity") 
+
+```
+
+
+OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot. 
+
 ```{r fig.width = 5, fig.height = 10}
-plot1 <- ancestry_props %>%
-  pivot_longer(starts_with("k"), values_to = "prop", names_to = "which_k") %>%
+plot1 <- ancestry_long %>%
   ggplot(aes(y=id,
              x=prop,
              fill = factor(which_k),
@@ -493,18 +654,22 @@ plot1 + plot2 +
 ```
 
 # **Analysis**
-***
+
+------------------------------------------------------------------------
 
 # **Summary**
-***
+
+------------------------------------------------------------------------
 
 # **Suggested Homework**
-***
+
+------------------------------------------------------------------------
 
 # **Additional Information**
 
 ## **Glossary**
-***
+
+------------------------------------------------------------------------
 
 ```{r}
 #| results: asis
@@ -538,12 +703,14 @@ glossary_table("glossary.yml")
 ```
 
 ## **References**
-***
+
+------------------------------------------------------------------------
 
 ::: {#refs}
 :::
 
 ## **Helpful Links**
-***
+
+------------------------------------------------------------------------
 
 Add additional resource links here
