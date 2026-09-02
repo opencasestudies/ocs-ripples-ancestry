@@ -419,6 +419,17 @@ The data includes 1913 rows and 9 columns with the following information:
 If we take a look at a few individual rows of the table, which we will do in a moment, we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
 
 
+## Clustering
+
+Let's take a minute to dive deeper into what these K columns mean. 
+
+Consider that you have a bag of Halloween candy. Perhaps you want to figure out a way to divide that candy into groups so that you vary the kind of candy you eat until you are out of candy. There are actually many ways you could divide the candy by differnt features. For example, you could divide it based on if it contains chocolate or has a fruit flavor, or you could divide it by texture, if it is crunchy or chewy, or perhaps you want to share with your Aunt who only likes candy that isn't too sweet or with your cousin who really like sour candy. As you can see there are many ways in which we could group the candy. 
+
+In order to group people by ancestry, we can group them by their SNPs. As discussed SNP variants may have been introduced through mutation and then may have continued to persist in specific population or may have largely disappeared because of migration patterns. For example, if a population of a small number of people migrated to an isolated geographical location, any rarer SNPs may become more numerous among later generations that are decedent from these original settlers.  
+
+We can try to group people by evaluating which SNP variants co-occur or seem to distinguish different groups. Going back to our candy example, we might find that a cherry flavor often co-occurs with chewy textures. These two features could help us to group our candy. We may have some candy that has a cherry flavor that are not chewy, but the two features together may help to create the optimal number of groups that we are trying to achieve for our candy sharing and pacing problems. We can use math to help us identify a more optimal number of population groups based on our SNPs. Clustering algorithms help us to reduce the mathematical distances of individuals within our groups or in other words, find clusters that have more similar individuals and keep the clusters generally less overlapping. So the data that we have has identified that 7 clusters generally distinguishes the individuals into groups quite well.  Since humans are quite genetically similar, allowing for individuals to overlap across the clusters is helpful. Therefore, as we will see an individual could have a portion of its SNPs overlap more closely with more han one cluster. 
+
+
 
 
 # **Data Import**
