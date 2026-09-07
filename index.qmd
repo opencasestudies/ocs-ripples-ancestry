@@ -401,7 +401,7 @@ Ultimately they both calculate the proportion of an individual's genetic ancestr
 |:---------------------------------|:----------------:|:------------------:|
 | Reference | @Li_etal_2008 | @Carlson_Henn_Al-Hindi_Ramachandran_2022 |
 | Number of samples | 938 | 1918 |
-| Number of populations | 51 | Y |
+| Number of populations | 51 | 26 |
 | Reported ancestry outside of Africa | 86.5% | 15% |
 | Reported ancestry within Africa | 13.5% | 85% |
 | Clustering tool | *frappe* | ADMIXTURE |
@@ -436,6 +436,10 @@ We can try to group people by evaluating which SNP variants co-occur or seem to 
 
 ------------------------------------------------------------------------
 
+:::{.panel-tabset}
+
+## R
+
 When reading in the data, we want to ensure that we specify the names of the headers so that the first row of data is included within the data itself and not treated as a header. 
 
 ```{r, message=FALSE, warning=FALSE}
@@ -462,9 +466,41 @@ slice(ancestry_props, 20)
 
 Now this individual groups more with 2 clusters, with .38 for k3, and .62 for K6. In this case this person doesn't fit as well within an individual cluster, however, the proportion for each of these clusters, still allows us to identify their genetic variation relative to the other individuals. You can see that we could identify more ancestral groups than just 7 based on how much well an individual matches with these groups. 
 
+## Google Sheets
+
+First, navigate to [your Google Drive home](https://drive.google.com/drive/u/0/home) and create a new Google Sheet.
+
+  * Click the `+ New` button in the top left.
+  * Select `Google Sheets` from the dropdown list.
+  * This will open a blank, "Untitled spreadsheet".
+  * Rename the Google sheet something relevant like `Ancestry data` by clicking the "Untitled spreadsheet" name in the top left, selecting the words, and replacing them with your new title.
+
+Next, download the data file with estimated ancestry proportions for each sample with this link: [https://github.com/opencasestudies/ocs-ripples-ancestry/raw/refs/heads/main/data/wrangled/ADMIXTURE_ancestry_props.txt](https://github.com/opencasestudies/ocs-ripples-ancestry/raw/refs/heads/main/data/wrangled/ADMIXTURE_ancestry_props.txt)
+
+  * Note that this file is named `ADMIXTURE_ancestry_props.txt`.
+  * Note where this file downloaded on your computer. (Is it in your `Downloads` folder?) You will need to know in order to import it into Google Sheets
+
+Import the data file that you've just downloaded to Google Sheets.
+
+  * Click the `File` option from the Google Sheets menu bar and select `Import` from the dropdown menu.
+  * In the `Import file` window that pops open, select the `Upload` tab.
+  * Click the blue "Browse" button.
+  * Find the `ADMIXTURE_ancestry_props.txt` file that you downloaded in the previous step, and select that to upload.
+  * Leave the "Import location" as the "Replace spreasheet option".
+  * Switch the "Separator type" from "Detect automatically" to **"Tab"**.
+  * Ensure that the "Convert text to numbers, dates, and formulas" option is checked.
+  * Click the green "Import data" button on the bottom right of the window.
+
+
+:::
 
 # **Data Wrangling**
 ------------------------------------------------------------------------
+
+:::{.panel-tabset}
+
+## R
+
 First let's take a look at our data. In R we can do that by using the `head` function which shows us the top 6 lines of the data. Or we can click on the data from the Environment pane of R Studio if we are using R Studio. 
 
 ```{r}
@@ -476,7 +512,8 @@ Let's use the `distinct` function to check that we have all the distinct populat
 ```{r}
 distinct(ancestry_props, pop) 
 ```
-We want the names of our populations to match that of the paper, we know from the authors what some of these abbreviations stand for and we can tell that some are just slightly different like `Egyptions` vs `Egyption`. Here we will modify the pop column (also known as variable) to reflect the full name. To do this we need to use the `mutate` function to change the variable and we need the `case_when` function to help us recode those abbreviated values to the full name. We will also include a .default = pop statement so that anything we don't specify stays as it was. 
+
+We want the names of our populations to match that of the paper, we know from the authors what some of these abbreviations stand for and we can tell that some are just slightly different like `Egyptians` vs `Egyptian`. Here we will modify the pop column (also known as variable) to reflect the full name. To do this we need to use the `mutate` function to change the variable and we need the `case_when` function to help us recode those abbreviated values to the full name. We will also include a .default = pop statement so that anything we don't specify stays as it was. 
 
 This is really powerful because instead of going in and replacing every value where these occurred by hand, we can do it very quickly in R and we have a record of how we changed the data.
 
@@ -526,6 +563,7 @@ ancestry_props <- ancestry_props %>%
 ```
 
 Next we want to remove rows where we had NA values. We would always want to be careful about what these mean and if we should remove them. In our case we can't use them to recreate the plot, so we will drop them. Again this step could take quite a bit of time in Excel or Google Sheets (depending on how manually we did it) and we could accidentally remove rows that we don't want to remove!
+
 ```{r}
 
 ancestry_props <- ancestry_props %>%
@@ -535,12 +573,120 @@ ancestry_props_temp <- ancestry_props
 ```
 
 Now let's save our clean data using the write. table function. 
+
 ```{r}
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"),
             row.names = FALSE,
             quote = FALSE,
             sep = "\t")
 ```
+
+## Google Sheets
+
+First let's take a look at our data. 
+
+* In the first row, we see the column names `pop`, `id`, `k1`, `k2`, `k3`, `k4`, `k5`, `k6`, and `k7`.
+* By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals. 
+  * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A1:A1914)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset. 
+
+* To see the unique population names in the `pop` column, in another spreadsheet cell off to side, enter `=UNIQUE(A1:A1914)` and it will list the unique population names in that column. 
+
+::: {.question_block}
+
+How would you change the `=UNIQUE(A1:A1914)` function to show the number of unique populations in the dataset?
+
+<details><summary>Hint</summary>
+
+You can put a spreadsheet function inside another spreadsheet function. The function on the outside (the outer function), will be used or evaluated after the function on the inside.
+
+</details>
+
+<details><summary>Answer</summary>
+
+Use `=COUNTA(UNIQUE(A1:A1914))` and that will return the number of unique populations within that column + 1 because it is also counting the `pop` header as a unique value in the A column.
+
+</details>
+
+:::
+
+The wrangling steps that are being performed in the R version of this case study have already been done for the dataset that was imported. However, we will discuss the options you have for performing those sorts of wrangling steps in Google Sheets. 
+
+:::{.emphasis_block}
+
+If you want to try any of the suggestions here just to play around with the concepts, click the downward facing arrow next to the Google Sheet name `ADMIXTURE_ancestry_props` on the bottom banner and click "Duplicate". You can treat the new "Copy of ADMIXTURE_ancestry_props" like a sandbox where you can test some of the data wrangling capabilities of Google Sheets.
+
+:::
+
+If you needed to "mutate" values in a spreadsheet (in other words, switching out a value / specific pattern that is in the sheet with another value or specific pattern), you could use a combination of spreadsheet functions that enact the "substitute" function for the column and multiple substitutions (but this will not perform an in-place substitution), or you can use the built-in "Find and replace" (from the `Edit` menu) functionality of Google Sheets. The former is complex, both to build and understand, but more reproducible for other people to see what was done. The latter is much easier to implement, but would have to be repeated manually for every needed substitution, and is not reproducible / a set of formulas that you or others can reference / review later.
+
+First, the method using the [`substitute` function](https://support.google.com/docs/answer/3094215?hl=en):
+
+  * `=SUBSTITUTE(text_to_search, search_for, replace_with)` searches a specific Google Sheet cell or range of cells (`text_to_search`) for a specific value or text pattern  (`search_for`) that it will then replace (`replace_with`). While it can search a range, unless combined with [`=ARRAYFORMULA()`](https://support.google.com/docs/answer/3093275?hl=en) or used multiple times, it [will only make a replacement for one cell using "implicit intersection"](https://support.google.com/docs/thread/338433380?hl=en&msgid=338456425) (e.g., by looking at the row in the `text_to_search` range that intersects with the row where the `=SUBSTITUTE` call is).
+  * `=ARRAYFORMULA(SUBSTITUTE(text_to_search, search_for, replace_with))` will make replacements for the whole `text_to_search` range.
+  *  Combining several more functions allows you to make multiple substitutions across a range of data.
+
+:::{.emphasis_block}
+
+:::{.panel-tabset}
+
+### Single Substitution
+
+Instructions for trying `SUBSTITUTE` for a single substitution:
+
+* In the `COPY of ADMIXTURE_ancestry_props` sheet, click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
+* Enter `=SUBSTITUTE(A1:A1914, "pop", "Test") in B1 and B4. 
+* Notice that B1 shows `"Test"` (because A1 has the value "pop"), and B4 shows `"Amhara"` (because A4 does not have the value "pop"). The rest of the cells in the B column are blank.
+* Enter `=SUBSTITUTE(A1:A1914, "Zulu", "Test")` in B5 and B50.
+* Notice that B5 shows `"Amhara"` (because A5 does not have the value "Zulu"), and B50 shows `"Test"` (because A50 has the value "Zulu"). The rest of the cells in the B column (besides B1 and B4) are blank.
+* Enter `=SUBSTITUTE(A1:A1914, "Amh", "test")` in B3.
+* Notice that B3 shows `testara` (because A3 has the value `"Amhara"`) and substitute replaces the `Amh` part with `test'.
+
+### Single Substitution Across a Range
+
+Instructions for trying `ARRAYFORMULA` & `SUBSTITUTE` for a single substitution:
+
+* In the `Copy of ADMIXTURE_ancestry_props` sheet, click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`. 
+* Enter `=ARRAYFORMULA(SUBSTITUTE(A1:A1914, "pop", "Test"))` in B1. 
+* Notice that column B autofills, copying column A except for the first value which changes from `"pop"` to `"Test"`. 
+* Click cell B1 and edit the formula in the formula bar, switching `"pop"` to `"Amhara"` and press enter / return.
+* Notice that the column now switches `"Test"` back to `"pop"` in the first row, and every occurrence of `"Amhara"` switches to `"Test"`. 
+
+### Multiple Substitutions Across a Range
+
+Instructions for combining several more functions allows you to make multiple substitutions across a range of data:
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet "Pop Index".
+* Set up some test substitutions in the new "Pop Index" sheet.
+  * In Column A enter:
+    * "African Caribbean" in A1
+    * "Han Chinese" in A2
+    * "Egyptian" in A3
+    * "Esan" in A4
+    * "Amh" in A5
+  * In Column B enter:
+    * "ACB" in B1
+    * "CHB" in B2
+    * "Egyptians" in B3
+    * "ESN" in B4
+    * "test" in B5
+* Navigate back to the sheet "Copy of ADMIXTURE_ancestry_props".
+* Click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
+* Enter `=ARRAYFORMULA(REDUCE(A1:A1914, SEQUENCE(ROWS('Pop Index'!A1:A5)), LAMBDA(current_list, row_num, SUBSTITUTE(current_list, INDEX('Pop Index'!A1:A5, row_num), INDEX('Pop Index'!B1:B5, row_num)))))` in B1.
+
+This formula uses a lookup table (what we entered in the `Pop Index' Sheet) to search a range of data step by step and make substitutions. The `REDUCE` function is used to update the range of data (in the A column, `A1:A1914`) for each step through the lookup table -- the steps through the lookup table are defined using the `SEQUENCE` and `ROWS` functions. So for each row of the lookup table, this function goes through all of the values in the range and substitues the current value in the cell with the one from the lookup table (column B) if the current value if the search string (column A in the lookup table) is found within the cell. By wrapping this whole thing in `ARRAYFORMULA`, the looping action works, making substitutions across the whole column rather than just a single cell.
+
+::::
+
+:::
+
+
+If you needed to filter out rows ...
+
+If you needed to order / sort values ...
+
+
+:::
 
 # **Data Visualization**
 
@@ -554,6 +700,7 @@ load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 
 
 To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+
 ```{r}
 ancestry_long <- ancestry_props %>%
   pivot_longer(cols = starts_with("k"), values_to = "prop", names_to = "which_k")
