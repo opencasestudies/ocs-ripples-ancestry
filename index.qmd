@@ -675,10 +675,20 @@ Instructions for combining several more functions allows you to make multiple su
     * "test" in B5
 * Navigate back to the sheet "Copy of ADMIXTURE_ancestry_props".
 * Click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
-* Copy and paste the following code in B1 and press enter / return.
+* Copy the following nested formula, double click in B1 (so that the cursor is in the formula bar), paste the nested formula, and press enter / return.
 
-```{.default code-overflow="wrap"}
-=ARRAYFORMULA(REDUCE(A1:A1914, SEQUENCE(ROWS('Pop Index'!A1:A5)), LAMBDA(current_list, row_num, SUBSTITUTE(current_list, INDEX('Pop Index'!A1:A5, row_num), INDEX('Pop Index'!B1:B5, row_num)))))
+```{.default}
+=ARRAYFORMULA(REDUCE(A1:A1914, 
+                     SEQUENCE(ROWS('Pop Index'!A1:A5)), 
+                     LAMBDA(current_list, 
+                            row_num, 
+                            SUBSTITUTE(current_list, 
+                                       INDEX('Pop Index'!A1:A5, row_num), 
+                                       INDEX('Pop Index'!B1:B5, row_num)
+                                      )
+                            )
+                    )
+              )
 ```
 
 This formula uses a lookup table (what we entered in the `Pop Index` Sheet) to search a range of data step by step and make substitutions. The `REDUCE` function is used to update the range of data (in the A column, `A1:A1914`) for each step through the lookup table -- the steps through the lookup table are defined using the `SEQUENCE` and `ROWS` functions. So for each row of the lookup table, this function goes through all of the values in the range and substitues the current value in the cell with the one from the lookup table (column B) if the current value if the search string (column A in the lookup table) is found within the cell. By wrapping this whole thing in `ARRAYFORMULA`, the looping action works, making substitutions across the whole column rather than just a single cell.
