@@ -24,7 +24,7 @@ License
 This work is published under CC By-NC, you can reuse it for free with attribution, but you can not use the materials for commercial purposes.
 ::::
 
-::::: reference_box
+:::: reference_box
 ::: reference_box_header
 To cite this case study, please use:
 :::
@@ -32,7 +32,7 @@ To cite this case study, please use:
 ::: inner_block
 Kate Isaac, Hanako Osuga, Jeanne Chowning, Wright, Carrie (2026). <https://github.com/opencasestudies/ocs-ripples-ancestry>. The Biology of Ancestry (Version v1.0.0).
 :::
-:::::
+::::
 
 To access the GitHub repository to see the source materials and data that went into making the case study, please see here: <https://github.com/opencasestudies/ocs-ripples-ancestry>.
 
@@ -295,7 +295,9 @@ When thinking about ancestry, we often think about ancestral groups or populatio
 To do this, individuals are often grouped based on their ancestry into populations. A population is defined as a group of randomly mating (diploid).Diploid individuals are those with two complete sets of chromosomes (one from each parent) – for example humans. Defining a population is rather subjective. Historically, a lack of migration due to physical boundaries (such as mountains or oceans) influenced population definitions. However, over time, with society overcoming such boundaries, populations that used to be separated have mixed, leading to admixture.
 
 ::: definition_box
+:::: definition_box_header
 Admixture
+::::
 :::: inner_block
 Definition of Admixture
 ::::
@@ -675,7 +677,7 @@ Instructions for combining several more functions allows you to make multiple su
 * Click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
 * Copy and paste the following code in B1 and press enter / return.
 
-```{.default}
+```{.default code-overflow="wrap"}
 =ARRAYFORMULA(REDUCE(A1:A1914, SEQUENCE(ROWS('Pop Index'!A1:A5)), LAMBDA(current_list, row_num, SUBSTITUTE(current_list, INDEX('Pop Index'!A1:A5, row_num), INDEX('Pop Index'!B1:B5, row_num)))))
 ```
 
