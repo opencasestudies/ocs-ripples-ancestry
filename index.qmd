@@ -590,14 +590,33 @@ write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.
 First let's take a look at our data. 
 
 * In the first row, we see the column names `pop`, `id`, `k1`, `k2`, `k3`, `k4`, `k5`, `k6`, and `k7`.
-* By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals. 
-  * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A1:A1914)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset. 
+* By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals.
+  * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A:A)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset, in this case the A column. 
 
-* To see the unique population names in the `pop` column, in another spreadsheet cell off to side, enter `=UNIQUE(A1:A1914)` and it will list the unique population names in that column. 
+Using Google Sheets, to work with data instead of just visually inspecting it requires the use of menu tools or using formulas. Formulas may be more difficult to actually implement and read what it is doing, but it is more reproducible for others and yourself who are reviewing your work. Using menu tools is not reproducible given there is no record of what was done and when it was done. `=COUNTA(A:A)` is an example of a Google Sheets formula.
+
+<details><summary>How to build a formula for Google Sheets</summary>
+
+Add some basic tips about writing Google Sheets Formulas
+
+* Uses functions
+* Starts with `=`
+* Can be nested (but only one `=` )
+* Can be all uppercase or all lowercase
+* Takes 'arguments' or 'parameters'
+* How to write a range
+* How to reference a range in a different sheet
+
+Make an image showing a formula and highlighting some of this stuff
+
+</details>
+
+
+* To see the unique population names in the `pop` column, in another spreadsheet cell off to side, enter `=UNIQUE(A:A)` and it will list the unique population names in that column. 
 
 ::: {.question_block}
 
-How would you change the `=UNIQUE(A1:A1914)` function to show the number of unique populations in the dataset?
+How would you change the `=UNIQUE(A:A)` function to show the number of unique populations in the dataset?
 
 <details><summary>Hint</summary>
 
@@ -607,19 +626,21 @@ You can put a spreadsheet function inside another spreadsheet function. The func
 
 <details><summary>Answer</summary>
 
-Use `=COUNTA(UNIQUE(A1:A1914))` and that will return the number of unique populations within that column + 1 because it is also counting the `pop` header as a unique value in the A column.
+Use `=COUNTA(UNIQUE(A:A))` and that will return the number of unique populations within that column + 1 because it is also counting the `pop` header as a unique value in the A column.
 
 </details>
 
 :::
 
-The wrangling steps that are being performed in the R version of this case study have already been done for the dataset that was imported. However, we will discuss the options you have for performing those sorts of wrangling steps in Google Sheets. 
-
 :::{.emphasis_block}
+
+The **wrangling steps that are being performed in the R version of this case study have already been done for the dataset that was imported into Google Sheets**. However, we will discuss the options you have for performing those sorts of wrangling steps in Google Sheets. 
 
 If you want to try any of the suggestions here just to play around with the concepts, click the downward facing arrow next to the Google Sheet name `ADMIXTURE_ancestry_props` on the bottom banner and click "Duplicate". You can treat the new "Copy of ADMIXTURE_ancestry_props" like a sandbox where you can test some of the data wrangling capabilities of Google Sheets.
 
 :::
+
+### Mutating or Substituting Values
 
 If you needed to "mutate" values in a spreadsheet (in other words, switching out a value / specific pattern that is in the sheet with another value or specific pattern), you could use a combination of spreadsheet functions that enact the "substitute" function for the column and multiple substitutions (but this will not perform an in-place substitution), or you can use the built-in "Find and replace" (from the `Edit` menu) functionality of Google Sheets. The former is complex, both to build and understand, but more reproducible for other people to see what was done. The latter is much easier to implement, but would have to be repeated manually for every needed substitution, and is not reproducible / a set of formulas that you or others can reference / review later.
 
@@ -633,7 +654,7 @@ First, the method using the [`substitute` function](https://support.google.com/d
 
 :::{.panel-tabset}
 
-### Single Substitution
+#### Single Substitution
 
 Instructions for trying `SUBSTITUTE` for a single substitution:
 
@@ -645,7 +666,7 @@ Instructions for trying `SUBSTITUTE` for a single substitution:
 * Enter `=SUBSTITUTE(A1:A1914, "Amh", "test")` in B3.
 * Notice that B3 shows `testara` (because A3 has the value `"Amhara"`) and substitute replaces the `Amh` part with `test'.
 
-### Single Substitution Across a Range
+#### Single across a range
 
 Instructions for trying `ARRAYFORMULA` & `SUBSTITUTE` for a single substitution:
 
@@ -655,7 +676,7 @@ Instructions for trying `ARRAYFORMULA` & `SUBSTITUTE` for a single substitution:
 * Click cell B1 and edit the formula in the formula bar, switching `"pop"` to `"Amhara"` and press enter / return.
 * Notice that the column now switches `"Test"` back to `"pop"` in the first row, and every occurrence of `"Amhara"` switches to `"Test"`. 
 
-### Multiple Substitutions Across a Range
+#### Multiple across a range
 
 Instructions for combining several more functions allows you to make multiple substitutions across a range of data:
 
@@ -698,12 +719,35 @@ This formula uses a lookup table (what we entered in the `Pop Index` Sheet) to s
 
 :::
 
+Second, using `Find and replace` from the Edit menu:
 
-If you needed to filter out rows ...
+  * Try it out in your `COPY of ADMIXTURE_ancestry_props` sheet and see how the manual process is. Note that there's not a record of any changes it makes, while at least with the formulas above other people can look at the formulas after the fact.
+
+### Filtering out values
+
+If you needed to filter out rows, you can again use a formula. 
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet 'Testing Filter 1'.
+* Give an example of filtering based on observing a value.
+* Note that the headers are not brought over in this example.
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet 'Testing Filter 2'.
+* Give an example of filtering based on not observing a value.
+* Note that the headers are brought over in this example.
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet 'Testing Filter 3'.
+* Give an example of filtering based on not observing either of two values.
+
+### Ordering or Sorting
 
 If you needed to order / sort values ...
 
-If you needed to rearrange the data from a long format to a wide format ...
+### Long to Wide Transformation
+
+If you needed to rearrange or transform the data from a long format to a wide format ...
 
 
 :::
