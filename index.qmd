@@ -498,6 +498,7 @@ Import the data file that you've just downloaded to Google Sheets.
 :::
 
 # **Data Wrangling**
+
 ------------------------------------------------------------------------
 
 :::{.panel-tabset}
