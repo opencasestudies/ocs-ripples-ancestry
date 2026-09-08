@@ -13,6 +13,7 @@ Dockerhub
 dotplot
 dotplots
 dplyr
+EGAN
 esque
 favicon
 frameshift
@@ -35,13 +36,16 @@ lightbox
 lightgreen
 missense
 Missense
+mRNA
 nucleotides
 Osuga
 OTTR
+phenome
 polymorphism
 polymorphisms
 readr
 Recode
+recode
 Rmd
 subdir
 subpopulation
