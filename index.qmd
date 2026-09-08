@@ -758,9 +758,57 @@ If you needed to filter out rows, you can again use a formula. The [`FILTER` fun
 
 ### Ordering or Sorting
 
-If you needed to order / sort values ...
+If you needed to order or sort values in a dataset, Google Sheets provides the built-in functionality of a menu tool as well as a function for formulas.
 
-[`SORT`](https://support.google.com/docs/answer/3093150?hl=en)
+First, using the [`SORT` function](https://support.google.com/docs/answer/3093150?hl=en):
+
+This function's parameters include a range of data (which will be sorted), the column that should be used to sort the data, and whether to use Ascending (TRUE) sort or Descending (FALSE) sort.
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet "Testing Sort 1".
+* In A1 of the new sheet `Testing Sort 1`, enter the following formula that is specifying to grab all of the original data (minus the column names because it's starting at row 2) and sort based off of the population names with an Ascending sort (A --> Z)
+
+```{.default}
+=SORT(ADMIXTURE_ancestry_props!A2:I1914, ADMIXTURE_ancestry_props!A2:A1914, TRUE)
+```
+
+* Notice that "African American" sample "NA19625" is listed first.
+* Edit the formula to switch the TRUE --> FALSE (descending sort Z --> A).
+* Notice that the "Zulu" sample "EGAN00001068937" is now listed first and the estimated proportions of ancestry changed too, so the whole dataset is being sorted based on the population.
+
+If you wanted to add the column names:
+
+* Right click the "1" for row 1.
+* Select "+ Insert 1 row above".
+* Enter column header names in the new row.
+
+
+::: {.question_block}
+
+Why wouldn't we bring the column header names over in the sort function automatically?
+
+<details><summary>Hint</summary>
+
+Google Sheets doesn't know that the column names aren't regular data.
+
+</details>
+
+<details><summary>Answer</summary>
+
+The "pop" column name would have been sorted along with the rest of the data and wouldn't have been the first row instead appearing in between the "Oromo" and "Rwandese" samples.
+
+</details>
+
+:::
+
+Second, using the built-in Sort functionality / menu tool:
+
+* In the `COPY of ADMIXTURE_ancestry_props` sheet, click the "View" menu option, followed by "Freeze", and "1 row".
+* Click the "A" for the A column.
+* Click the "Data" menu option, followed by "Sort sheet", and "Sort sheet by column A (A to Z)".
+* Notice that again "African American" sample "NA19625" is listed first in row 2. Because we "froze" the column name row (row 1), those rows are not impacted by the sort.
+
+Note that while the built-in sort functionality is easier to use, it is not as reproducible as the formula because you and others can't review exactly what was done.
 
 ### Wide to Long Transformation
 
@@ -797,7 +845,7 @@ The column names were not brought over. If you wanted to add them:
 * Select "+ Insert 1 row above".
 * Enter column header names in the new row.
 
-Unlike in R, Google Sheets prefers the data is in a wide format when making graphs, so transforming wide data to long data is not necessary for the data visualization steps of this case study. 
+Unlike in R, Google Sheets uses data from a wide format when making graphs, so transforming wide data to long data is not necessary for the data visualization steps of this case study. 
 
 :::
 
