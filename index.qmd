@@ -596,7 +596,7 @@ First let's take a look at our data.
 * By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals.
   * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A:A)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset, in this case the A column. 
 
-Using Google Sheets, to work with data instead of just visually inspecting it requires the use of menu tools or using formulas. Formulas may be more difficult to actually implement and read what it is doing, but it is more reproducible for others and yourself who are reviewing your work. Using menu tools is not reproducible given there is no record of what was done and when it was done. `=COUNTA(A:A)` is an example of a Google Sheets formula.
+Using Google Sheets, to work with data instead of just visually inspecting it requires the use of menu tools or using formulas. Formulas may be more difficult to actually implement and read / understand what they are doing, but formulas are more reproducible for others and yourself who are reviewing your work. Reproducibility is the idea that someone can recreate our work and tell exactly what we did. Using menu tools is not reproducible given there is no record of what was done and when it was done. `=COUNTA(A:A)` is an example of a Google Sheets formula.
 
 <details><summary>How to build a formula for Google Sheets</summary>
 
