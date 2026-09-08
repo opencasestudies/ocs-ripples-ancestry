@@ -1049,15 +1049,6 @@ Double click on the chart and the "Chart editor" panel will be opened on the rig
 
 We can customize the plot to appear closer to the original plot. 
 
-k	hexcode
-k1	"#30A9E1"
-k2	"#A41252"
-k3	"#EC5D25"
-k4	"#056EB5"
-k5	"#2BA06A"
-k6	"#2B284B"
-k7	"#FFE6AD"
-
 * Click the "Customize" tab of the Chart editor panel.
 * Under "Series", select "k1" from the dropdown.
 * For Fill color, select the plus sign (`+` "add a custom color") and enter #30A9E1 in the "Hex" box.
