@@ -716,7 +716,7 @@ Instructions for combining several more functions allows you to make multiple su
               )
 ```
 
-This formula uses a lookup table (what we entered in the `Pop Index` Sheet) to search a range of data step by step and make substitutions. The `REDUCE` function is used to update the range of data (in the A column, `A1:A1914`) for each step through the lookup table -- the steps through the lookup table are defined using the `SEQUENCE` and `ROWS` functions. So for each row of the lookup table, this function goes through all of the values in the range and substitues the current value in the cell with the one from the lookup table (column B) if the current value if the search string (column A in the lookup table) is found within the cell. By wrapping this whole thing in `ARRAYFORMULA`, the looping action works, making substitutions across the whole column rather than just a single cell.
+This formula uses a lookup table (what we entered in the `Pop Index` Sheet) to search a range of data step by step and make substitutions. The `REDUCE` function is used to update the range of data (in the A column, `A1:A1914` - this will be all of the rows) for each step through the lookup table -- the steps through the lookup table are defined using the `SEQUENCE` and `ROWS` functions. So for each row of the lookup table, this function goes through all of the values in the range and substitutes the current value in the cell with the one from the lookup table (column B) if the current value if the search string (column A in the lookup table) is found within the cell. By wrapping this whole thing in `ARRAYFORMULA`, the looping action works, making substitutions across the whole column rather than just a single cell.
 
 :::
 
