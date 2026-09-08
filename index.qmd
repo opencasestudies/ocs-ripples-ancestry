@@ -726,6 +726,12 @@ Second, using `Find and replace` from the Edit menu:
 
   * Try it out in your `COPY of ADMIXTURE_ancestry_props` sheet and see how the manual process is. Note that there's not a record of any changes it makes, while at least with the formulas above other people can look at the formulas after the fact.
 
+::: {.emphasis_block}
+
+Mutating or substituting values was important for changing the appearance of the population labels when working with the data in R.
+
+:::
+
 ### Filtering out values
 
 If you needed to filter out rows, you can again use a formula. The [`FILTER` function](https://support.google.com/docs/answer/3093197?hl=en) takes a range of data to copy (and filter while copying). Any parameters after that specify the conditions to evaluate to decide if a row of data is included or filtered out in the copy. So specifying something like `A:A = "Value"` will copy the data for rows where the A column has the value "Value". 
@@ -750,11 +756,17 @@ If you needed to filter out rows, you can again use a formula. The [`FILTER` fun
 
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
 * Name the new sheet "Testing Filter 3".
-* In A1 of the new sheet `Testing Filter 3`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is not (`<>`) "Amhara" and not "Zulu":
+* In A1 of the new sheet `Testing Filter 3`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is not (`<>`) "Amhara" and not "Zulu". The comma between the two conditions (not Amhara and not Zulu) acts as an "and" telling the function to evaluate both conditions when grabbing the data. (We could add more conditions separating them with commas and all of them would be enforced.):
 
 ```{.default}
 =FILTER(ADMIXTURE_ancestry_props!A1:I1914, ADMIXTURE_ancestry_props!A1:A1914 <> "Amhara", ADMIXTURE_ancestry_props!A1:A1914 <> "Zulu")
 ```
+
+::: {.emphasis_block}
+
+Filtering out values was necessary for removing NAs when working with the data in R.
+
+:::
 
 ### Ordering or Sorting
 
@@ -782,7 +794,6 @@ If you wanted to add the column names:
 * Select "+ Insert 1 row above".
 * Enter column header names in the new row.
 
-
 ::: {.question_block}
 
 Why wouldn't we bring the column header names over in the sort function automatically?
@@ -809,6 +820,56 @@ Second, using the built-in Sort functionality / menu tool:
 * Notice that again "African American" sample "NA19625" is listed first in row 2. Because we "froze" the column name row (row 1), those rows are not impacted by the sort.
 
 Note that while the built-in sort functionality is easier to use, it is not as reproducible as the formula because you and others can't review exactly what was done.
+
+What if you didn't want to sort alphabetically and instead wanted to use a specific ordering?
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet "Testing Sort 2".
+* In A1 of the new sheet `Testing Sort 2`, paste the following order of populations:
+
+```{.default}
+Nama
+Zulu
+Mende
+Esan
+Yoruba
+Mandinka
+African Caribbean
+African American
+Banyarwanda
+Banyankole
+Bakiga
+Barundi
+Rwandese
+Baganda
+Luhya
+Gumuz
+Somali
+Wolayta
+Oromo
+Amhara
+Egyptian
+Gujarati
+Mexican
+British
+Italian
+Han Chinese
+```
+
+* In C2 of the new sheet `Testing Sort 2`, paste the following formula:
+
+```{.default}
+=SORT(ADMIXTURE_ancestry_props!A2:I1914, MATCH(ADMIXTURE_ancestry_props!A2:A1914, A1:A26, 0), TRUE)
+```
+
+The addition of the [`MATCH` function](https://support.google.com/docs/answer/3093378?hl=en) to this formula finds the order of the populations in the original dataset according to the order they appear in the A column in the new sheet, looking for exact matches (0) and uses that to sort the whole of the original dataset.
+
+If you scroll, you'll see that the populations are now in the specified order. You will need to bring the column names over for the data.
+
+::: {.emphasis_block}
+
+Ordering or sorting data was valuable for making the populations appear in the order we wanted for the plot in R.
+:::
 
 ### Wide to Long Transformation
 
@@ -852,6 +913,10 @@ Unlike in R, Google Sheets uses data from a wide format when making graphs, so t
 # **Data Visualization**
 
 ------------------------------------------------------------------------
+
+:::{.panel-tabset}
+
+## R
 
 If you have been following along but stopped, we could load our wrangled data like so:
 
@@ -961,9 +1026,102 @@ plot1 + plot2 +
   plot_layout(widths = c(5,0.5), heights=c(12))
 ```
 
+## Google Sheets
+
+Now we will use the imported data to make a plot like the one in the paper.
+
+* Navigate to the original "ADMIXTURE_ancestry_props" sheet if you are not already there. 
+* Select Columns A-I (the original data we imported).
+* Click the "Insert" menu option, then "Chart".
+
+Google Sheets will guess on what kind of chart you want and add it. It's going to look like a bar graph of sorts with thin, vertical strips of color representing the estimated ancestry proportions. The different colors represent the different ancestry clusters (k1, k2, etc.). Along the x-axis each sample is represented uniquelly and labeled with their population (though not every sample is labeled). And there's a white bar in the middle with the sample IDs. 
+
+We will explore the "Setup" of this chart and "Customize" its appearance a little.
+
+Double click on the chart and the "Chart editor" panel will be opened on the right-hand side of the screen.
+
+* Notice that the "Chart type" is specified as "Column chart" which is we want. Google Sheets guessed well (mostly). 
+* However, we want stacking, and "Stacking" is set to "None" currently. Right now it appears that the white we see in the chart is becasue it's plotting each cluster for each sample with their own vertical line. 
+* Switch the "Stacking" selection from "None" to "100%". Now the vertical white strips are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
+* The X-axis shows "pop" with an additional label for "id". CLick the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
+* If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
+* The "Series" section lists k1, k2, k3, k4, k5, k6, and k7 all as their own series.
+
+We can customize the plot to appear closer to the original plot. 
+
+k	hexcode
+k1	"#30A9E1"
+k2	"#A41252"
+k3	"#EC5D25"
+k4	"#056EB5"
+k5	"#2BA06A"
+k6	"#2B284B"
+k7	"#FFE6AD"
+
+* Click the "Customize" tab of the Chart editor panel.
+* Under "Series", select "k1" from the dropdown.
+* For Fill color, select the plus sign (`+` "add a custom color") and enter #30A9E1 in the "Hex" box.
+* Click the green "OK" button.
+* Using this table to find the appropriate Hex value, repeat the process for the remaining series (k2, k3, k4, k5, k6, and k7).
+
+| Cluster | Hex |
+| :----   | :-------: |
+| k2      | #A41252 |
+| k3      | #EC5D25 |
+| k4      | #056EB5 |
+| k5      | #2BA06A |
+| k6      | #2B284B |
+| k7      | #FFE6AD |
+
+Notice that you can drag the edges of the chart to expand the size of it -- making it wider and taller. 
+
+For the 3 remaining ways that the plot looks different than the commentary plot, we can discuss what you would do:
+
+1. The commentary plot has horizontal lines instead of vertical lines. 
+
+* Go back to the "Setup" tab of the "Chart editor".
+* For "Chart type", scroll down to the "Bar" section and select the furthest right option that shows stacked bars the full width of the plot.
+* Back on the Setup tab "Chart type" should say: "100% stacked bar chart".
+
+2. The population order does not match.
+
+* Recreate these graphing steps in the `Testing Sort 2` sheet (from the wrangling section). The population order should match at the end of it.
+
+3. Populations are named more than once 
+
+* There is nothing we can directly do for this plot to fix the issue. However, we can make a separate plot for each population and later combine them. This is a time consuming and repetitive process. For sake of the example, we will do this twice.
+* Navigate to the `Testing Filter 1` sheet (from the wrangling section). 
+* Create a chart with the data:
+  * Chart type "100% stacked bar chart"
+  * For the Y-axis "pop" within the "Setup" tab of the "Chart editor" panel, click the three dots and "Remove" to remove the population labels.
+  * Update the Series colors in the "Customize" tab
+  * Add "Amhara" under the "Title text" option of the "Chart & axis titles" section of the "Customize" tab.
+
+* Repeat the filtering process from the Data Wrangling section together with the building the chart process for the "Nama", "Rwandese", and "Han Chinese" populations all separately.
+
+:::{.emphasis_block}
+
+If you repeated this process for all 26 populations, you could combine the plots together to more closely recreate the plot from the commentary, but that requires a lot of manual work and repeated steps.
+
+:::
+
+:::
+
 # **Analysis**
 
 ------------------------------------------------------------------------
+
+::: {.panel-tabset}
+
+## R
+
+Finding the average proportion of each cluster for each population.
+
+## Google Sheets
+
+Finding the average proportion of each cluster for each population.
+
+:::
 
 # **Summary**
 
