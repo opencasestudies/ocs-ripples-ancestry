@@ -590,6 +590,9 @@ write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.
 First let's take a look at our data. 
 
 * In the first row, we see the column names `pop`, `id`, `k1`, `k2`, `k3`, `k4`, `k5`, `k6`, and `k7`.
+  * The labeled population is in column A
+  * The sample ID is in column B.
+  * The ancestry proportions are in columns C through I.
 * By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals.
   * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A:A)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset, in this case the A column. 
 
@@ -725,30 +728,76 @@ Second, using `Find and replace` from the Edit menu:
 
 ### Filtering out values
 
-If you needed to filter out rows, you can again use a formula. 
+If you needed to filter out rows, you can again use a formula. The [`FILTER` function](https://support.google.com/docs/answer/3093197?hl=en) takes a range of data to copy (and filter while copying). Any parameters after that specify the conditions to evaluate to decide if a row of data is included or filtered out in the copy. So specifying something like `A:A = "Value"` will copy the data for rows where the A column has the value "Value". 
 
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
-* Name the new sheet 'Testing Filter 1'.
-* Give an example of filtering based on observing a value.
-* Note that the headers are not brought over in this example.
+* Name the new sheet "Testing Filter 1".
+* In A1 of the new sheet `Testing Filter 1`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is equal to (`=`) "Amhara":
+
+```{.default}
+=FILTER(ADMIXTURE_ancestry_props!A1:I1914, ADMIXTURE_ancestry_props!A1:A1914 = "Amhara")
+```
+* Note that the headers are not brought over in this example because A1 does not equal "Amhara".
 
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
-* Name the new sheet 'Testing Filter 2'.
-* Give an example of filtering based on not observing a value.
-* Note that the headers are brought over in this example.
+* Name the new sheet "Testing Filter 2".
+* In A1 of the new sheet `Testing Filter 2`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is **not equal** to (`<>`) "Amhara":
+
+```{.default}
+=FILTER(ADMIXTURE_ancestry_props!A1:I1914, ADMIXTURE_ancestry_props!A1:A1914 <> "Amhara")
+```
+* Note that the headers are brought over in this example because the A1 value does not equal "Amhara".
 
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
-* Name the new sheet 'Testing Filter 3'.
-* Give an example of filtering based on not observing either of two values.
+* Name the new sheet "Testing Filter 3".
+* In A1 of the new sheet `Testing Filter 3`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is not (`<>`) "Amhara" and not "Zulu":
+
+```{.default}
+=FILTER(ADMIXTURE_ancestry_props!A1:I1914, ADMIXTURE_ancestry_props!A1:A1914 <> "Amhara", ADMIXTURE_ancestry_props!A1:A1914 <> "Zulu")
+```
 
 ### Ordering or Sorting
 
 If you needed to order / sort values ...
 
-### Long to Wide Transformation
+[`SORT`](https://support.google.com/docs/answer/3093150?hl=en)
 
-If you needed to rearrange or transform the data from a long format to a wide format ...
+### Wide to Long Transformation
 
+If you needed to rearrange or transform the data from a wide format to a long format, [this blog post explains a method to do that](https://www.benlcollins.com/spreadsheets/unpivot-in-google-sheets/).   
+
+* Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
+* Name the new sheet "Longer Data".
+* Copy the following nested formula, double click in A1 of the new sheet (so that the cursor is in the formula bar), paste the nested formula, and press enter / return.
+
+
+```{.default}
+=ARRAYFORMULA(SPLIT(FLATTEN(ADMIXTURE_ancestry_props!B2:ADMIXTURE_ancestry_props!B1914&","
+                            &ADMIXTURE_ancestry_props!A2:ADMIXTURE_ancestry_props!A1914&","
+                            &ADMIXTURE_ancestry_props!C1:ADMIXTURE_ancestry_props!I1&","
+                            &ADMIXTURE_ancestry_props!C2:ADMIXTURE_ancestry_props!I1914
+                            ),
+                    ",")
+              )
+```
+
+This formula works by first concatenating data by putting ampresands (`&`) after and before data to be joined. The actual "character" coming in between the concatenated data is in quotes so a comma (`,`). First, the sample ID is joined with the population label which is then joined with the column names for the ancestry proportions, and then finally the ancestry proportions are concatenated. The FLATTEN function collapses the resulting combined strings into a single vertical column. The SPLIT function then splits the concatenated data at the character that separates the various parts of the data (the comma). As before the ARRAYFORMULA function allows this process to work for the whole dataset rather than one value.
+
+```{r echo=FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_10#slide=id.g3fa5dc926b3_0_10")
+```
+
+After the `FLATTEN` part of the formula, for each sample, there will be 7 rows of 1 column data instead of 7 columns of 1 row of data. The ID and population part of the data will be the same for all 7 rows, but the ancestry proportion label (`k1`, etc.) will be different for all 7 rows. The corresponding estimated ancestry proportion (a decimal number) will not necessarily be the same for all 7 rows (though some may have the same numbers when compared to each other).
+
+After the `SPLIT` part of the formula, for each sample, there will be 7 rows of 4 column data with the ID, population, ancestry proportion label (`k1`, etc.), and estimated ancestry proportion all being in their own columns.
+
+The column names were not brought over. If you wanted to add them:
+
+* Right click the "1" for row 1.
+* Select "+ Insert 1 row above".
+* Enter column header names in the new row.
+
+Unlike in R, Google Sheets prefers the data is in a wide format when making graphs, so transforming wide data to long data is not necessary for the data visualization steps of this case study. 
 
 :::
 
