@@ -975,7 +975,7 @@ The column names were not brought over. If you wanted to add them:
 * Select "+ Insert 1 row above".
 * Enter column header names in the new row.
 
-<details>
+</details>
 
 :::
 
