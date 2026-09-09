@@ -489,11 +489,15 @@ Import the data file that you've just downloaded to Google Sheets.
   * In the `Import file` window that pops open, select the `Upload` tab.
   * Click the blue "Browse" button.
   * Find the `ADMIXTURE_ancestry_props.txt` file that you downloaded in the previous step, and select that to upload.
-  * Leave the "Import location" as the "Replace spreasheet option".
+  * Leave the "Import location" as the "Replace spreadsheet" option.
   * Switch the "Separator type" from "Detect automatically" to **"Tab"**.
   * Ensure that the "Convert text to numbers, dates, and formulas" option is checked.
   * Click the green "Import data" button on the bottom right of the window.
 
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_91#slide=id.g3fa5dc926b3_0_91")
+```
 
 :::
 
@@ -589,6 +593,10 @@ write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.
 
 First let's take a look at our data. 
 
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_96#slide=id.g3fa5dc926b3_0_96")
+```
+
 * In the first row, we see the column names `pop`, `id`, `k1`, `k2`, `k3`, `k4`, `k5`, `k6`, and `k7`.
   * The labeled population is in column A
   * The sample ID is in column B.
@@ -596,7 +604,11 @@ First let's take a look at our data.
 * By scrolling, we see that there are 1914 rows of data (including the header), meaning there is data for 1913 individuals.
   * If you didn't want to scroll to see how much data there is, you could enter `=COUNTA(A:A)` into a spreadsheet cell off to the side and it would return the same number. The [`COUNTA` function in Google sheets](https://support.google.com/docs/answer/3093991?hl=en) returns how many values are in a dataset, in this case the A column. 
 
+::: {.emphasis_block}
+
 Using Google Sheets, to work with data instead of just visually inspecting it requires the use of menu tools or using formulas. Formulas may be more difficult to actually implement and read / understand what they are doing, but formulas are more reproducible for others and yourself who are reviewing your work. Reproducibility is the idea that someone can recreate our work and tell exactly what we did. Using menu tools is not reproducible given there is no record of what was done and when it was done. `=COUNTA(A:A)` is an example of a Google Sheets formula.
+
+:::
 
 <details><summary>How to build a formula for Google Sheets</summary>
 
@@ -604,13 +616,25 @@ Add some basic tips about writing Google Sheets Formulas
 
 * Uses functions
 * Starts with `=`
-* Can be nested (but only one `=` )
 * Can be all uppercase or all lowercase
 * Takes 'arguments' or 'parameters'
 * How to write a range
 * How to reference a range in a different sheet
 
-Make an image showing a formula and highlighting some of this stuff
+```{r echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_50#slide=id.g3fa5dc926b3_0_50")
+```
+
+* Can be nested (but only one `=` )
+
+```{r echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_76#slide=id.g3fa5dc926b3_0_76")
+```
+
+```{r echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_63#slide=id.g3fa5dc926b3_0_63")
+```
+
 
 </details>
 
@@ -641,6 +665,12 @@ The **wrangling steps that are being performed in the R version of this case stu
 
 If you want to try any of the suggestions here just to play around with the concepts, click the downward facing arrow next to the Google Sheet name `ADMIXTURE_ancestry_props` on the bottom banner and click "Duplicate". You can treat the new "Copy of ADMIXTURE_ancestry_props" like a sandbox where you can test some of the data wrangling capabilities of Google Sheets.
 
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_104#slide=id.g3fa5dc926b3_0_104")
+```
+
+The ultimate goal is to recreate the figure from the Nature Commentary. Some of the skills that can be practiced in this section will be useful for that goal when building the Data Visualization in the next section of the Case Study.
+
 :::
 
 ### Mutating or Substituting Values
@@ -662,12 +692,26 @@ First, the method using the [`substitute` function](https://support.google.com/d
 Instructions for trying `SUBSTITUTE` for a single substitution:
 
 * In the `COPY of ADMIXTURE_ancestry_props` sheet, click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
-* Enter `=SUBSTITUTE(A1:A1914, "pop", "Test") in B1 and B4. 
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_113#slide=id.g3fa5dc926b3_0_113")
+```
+
+* Enter `=SUBSTITUTE(A1:A1914, "pop", "Test")` in B1 and B4. (If after entering the formula in B1, it suggests you may want to autofill the rest of the column, you can reject that suggestion.)
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_119#slide=id.g3fa5dc926b3_0_119")
+```
+
 * Notice that B1 shows `"Test"` (because A1 has the value "pop"), and B4 shows `"Amhara"` (because A4 does not have the value "pop"). The rest of the cells in the B column are blank.
 * Enter `=SUBSTITUTE(A1:A1914, "Zulu", "Test")` in B5 and B50.
 * Notice that B5 shows `"Amhara"` (because A5 does not have the value "Zulu"), and B50 shows `"Test"` (because A50 has the value "Zulu"). The rest of the cells in the B column (besides B1 and B4) are blank.
 * Enter `=SUBSTITUTE(A1:A1914, "Amh", "test")` in B3.
 * Notice that B3 shows `testara` (because A3 has the value `"Amhara"`) and substitute replaces the `Amh` part with `test'.
+
+```{r echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_125#slide=id.g3fa5dc926b3_0_125")
+```
 
 #### Single across a range
 
@@ -678,6 +722,10 @@ Instructions for trying `ARRAYFORMULA` & `SUBSTITUTE` for a single substitution:
 * Notice that column B autofills, copying column A except for the first value which changes from `"pop"` to `"Test"`. 
 * Click cell B1 and edit the formula in the formula bar, switching `"pop"` to `"Amhara"` and press enter / return.
 * Notice that the column now switches `"Test"` back to `"pop"` in the first row, and every occurrence of `"Amhara"` switches to `"Test"`. 
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_133#slide=id.g3fa5dc926b3_0_133")
+```
 
 #### Multiple across a range
 
@@ -698,6 +746,11 @@ Instructions for combining several more functions allows you to make multiple su
     * "Egyptians" in B3
     * "ESN" in B4
     * "test" in B5
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_140#slide=id.g3fa5dc926b3_0_140")
+```
+
 * Navigate back to the sheet "Copy of ADMIXTURE_ancestry_props".
 * Click the down arrow next to the "A" for the "A" column and select `"+ Insert 1 column right"`.
 * Copy the following nested formula, double click in B1 (so that the cursor is in the formula bar), paste the nested formula, and press enter / return.
@@ -718,13 +771,23 @@ Instructions for combining several more functions allows you to make multiple su
 
 This formula uses a lookup table (what we entered in the `Pop Index` Sheet) to search a range of data step by step and make substitutions. The `REDUCE` function is used to update the range of data (in the A column, `A1:A1914` - this will be all of the rows) for each step through the lookup table -- the steps through the lookup table are defined using the `SEQUENCE` and `ROWS` functions. So for each row of the lookup table, this function goes through all of the values in the range and substitutes the current value in the cell with the one from the lookup table (column B) if the current value if the search string (column A in the lookup table) is found within the cell. By wrapping this whole thing in `ARRAYFORMULA`, the looping action works, making substitutions across the whole column rather than just a single cell.
 
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_146#slide=id.g3fa5dc926b3_0_146")
+```
+
+* Scroll the "COPY of ADMIXTURE_ancestry_props" sheet comparing column A to column B and see that your substitutions (column B in Pop Index) are in column B here when the search criteria from column A in Pop Index is in column A here.
+
 :::
 
 :::
 
 Second, using `Find and replace` from the Edit menu:
 
-  * Try it out in your `COPY of ADMIXTURE_ancestry_props` sheet and see how the manual process is. Note that there's not a record of any changes it makes, while at least with the formulas above other people can look at the formulas after the fact.
+  * Try it out in your `COPY of ADMIXTURE_ancestry_props` sheet and see how the manual process is. Note that there's not a record of any changes it makes, while at least with the formulas above other people can look at the formulas after the fact. If you tried to record what you did manually, it would take time and you could easily miss writing down a step.
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_152#slide=id.g3fa5dc926b3_0_152")
+```
 
 ::: {.emphasis_block}
 
@@ -764,7 +827,9 @@ If you needed to filter out rows, you can again use a formula. The [`FILTER` fun
 
 ::: {.emphasis_block}
 
-Filtering out values was necessary for removing NAs when working with the data in R.
+Filtering out values was necessary for removing NAs when working with the data in R. Specifically in R, we were removing a few samples that weren't included in the original plot and we had recoded those sample populations to be NA. The data for these Google Sheets activities have already removed those populations. 
+
+However, using this filtering function will be useful within the Data Visualization section later on.
 
 :::
 
@@ -785,7 +850,7 @@ This function's parameters include a range of data (which will be sorted), the c
 ```
 
 * Notice that "African American" sample "NA19625" is listed first.
-* Edit the formula to switch the TRUE --> FALSE (descending sort Z --> A).
+* Edit the formula to switch the TRUE to FALSE (descending sort Z --> A).
 * Notice that the "Zulu" sample "EGAN00001068937" is now listed first and the estimated proportions of ancestry changed too, so the whole dataset is being sorted based on the population.
 
 If you wanted to add the column names:
@@ -868,10 +933,14 @@ If you scroll, you'll see that the populations are now in the specified order. Y
 
 ::: {.emphasis_block}
 
-Ordering or sorting data was valuable for making the populations appear in the order we wanted for the plot in R.
+Ordering or sorting data was valuable for making the populations appear in the order we wanted for the plot in R, and this specific example in `Testing Sort 2` will be useful in building the plot in the next section of the Case Study.
 :::
 
 ### Wide to Long Transformation
+
+Unlike in R, Google Sheets uses data from a wide format when making graphs, so transforming wide data to long data is not necessary for the data visualization steps of this case study. 
+
+<details><summary>How would you transform data from wide to long format in Google Sheets</summary>
 
 If you needed to rearrange or transform the data from a wide format to a long format, [this blog post explains a method to do that](https://www.benlcollins.com/spreadsheets/unpivot-in-google-sheets/).   
 
@@ -906,7 +975,7 @@ The column names were not brought over. If you wanted to add them:
 * Select "+ Insert 1 row above".
 * Enter column header names in the new row.
 
-Unlike in R, Google Sheets uses data from a wide format when making graphs, so transforming wide data to long data is not necessary for the data visualization steps of this case study. 
+<details>
 
 :::
 
@@ -925,7 +994,16 @@ load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
 
 
-To visualize our data, we will first need to make it into a form called long form. This will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+To visualize our data, we will first need to make it into a form called long form. 
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_36#slide=id.g3fa5dc926b3_0_36")
+```
+
+In the example above, each sample originally had a single row for its data with different columns having different k proportions. Rows summed to 1. However, looking at the same data transformed to be long form, each sample now has multiple rows with only one column having proportions, but the corresponding value in the "subcategory" column telling you which k proportion that is.
+
+This long form will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+
 
 ```{r}
 ancestry_long <- ancestry_props %>%
@@ -1040,8 +1118,12 @@ We will explore the "Setup" of this chart and "Customize" its appearance a littl
 
 Double click on the chart and the "Chart editor" panel will be opened on the right-hand side of the screen.
 
-* Notice that the "Chart type" is specified as "Column chart" which is we want. Google Sheets guessed well (mostly). 
-* However, we want stacking, and "Stacking" is set to "None" currently. Right now it appears that the white we see in the chart is becasue it's plotting each cluster for each sample with their own vertical line. 
+* Notice that the "Chart type" is specified as "Column chart" which is we want. Google Sheets guessed well (mostly). However, we want stacking, and "Stacking" is set to "None" currently. Right now it appears that the white we see in the chart is becasue it's plotting each cluster for each sample with their own vertical line. With stacking, each bar / vertical line is split into colored segments to show how different sub-categories (the colors) contribute to the overall total. So without stacking, each bar will show some value between 0 and 1 and multiple bars (next to each other) will be needed to show the values for all of the sub-categories within one sample ID. With stacking, only one bar is needed for each sample ID and every bar will span the full 0 to 1 of the axis, with changes in color representing different proportions / values of the different sub-categories.
+
+```{r echo =FALSE}
+ottrpal::include_slide('https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_20#slide=id.g3fa5dc926b3_0_20')
+```
+
 * Switch the "Stacking" selection from "None" to "100%". Now the vertical white strips are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
 * The X-axis shows "pop" with an additional label for "id". CLick the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
 * If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
