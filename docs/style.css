@@ -111,6 +111,14 @@ li.toctree-l2:first-child {
   background-image: url("assets/box_images/cite.png");
 }
 
+.inner_block {
+  padding-top: 5px;
+  padding-left: 10px;
+  color: black;
+  background-color: white;
+  border-bottom-right-radius: 10px;
+}
+
 
 .scrollable {
    white-space: pre !important;
