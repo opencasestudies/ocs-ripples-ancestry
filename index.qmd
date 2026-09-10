@@ -808,6 +808,10 @@ If you needed to filter out rows, you can again use a formula. The [`FILTER` fun
 ```
 * Note that the headers are not brought over in this example because A1 does not equal "Amhara".
 
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_159#slide=id.g3fa5dc926b3_0_159")
+```
+
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
 * Name the new sheet "Testing Filter 2".
 * In A1 of the new sheet `Testing Filter 2`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is **not equal** to (`<>`) "Amhara":
@@ -817,12 +821,20 @@ If you needed to filter out rows, you can again use a formula. The [`FILTER` fun
 ```
 * Note that the headers are brought over in this example because the A1 value does not equal "Amhara".
 
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_166#slide=id.g3fa5dc926b3_0_166")
+```
+
 * Click the `+` (Add Sheet) button on the bottom left of the Google Sheet.
 * Name the new sheet "Testing Filter 3".
 * In A1 of the new sheet `Testing Filter 3`, enter the following formula that is specifying to filter the range to only include rows where the `pop` column is not (`<>`) "Amhara" and not "Zulu". The comma between the two conditions (not Amhara and not Zulu) acts as an "and" telling the function to evaluate both conditions when grabbing the data. (We could add more conditions separating them with commas and all of them would be enforced.):
 
 ```{.default}
 =FILTER(ADMIXTURE_ancestry_props!A1:I1914, ADMIXTURE_ancestry_props!A1:A1914 <> "Amhara", ADMIXTURE_ancestry_props!A1:A1914 <> "Zulu")
+```
+
+```{r, echo = FALSE}
+ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_173#slide=id.g3fa5dc926b3_0_173")
 ```
 
 ::: {.emphasis_block}
@@ -1125,7 +1137,7 @@ ottrpal::include_slide('https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 ```
 
 * Switch the "Stacking" selection from "None" to "100%". Now the vertical white strips are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
-* The X-axis shows "pop" with an additional label for "id". CLick the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
+* The X-axis shows "pop" with an additional label for "id". Click the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
 * If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
 * The "Series" section lists k1, k2, k3, k4, k5, k6, and k7 all as their own series.
 
