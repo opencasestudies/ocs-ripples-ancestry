@@ -450,6 +450,8 @@ ancestry_props <- readr::read_table(here("data/raw/ancestry_props.Q"))
 
 ```
 
+:::{.emphasis_block}
+
 <details><summary>Typical Q-matrix files</summary>
 
 `.Q` files typically use a space as a delimiter separating different columns of data from each other.
@@ -471,6 +473,8 @@ ancestry_props <-
 This code specifies that the column names should be "pop" for column 1, "id" for column 2, and "k1", "k2", "k3", "k4", ..., "k7" for the remaining columns.
 
 </details>
+
+:::
 
 Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
 
