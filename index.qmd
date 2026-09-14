@@ -892,7 +892,7 @@ The "pop" column name would have been sorted along with the rest of the data and
 Second, using the built-in Sort functionality / menu tool:
 
 * In the `COPY of ADMIXTURE_ancestry_props` sheet, click the "View" menu option, followed by "Freeze", and "1 row".
-* Click the "A" for the A column.
+* Click the "A" for the A column.  This will select the whole column.
 * Click the "Data" menu option, followed by "Sort sheet", and "Sort sheet by column A (A to Z)".
 * Notice that again "African American" sample "NA19625" is listed first in row 2. Because we "froze" the column name row (row 1), those rows are not impacted by the sort.
 
