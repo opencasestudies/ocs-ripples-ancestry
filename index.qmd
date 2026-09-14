@@ -456,6 +456,20 @@ ancestry_props <- readr::read_table(here("data/raw/ancestry_props.Q"))
 
 Typicaly `.Q` files don't container headers/column names because the population genetics software doesn't expect/use column names. Therefore, if this were a typical `.Q` file, when reading in the data, we would need to ensure that we specify the names of the headers/column names so that the first row of data is included within the data itself, and not treated as a header. However, column names have been added to this file for you already.
 
+Typical import might look like this:
+
+```{R, eval = FALSE}
+ancestry_props <-
+    readr::read_table("FILENAME.Q", 
+                      col_names = c("pop", 
+                                    "id", 
+                                    paste0("k", 1:7)
+                                    )
+                    )
+```
+
+This code specifies that the column names should be "pop" for column 1, "id" for column 2, and "k1", "k2", "k3", "k4", ..., "k7" for the remaining columns.
+
 </details>
 
 Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
