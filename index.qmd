@@ -443,7 +443,7 @@ We can try to group people by evaluating which SNP variants co-occur or seem to 
 
 ## R
 
-Estimated ancestry proportions from programs like ADMIXTURE are stored in a Q-matrix or `.Q` file. The number of rows corresponds to the number of samples, while the number of columns represents the number of ancestry groups that the samples were clustered amongst. We can read in these estimated ancestry proportions using the `read_table` function from `readr`.
+Estimated ancestry proportions from programs like ADMIXTURE are stored in a Q-matrix or `.Q` file. The number of rows corresponds to the number of samples, while the number of columns represents the number of ancestry groups that the samples were clustered among. We can read in these estimated ancestry proportions using the `read_table` function from `readr`.
 
 ```{r, message=FALSE, warning=FALSE}
 ancestry_props <- readr::read_table(here("data/raw/ancestry_props.Q"))
@@ -456,7 +456,7 @@ ancestry_props <- readr::read_table(here("data/raw/ancestry_props.Q"))
 
 `.Q` files typically use a space as a delimiter separating different columns of data from each other.
 
-Typicaly `.Q` files don't container headers/column names because the population genetics software doesn't expect/use column names. Therefore, if this were a typical `.Q` file, when reading in the data, we would need to ensure that we specify the names of the headers/column names so that the first row of data is included within the data itself, and not treated as a header. However, column names have been added to this file for you already.
+Typically `.Q` files don't container headers/column names because the population genetics software doesn't expect/use column names. Therefore, if this were a typical `.Q` file, when reading in the data, we would need to ensure that we specify the names of the headers/column names so that the first row of data is included within the data itself, and not treated as a header. However, column names have been added to this file for you already.
 
 Typical import might look like this:
 
