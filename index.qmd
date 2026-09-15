@@ -443,14 +443,38 @@ We can try to group people by evaluating which SNP variants co-occur or seem to 
 
 ## R
 
-When reading in the data, we want to ensure that we specify the names of the headers so that the first row of data is included within the data itself and not treated as a header. 
+Estimated ancestry proportions from programs like ADMIXTURE are stored in a Q-matrix or `.Q` file. The number of rows corresponds to the number of samples, while the number of columns represents the number of ancestry groups that the samples were clustered among. We can read in these estimated ancestry proportions using the `read_table` function from `readr`.
 
 ```{r, message=FALSE, warning=FALSE}
-ancestry_props <-
-  readr::read_table(here("data/raw/AGR.without_related_chr10_maf001_LDp50_final_removesmallpops_shrinkBaganda.combined_fam.Q"), col_names = c("pop", "id", paste0("k", 1:7)))
+ancestry_props <- readr::read_table(here("data/raw/ancestry_props.Q"))
 
-ancestry_props_prelim <- ancestry_props
 ```
+
+:::{.emphasis_block}
+
+<details><summary>Typical Q-matrix files</summary>
+
+`.Q` files typically use a space as a delimiter separating different columns of data from each other.
+
+Typically `.Q` files don't container headers/column names because the population genetics software doesn't expect/use column names. Therefore, if this were a typical `.Q` file, when reading in the data, we would need to ensure that we specify the names of the headers/column names so that the first row of data is included within the data itself, and not treated as a header. However, column names have been added to this file for you already.
+
+Typical import might look like this:
+
+```{R, eval = FALSE}
+ancestry_props <-
+    readr::read_table("FILENAME.Q", 
+                      col_names = c("pop", 
+                                    "id", 
+                                    paste0("k", 1:7)
+                                    )
+                    )
+```
+
+This code specifies that the column names should be "pop" for column 1, "id" for column 2, and "k1", "k2", "k3", "k4", ..., "k7" for the remaining columns.
+
+</details>
+
+:::
 
 Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
 
