@@ -42,6 +42,10 @@ To access the GitHub repository to see the source materials and data that went i
 
 This case study explores the topic of human {{< glossary "genomic variation" >}}, especially with respect to {{< glossary ancestry >}}.
 
+We will use this [article](https://www-nature-com.fhcrc.idm.oclc.org/articles/d41586-022-03252-z) to motivate the case study. We will show how to reproduce a major figure shown below from this article and learners/instructors have the option of using either Google Sheets or R to perform the analysis and data visualization. 
+
+<img src="resources/images/nat_com_fig.png" alt="Nat Comm image to replicate">
+
 :::::::: definition_box
 ::::::: panel-tabset
 ### **Definition**: Genomic Variation
@@ -529,6 +533,12 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 
 ------------------------------------------------------------------------
 
+As a reminder our goal is to recreate the following figure:
+
+<img src="resources/images/nat_com_fig.png" alt="Nat Comm image to replicate">
+
+We therefore, need to see if the data matches what we need to make this figure.
+
 :::{.panel-tabset}
 
 ## R
@@ -693,7 +703,7 @@ If you want to try any of the suggestions here just to play around with the conc
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_104#slide=id.g3fa5dc926b3_0_104")
 ```
 
-The ultimate goal is to recreate the figure from the Nature Commentary. Some of the skills that can be practiced in this section will be useful for that goal when building the Data Visualization in the next section of the Case Study.
+The ultimate goal is to recreate the figure from this motivating [Nature Commentary](https://www-nature-com.fhcrc.idm.oclc.org/articles/d41586-022-03252-z). Some of the skills that can be practiced in this section will be useful for that goal when building the Data Visualization in the next section of the Case Study.
 
 :::
 
@@ -1019,6 +1029,10 @@ The column names were not brought over. If you wanted to add them:
 
 ------------------------------------------------------------------------
 
+As a reminder our goal is to recreate the following figure:
+
+<img src="resources/images/nat_com_fig.png" alt="Nat Comm image to replicate">
+
 :::{.panel-tabset}
 
 ## R
@@ -1056,8 +1070,19 @@ head(ancestry_long)
 
 Nice now we have all our k values in one column and another column indicating what k it came from. 
 
-Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
+Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  
 
+We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
+
+```{r}
+ ancestry_long %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k),
+             group = pop))+
+  geom_bar(stat = "identity") 
+
+```
 ```{r}
  ancestry_long %>%
   ggplot(aes(y=id,
@@ -1067,8 +1092,7 @@ Now we will use this to make a plot like the one in the paper. We will use the `
 
 ```
 
-
-OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot. 
+OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot.  
 
 ```{r fig.width = 5, fig.height = 10}
 plot1 <- ancestry_long %>%
