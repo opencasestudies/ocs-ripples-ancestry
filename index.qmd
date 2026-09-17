@@ -1109,7 +1109,7 @@ ancestry_long %>%
 ```
 Nice, that is looking more like the plot we are aiming for.
 
-Ok now let's try to tackle that y axis - it is basically impossible to see what is happening right now. Let's try filtering our data first to just a few populations to make sure we are seeing what we expect and then we will clean it up. We can use the `filter()` function to filter our data. We need to specify that we are looking for a specific string value such as "Amhara" for the rows of the `pop` column. There fore we can use `filter(pop == "Amhara")`. We need a double equal sign to tell R that we need a value exactly equal to the string. A single equal sign is often to indicate values for arguments like when we used `width = 1`, so when R need to know about a condition of equaling a value we need two equal signs. 
+Ok now let's try to tackle that y axis - it is basically impossible to see what is happening right now. Let's try filtering our data first to just one population to make sure we are seeing what we expect and then we will clean it up. We can use the `filter()` function to filter our data. We need to specify that we are looking for a specific string value such as "Amhara" for the rows of the `pop` column. There fore we can use `filter(pop == "Amhara")`. We need a double equal sign to tell R that we need a value exactly equal to the string. A single equal sign is often to indicate values for arguments like when we used `width = 1`, so when R need to know about a condition of equaling a value we need two equal signs. 
 
 
 
@@ -1119,34 +1119,154 @@ ancestry_long %>% filter(pop == "Amhara" ) %>%
              x=prop,
              fill = factor(which_k))) +
   geom_bar(stat = "identity", width = 1) 
-
-ancestry_long %>% filter(pop == "Esan") %>% head() %>%
-  ggplot(aes(y=id,
-             x=prop,
-             fill = factor(which_k))) +
-  geom_bar(stat = "identity", width = 1) 
 ```
 
 
-  
 
-```{r fig.width = 5, fig.height = 10}
-ancestry_long %>%
+We can see from this that the y-axis is value for the `id` column. We would instead like to have a label for the population.  
+
+Let's stick with filtering to just this one population so we can really see what is happening. Let's remove the ID label and then we can add a label for the full population. To remove the current y axis, we can use the `theme()` function and use the `axis.text.y = element_blank()` argument to remove the values. This is a bit of a more complicated function. It has some specific requirements for how it is used, but it can change the look of nearly every aspect of a plot. See the [documentation for this function](https://ggplot2.tidyverse.org/reference/theme.html) to learn more. Basically, it can take many different options as things to modify, such as `axis.text.y`, which indicates that we want to modify the text of the y axis and `element_blank()` is used to remove it.  We can also remove our legend for the clusters as we don't have that in the plot we are trying to replicate. We can use `legend.position = "none"` for that. This may seem a bit tricky but programmers and scientists would look up what the documentation suggests to know how to do this. 
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara") %>%
   ggplot(aes(y=id,
              x=prop,
-             fill = factor(which_k),
-             group = pop)) +
-  geom_bar(stat = "identity", position = "stack", width = 1) +
-  facet_col(~pop,
-             #ncol=1, #included in facet_wrap, but not facet_col
-             strip.position = "left",
-             scales = "free_y",
-             space = "free") + #argument in facet_col, but not facet_wrap -- better reflects how many samples are in the facet in my opinion
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
   theme(axis.text.y = element_blank(),
-        strip.text.y.left = element_text(angle = 0),
-        strip.background = element_blank(),
+        legend.position = "none") 
+
+```
+
+We still seem to have tick marks so let's get rid of those. We can use `axis.ticks = element_blank()` to do so, similar to how we removed the y axis text.
+
+
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none") 
+
+```
+Notice how it still says "id" on the left? This is the y axis label. We can remove that by renaming it to nothing  by adding `ylab = ""`. Notice that there is nothing between the quotes here. 
+
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none") +
+  ylab("")
+
+```
+
+Nice! We are getting there. Now let's add the label for the population. This is a bit of an advanced method, but we can do so making something called a facet column using the `facet_col` function of the `ggforce` package. We need to specify what column we want to use, we know we want the `pop` column since we want to have our populations listed. We use a tilda or `~` to indicate what to use. Then we need to tell where we want this to be listed and to match the plot we are aiming for, we should use the left. We can use `strip.position = "left"` to do so (otherwise it will be at the top by default).
+
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
         legend.position = "none") +
   ylab("") +
+  facet_col(~pop, 
+             strip.position = "left")
+
+```
+Nice! This is really starting to look good. One final thing we could do is rotate the text so that it isn't vertical to match the Nature Commentary figure. We could also get rid fo the gray background. To do so we, we need to add a couple of arguments to the `theme` function. We can use the `strip.text.y.left` function to do this and we specify that we want the angle of the text to be zero using `element_text(angle = 0)`. To remove the background we can use `strip.background = "none"`.
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara") %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left")
+
+```
+OK now let's see how that looks for all of the populations. To do so we need to remove our filter.
+
+```{r fig.width = 5, fig.height = 10}
+ancestry_long %>% 
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left",
+            scales = "free_y")
+
+```
+Ok so this looks a bit odd because we need to tell R that is ok for our y axis populations to take up different amounts of space and to have different values for the y axis. We can allow for this using `scale = "free_y"` to let the y axis vary and `space = "free"` in the `facet_col` function to show in a relative manner how many samples are in each population based on the height. 
+
+
+```{r fig.width = 5, fig.height = 10}
+ancestry_long %>% 
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left",
+            scales = "free_y",
+            space = "free")
+
+```
+Now let's take a look at the figure we are trying to replicate again.
+
+<img src="resources/images/nat_com_fig.png" alt="Nat Comm image to replicate">
+
+Looks like the major thing left now is the color. We can adjust it and make it match by using something called hex codes. These are very specific codes for colors. We can use the `scale_fill_manual()` function to color each of our clusters with the colors used in the original plot. We already figured out what these were, but you can check them using websites like https://imagecolorpicker.com/ to identify the original color hex codes. We have also figured out which k matches which color by trying this out a bit, but here we add this to our plot code. 
+
+```{r fig.width = 5, fig.height = 10}
+ancestry_long %>% 
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left",
+            scales = "free_y",
+            space = "free")+
+  
   scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 
@@ -1154,8 +1274,38 @@ ancestry_long %>%
 
 
 
-Todo: will talk about adding in group when we are closer to the main image:
-```{r, fig.width = 2, fig.height=10, message=FALSE, warning=FALSE}
+<details>
+
+<summary>We took this a step further to add the majority cluster column that was shown in the original figure </summary>
+
+To do this we need to figure out what the top k cluster  is for each population.
+
+First let's save our original plot to an object so we can refer to it and add our new plot to it. Let's call it `plot1`. 
+
+```{r}
+plot1 <- ancestry_long %>% 
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left",
+            scales = "free_y",
+            space = "free")+
+  
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+```
+
+Next let's make a new dataset that indicates the top k for each population.
+```{r, message=FALSE, warning=FALSE}
+
 toPlot <- left_join(ancestry_props_temp %>%
             select(!starts_with("k")) %>%
             rownames_to_column(),
@@ -1175,6 +1325,8 @@ toPlot <- left_join(ancestry_props_temp %>%
                summarize(n_ids = n()), by = "pop")
 
 toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
+
+
 
 plot2 <- toPlotExpanded %>%
   ggplot(aes(x = -1,
@@ -1202,6 +1354,7 @@ plot2 <- toPlotExpanded %>%
 plot1 + plot2 +
   plot_layout(widths = c(5,0.5), heights=c(12))
 ```
+</details>
 
 ## Google Sheets
 
