@@ -1276,9 +1276,9 @@ ancestry_long %>%
 
 <details>
 
-<summary>We took this a step further to add the majority cluster column that was shown in the original figure </summary>
+<summary>We took this a step further to add the majority cluster column for the geographical regions that was shown in the original figure </summary>
 
-To do this we need to figure out what the top k cluster  is for each population.
+To do this we need to figure out what the top k cluster  is for each population and region.
 
 First let's save our original plot to an object so we can refer to it and add our new plot to it. Let's call it `plot1`. 
 
@@ -1303,7 +1303,7 @@ plot1 <- ancestry_long %>%
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 ```
 
-Next let's make a new dataset that indicates the top k for each population.
+Next let's make a new dataset that indicates the top k for each population. 
 ```{r, message=FALSE, warning=FALSE}
 
 toPlot <- left_join(ancestry_props_temp %>%
@@ -1326,7 +1326,12 @@ toPlot <- left_join(ancestry_props_temp %>%
 
 toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
 
+```
 
+
+Now, let's plot this.
+
+```{r, message=FALSE, warning=FALSE}
 
 plot2 <- toPlotExpanded %>%
   ggplot(aes(x = -1,
@@ -1349,6 +1354,8 @@ plot2 <- toPlotExpanded %>%
   scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 ```
+
+Now let's put our plots together. We can do so using the `patchwork` package. This allows us to combine plots with the plus sign. We can also specify how much width each should take up with the `plot_layout()` function. 
 
 ```{r fig.width = 5.5, fig.height = 12}
 plot1 + plot2 +
