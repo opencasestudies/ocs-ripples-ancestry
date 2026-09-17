@@ -419,7 +419,7 @@ The data provided from the commentary analysis authors lists the reported ancest
 The data includes 1913 rows and 9 columns with the following information:
 
 1) **pop:** A column about the population where a sample came from, with values like Egyptian or British.
-2) **id:** A column with the European Genome-phenome Archive (EGAN) ID number. This is a way of identifying a person's genomic data. So each row represents a genetic sample from an individual person.
+2) **id:** A column with ID numbers as a way of identifying a person's genomic data. This includes data from 3 genomic data resources including the European Genome-phenome Archive (EGAN), the Human Genome Project (HG), and Coriell Institute for Medical Research (specifically under the National Institute of General Medical Sciences / NIGMS repository) indicated by NA for North America.So each row represents a genetic sample from an individual person. The letters at the beggining indicate what project the data came from.
 3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
 
 
@@ -1078,15 +1078,6 @@ We will create a bar plot so we need to specify that with the `geom_bar` functio
  ancestry_long %>%
   ggplot(aes(y=id,
              x=prop,
-             fill = factor(which_k),
-             group = pop))+
-  geom_bar(stat = "identity") 
-
-```
-```{r}
- ancestry_long %>%
-  ggplot(aes(y=id,
-             x=prop,
              fill = factor(which_k)))+
   geom_bar(stat = "identity") 
 
@@ -1094,8 +1085,53 @@ We will create a bar plot so we need to specify that with the `geom_bar` functio
 
 OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot.  
 
+OK first let's try to tackle those white lines. If we add an argument of `width = 1` to our `geom_bar()` function. this allows all the bars to touch eachother with no space between, in other words they take up the full space (up to 1). We can see how this looks compared to a plot with a smaller width argument. 
+
+First let's try a much smaller width of .1. Here we can see that this makes a large amount of gray or white space between all the groups. 
+  
+```{r}
+ancestry_long %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k)))+
+             #group = pop)) +
+  geom_bar(stat = "identity", width = .1) 
+```
+Now we will use width of 1. 
+
+
+```{r}
+ancestry_long %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) 
+```
+Nice, that is looking more like the plot we are aiming for.
+
+Ok now let's try to tackle that y axis - it is basically impossible to see what is happening right now. Let's try filtering our data first to just a few populations to make sure we are seeing what we expect and then we will clean it up. We can use the `filter()` function to filter our data. We need to specify that we are looking for a specific string value such as "Amhara" for the rows of the `pop` column. There fore we can use `filter(pop == "Amhara")`. We need a double equal sign to tell R that we need a value exactly equal to the string. A single equal sign is often to indicate values for arguments like when we used `width = 1`, so when R need to know about a condition of equaling a value we need two equal signs. 
+
+
+
+```{r}
+ancestry_long %>% filter(pop == "Amhara" ) %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) 
+
+ancestry_long %>% filter(pop == "Esan") %>% head() %>%
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k))) +
+  geom_bar(stat = "identity", width = 1) 
+```
+
+
+  
+
 ```{r fig.width = 5, fig.height = 10}
-plot1 <- ancestry_long %>%
+ancestry_long %>%
   ggplot(aes(y=id,
              x=prop,
              fill = factor(which_k),
@@ -1116,6 +1152,9 @@ plot1 <- ancestry_long %>%
 
 ```
 
+
+
+Todo: will talk about adding in group when we are closer to the main image:
 ```{r, fig.width = 2, fig.height=10, message=FALSE, warning=FALSE}
 toPlot <- left_join(ancestry_props_temp %>%
             select(!starts_with("k")) %>%
