@@ -1052,7 +1052,7 @@ ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9
 
 In the example above, each sample originally had a single row for its data with different columns having different k proportions. Rows summed to 1. However, looking at the same data transformed to be long form, each sample now has multiple rows with only one column having proportions, but the corresponding value in the "subcategory" column telling you which k proportion that is.
 
-This long form will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. we need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+This long form will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. e need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
 
 
 ```{r}
@@ -1093,8 +1093,7 @@ First let's try a much smaller width of .1. Here we can see that this makes a la
 ancestry_long %>%
   ggplot(aes(y=id,
              x=prop,
-             fill = factor(which_k)))+
-             #group = pop)) +
+             fill = factor(which_k))) +
   geom_bar(stat = "identity", width = .1) 
 ```
 Now we will use width of 1. 
@@ -1271,22 +1270,14 @@ ancestry_long %>%
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 
 ```
+Finally, it looks like our clusters are in reverse order. We can fix that with the `group` argument of `ggplot` and group our plot by population.
 
-
-
-<details>
-
-<summary>We took this a step further to add the majority cluster column for the geographical regions that was shown in the original figure </summary>
-
-To do this we need to figure out what the top k cluster  is for each population and region.
-
-First let's save our original plot to an object so we can refer to it and add our new plot to it. Let's call it `plot1`. 
-
-```{r}
-plot1 <- ancestry_long %>% 
+```{r fig.width = 5, fig.height = 10}
+ancestry_long %>% 
   ggplot(aes(y=id,
              x=prop,
-             fill = factor(which_k))) +
+             fill = factor(which_k), 
+             group = pop)) +
   geom_bar(stat = "identity", width = 1) + 
   theme(axis.text.y = element_blank(),
         legend.position = "none",
@@ -1301,42 +1292,119 @@ plot1 <- ancestry_long %>%
   
   scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+
+```
+
+<details>
+
+<summary>We took this a step further to add the majority cluster column for the geographical regions that was shown in the original figure. Click here to learn how we did this. </summary>
+
+To do this we need to figure out what the top k cluster is for each population and region.
+
+First let's save our original plot to an object so we can refer to it and add our new plot to it. Let's call it `plot1`. 
+
+```{r}
+plot1 <- ancestry_long %>% 
+  ggplot(aes(y=id,
+             x=prop,
+             fill = factor(which_k),
+             group = pop)) +
+  geom_bar(stat = "identity", width = 1) + 
+  theme(axis.text.y = element_blank(),
+        legend.position = "none",
+        axis.ticks = element_blank(),
+        strip.text.y.left = element_text(angle = 0),
+        strip.background = element_blank()) +
+  ylab("") +
+  facet_col(~pop, 
+             strip.position = "left",
+            scales = "free_y",
+            space = "free")+
+  
+  scale_fill_manual(breaks = c("k6", "k7", "k1", "k4", "k5", "k3", "k2"),
+                    values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
+
+plot1
 ```
 
 Next let's make a new dataset that indicates the top k for each population. 
-```{r, message=FALSE, warning=FALSE}
 
-toPlot <- left_join(ancestry_props_temp %>%
-            select(!starts_with("k")) %>%
-            rownames_to_column(),
-          ancestry_props_temp %>%
-            select(starts_with("k")) %>%
-            mutate(which_k = names(.)[max.col(.)]) %>%
-            rownames_to_column() %>%
-            select(rowname, which_k),
-          by="rowname") %>%
-  group_by(pop, which_k) %>%
-  summarize(count = n()) %>%
-  ungroup() %>%
-  group_by(pop) %>%
-  top_n(1, count) %>%
-  left_join(ancestry_props_temp %>%
-               group_by(pop) %>%
-               summarize(n_ids = n()), by = "pop")
+First let's grab just the columns with the  population and id information for each rows and set that aside. Let's make a new column that contains row IDs so we can match this up with what we will do next. We will use the `rowid_to_column` funtion from the `tibble` package of the `tidyverse`. Let's call this `row_pop_info`
 
-toPlotExpanded <- toPlot[rep(seq_len(nrow(toPlot)), toPlot$n_ids), c("pop", "which_k")]
+```{r}
+ancestry_props_temp %>%
+            rowid_to_column() # creates a new column called rowid
+```
 
+Then we will pivot our columns to be what is "longer"  like we did before using the `pivot_longer()` function. We want to keep our rowid, pop, and id columns so we specify to skip those in the pivot with the `!`, then we assign our new name column to be called `k_name` and the new values column to be called `prop`.
+
+```{r}
+ancestry_props_temp %>% 
+                rowid_to_column() %>% 
+                pivot_longer(!c(rowid, pop, id), 
+                    names_to = "k_name", 
+                    values_to = "prop")
+```
+
+As you can see wee have the same `rowid` value repeated now that the data is long because we have made a new row now for each of the cluster column propotion values. 
+
+Next, we use the `group_by` function to tell R how to deal with subsequent steps - we want the next steps to be done on a group-wise basis for all the unqiue values of the `rowid` column. We want to grab the max proportion value and only keep those rows, so we use the `slice_max` function for that. We then ungroup so that we don't keep our grouping for later steps. This helps us see the max proportion for the clusters for each indiviudal. 
+```{r}
+
+for_plot2 <- ancestry_props_temp %>% 
+                rowid_to_column() %>% 
+                pivot_longer(!c(rowid, pop, id), 
+                    names_to = "k_name", 
+                    values_to = "prop") %>%
+                group_by(rowid) %>% 
+                slice_max(prop) %>%
+                ungroup()
+  
+for_plot2
+```
+
+Nice! let's check what this did, we can use the count function to look at the number of times we see a max cluster name for each population. We are aiming to have one unique cluster for each population. 
+```{r}
+
+count(for_plot2, pop, k_name) %>% print(n = 26)
+```
+
+Looks like we have some duplicates. Let's find the more common maximum cluster across the individuals for a given population. We can do basically the same process as before, but this time we will group by the `pop` column. We will also start with the table made from the `count` function. 
+
+```{r}
+max_k <- count(for_plot2, pop, k_name)  %>% 
+  group_by(pop) %>% 
+  slice_max(n) %>% 
+  ungroup()
+
+max_k
+```
+
+Nice! Now let's rename our column to be a bit more clear, let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for indivudals in that population.
+```{}
+max_k <- max_k %>% rename(max_k_for_pop = k_name)
+
+max_k
+```
+
+Now let's join this data with our original data so that we can make our plot with this additional side plot.
+```{}
+for_plot2 <- full_join(ancestry_props, max_k)
+
+for_plot2
 ```
 
 
 Now, let's plot this.
 
-```{r, message=FALSE, warning=FALSE}
+To make this side plot, we will use a similar method as before, we want the same colors for example. Here we will fill this plot with the color that corresponds to the cluster that was typically the highest for the population.
 
-plot2 <- toPlotExpanded %>%
-  ggplot(aes(x = -1,
+
+```{r}
+plot2 <- for_plot2 %>% 
+    ggplot(aes(x = -1,
              y = row.names(.),
-             fill = which_k)) +
+             fill = max_k_for_pop)) +
   geom_col(width=1) +
   facet_col(~pop,
             scales = "free_y",
@@ -1355,11 +1423,14 @@ plot2 <- toPlotExpanded %>%
                     values = c("#2B284B", "#FFE6AD", "#30A9E1", "#056EB5", "#2BA06A", "#EC5D25", "#A41252"))
 ```
 
+
 Now let's put our plots together. We can do so using the `patchwork` package. This allows us to combine plots with the plus sign. We can also specify how much width each should take up with the `plot_layout()` function. 
 
 ```{r fig.width = 5.5, fig.height = 12}
 plot1 + plot2 +
   plot_layout(widths = c(5,0.5), heights=c(12))
+
+plot1 
 ```
 </details>
 
@@ -1383,7 +1454,7 @@ Double click on the chart and the "Chart editor" panel will be opened on the rig
 ottrpal::include_slide('https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_20#slide=id.g3fa5dc926b3_0_20')
 ```
 
-* Switch the "Stacking" selection from "None" to "100%". Now the vertical white strips are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
+* Switch the "Stacking" selection from "None" to "100%". Now the vertical white stripes are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
 * The X-axis shows "pop" with an additional label for "id". Click the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
 * If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
 * The "Series" section lists k1, k2, k3, k4, k5, k6, and k7 all as their own series.
