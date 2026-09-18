@@ -419,7 +419,7 @@ The data provided from the commentary analysis authors lists the reported ancest
 The data includes 1913 rows and 9 columns with the following information:
 
 1) **pop:** A column about the population where a sample came from, with values like Egyptian or British.
-2) **id:** A column with ID numbers as a way of identifying a person's genomic data. This includes data from 3 genomic data resources including the European Genome-phenome Archive (EGAN), the Human Genome Project (HG), and Coriell Institute for Medical Research (specifically under the National Institute of General Medical Sciences / NIGMS repository) indicated by NA for North America.So each row represents a genetic sample from an individual person. The letters at the beggining indicate what project the data came from.
+2) **id:** A column with ID numbers as a way of identifying a person's genomic data. This includes data from 3 genomic data resources including the European Genome-phenome Archive (EGAN), the Human Genome Project (HG), and Coriell Institute for Medical Research (specifically under the National Institute of General Medical Sciences / NIGMS repository) indicated by NA for North America.So each row represents a genetic sample from an individual person. The letters at the beginning indicate what project the data came from.
 3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
 
 
@@ -1085,7 +1085,7 @@ We will create a bar plot so we need to specify that with the `geom_bar` functio
 
 OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot.  
 
-OK first let's try to tackle those white lines. If we add an argument of `width = 1` to our `geom_bar()` function. this allows all the bars to touch eachother with no space between, in other words they take up the full space (up to 1). We can see how this looks compared to a plot with a smaller width argument. 
+OK first let's try to tackle those white lines. If we add an argument of `width = 1` to our `geom_bar()` function. this allows all the bars to touch each other with no space between, in other words they take up the full space (up to 1). We can see how this looks compared to a plot with a smaller width argument. 
 
 First let's try a much smaller width of .1. Here we can see that this makes a large amount of gray or white space between all the groups. 
   
@@ -1168,7 +1168,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
 
 ```
 
-Nice! We are getting there. Now let's add the label for the population. This is a bit of an advanced method, but we can do so making something called a facet column using the `facet_col` function of the `ggforce` package. We need to specify what column we want to use, we know we want the `pop` column since we want to have our populations listed. We use a tilda or `~` to indicate what to use. Then we need to tell where we want this to be listed and to match the plot we are aiming for, we should use the left. We can use `strip.position = "left"` to do so (otherwise it will be at the top by default).
+Nice! We are getting there. Now let's add the label for the population. This is a bit of an advanced method, but we can do so making something called a facet column using the `facet_col` function of the `ggforce` package. We need to specify what column we want to use, we know we want the `pop` column since we want to have our populations listed. We use a tilde or `~` to indicate what to use. Then we need to tell where we want this to be listed and to match the plot we are aiming for, we should use the left. We can use `strip.position = "left"` to do so (otherwise it will be at the top by default).
 
 
 ```{r}
@@ -1185,7 +1185,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
              strip.position = "left")
 
 ```
-Nice! This is really starting to look good. One final thing we could do is rotate the text so that it isn't vertical to match the Nature Commentary figure. We could also get rid fo the gray background. To do so we, we need to add a couple of arguments to the `theme` function. We can use the `strip.text.y.left` function to do this and we specify that we want the angle of the text to be zero using `element_text(angle = 0)`. To remove the background we can use `strip.background = "none"`.
+Nice! This is really starting to look good. One final thing we could do is rotate the text so that it isn't vertical to match the Nature Commentary figure. We could also get rid of the gray background. To do so we, we need to add a couple of arguments to the `theme` function. We can use the `strip.text.y.left` function to do this and we specify that we want the angle of the text to be zero using `element_text(angle = 0)`. To remove the background we can use `strip.background = "none"`.
 
 ```{r}
 ancestry_long %>% filter(pop == "Amhara") %>%
@@ -1329,14 +1329,14 @@ plot1
 
 Next let's make a new dataset that indicates the top k for each population. 
 
-First let's grab just the columns with the  population and id information for each rows and set that aside. Let's make a new column that contains row IDs so we can match this up with what we will do next. We will use the `rowid_to_column` funtion from the `tibble` package of the `tidyverse`. Let's call this `row_pop_info`
+First let's grab just the columns with the  population and id information for each rows and set that aside. Let's make a new column that contains row IDs so we can match this up with what we will do next. We will use the `rowid_to_column` function from the `tibble` package of the `tidyverse`. Let's call this `row_pop_info`
 
 ```{r}
 ancestry_props_temp %>%
             rowid_to_column() # creates a new column called rowid
 ```
 
-Then we will pivot our columns to be what is "longer"  like we did before using the `pivot_longer()` function. We want to keep our rowid, pop, and id columns so we specify to skip those in the pivot with the `!`, then we assign our new name column to be called `k_name` and the new values column to be called `prop`.
+Then we will pivot our columns to be what is "longer"  like we did before using the `pivot_longer()` function. We want to keep our `rowid`, `pop`, and `id` columns so we specify to skip those in the pivot with the `!`, then we assign our new name column to be called `k_name` and the new values column to be called `prop`.
 
 ```{r}
 ancestry_props_temp %>% 
@@ -1346,9 +1346,9 @@ ancestry_props_temp %>%
                     values_to = "prop")
 ```
 
-As you can see wee have the same `rowid` value repeated now that the data is long because we have made a new row now for each of the cluster column propotion values. 
+As you can see wee have the same `rowid` value repeated now that the data is long because we have made a new row now for each of the cluster column proportion values. 
 
-Next, we use the `group_by` function to tell R how to deal with subsequent steps - we want the next steps to be done on a group-wise basis for all the unqiue values of the `rowid` column. We want to grab the max proportion value and only keep those rows, so we use the `slice_max` function for that. We then ungroup so that we don't keep our grouping for later steps. This helps us see the max proportion for the clusters for each indiviudal. 
+Next, we use the `group_by` function to tell R how to deal with subsequent steps - we want the next steps to be done on a group-wise basis for all the unique values of the `rowid` column. We want to grab the max proportion value and only keep those rows, so we use the `slice_max` function for that. We then remove the grouping with `ungroup()` so that we don't keep our grouping for later steps. This helps us see the max proportion for the clusters for each individual. 
 ```{r}
 
 for_plot2 <- ancestry_props_temp %>% 
@@ -1380,7 +1380,7 @@ max_k <- count(for_plot2, pop, k_name)  %>%
 max_k
 ```
 
-Nice! Now let's rename our column to be a bit more clear, let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for indivudals in that population.
+Nice! Now let's rename our column to be a bit more clear, let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for individuals in that population.
 ```{r}
 max_k <- max_k %>% rename(max_k_for_pop = k_name)
 

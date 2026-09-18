@@ -12,6 +12,7 @@ qmd
 cheatsheet
 CHB
 Chowning
+Coriell
 css
 custimization
 cwrigh
@@ -47,6 +48,7 @@ lightblue
 lightbox
 lightgreen
 Nama
+NIGMS
 missense
 Missense
 mRNA
