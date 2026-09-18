@@ -1381,14 +1381,14 @@ max_k
 ```
 
 Nice! Now let's rename our column to be a bit more clear, let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for indivudals in that population.
-```{}
+```{r}
 max_k <- max_k %>% rename(max_k_for_pop = k_name)
 
 max_k
 ```
 
 Now let's join this data with our original data so that we can make our plot with this additional side plot.
-```{}
+```{r}
 for_plot2 <- full_join(ancestry_props, max_k)
 
 for_plot2
