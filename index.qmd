@@ -419,8 +419,8 @@ The data provided from the commentary analysis authors lists the reported ancest
 The data includes 1913 rows and 9 columns with the following information:
 
 1) **pop:** A column about the population where a sample came from, with values like Egyptian or British.
-2) **id:** A column with ID numbers as a way of identifying a person's genomic data. This includes data from 3 genomic data resources including the European Genome-phenome Archive (EGAN), the Human Genome Project (HG), and Coriell Institute for Medical Research (specifically under the National Institute of General Medical Sciences / NIGMS repository) indicated by NA for North America.So each row represents a genetic sample from an individual person. The letters at the beginning indicate what project the data came from.
-3) **columns labeled k1-k7:** These columns show the proportion of each persons genetic ancestry attributed to 7 divisions of variation. 
+2) **id:** A column with ID numbers as a way of identifying a person's genomic data. This includes data from 3 genomic data resources including the European Genome-phenome Archive (EGAN), the Human Genome Project (HG), and Coriell Institute for Medical Research (specifically under the National Institute of General Medical Sciences / NIGMS repository) indicated by NA for North America. So each row represents a genetic sample from an individual person. The letters at the beginning indicate what project the data came from.
+3) **columns labeled k1-k7:** These columns show the proportion of each person's genetic ancestry attributed to 7 divisions or groups of genomic variation. 
 
 
 If we take a look at a few individual rows of the table, which we will do in a moment, we will see that the proportions in the k columns add up to roughly 1 (there is some rounding in how the data is presented).
@@ -430,11 +430,11 @@ If we take a look at a few individual rows of the table, which we will do in a m
 
 Let's take a minute to dive deeper into what these K columns mean. 
 
-Consider that you have a bag of Halloween candy. Perhaps you want to figure out a way to divide that candy into groups so that you vary the kind of candy you eat until you are out of candy. There are actually many ways you could divide the candy by different features. For example, you could divide it based on if it contains chocolate or has a fruit flavor, or you could divide it by texture, if it is crunchy or chewy, or perhaps you want to share with your Aunt who only likes candy that isn't too sweet or with your cousin who really like sour candy. As you can see there are many ways in which we could group the candy. 
+Consider that you have a bag of Halloween candy. Perhaps you want to figure out a way to divide that candy into groups so that you vary the kind of candy you eat until you are out of candy. There are actually many ways you could divide the candy by different features. For example, you could divide it based on if it contains chocolate or has a fruit flavor, or you could divide it by texture, if it is crunchy or chewy, or perhaps you want to share with your Aunt who only likes candy that isn't too sweet or with your cousin who really likes sour candy. As you can see there are many ways in which we could group the candy. 
 
-In order to group people by ancestry, we can group them by their SNPs. As discussed SNP variants may have been introduced through mutation and then may have continued to persist in specific population or may have largely disappeared because of migration patterns. For example, if a population of a small number of people migrated to an isolated geographical location, any rarer SNPs may become more numerous among later generations that are decedent from these original settlers.  
+In order to group people by ancestry, we can group them by their SNPs. As discussed SNP variants may have been introduced through mutation and then may have continued to persist in a specific population or may have largely disappeared because of migration patterns. For example, if a population of a small number of people migrated to an isolated geographical location, any rarer SNPs may become more numerous among later generations that are descendants from these original settlers (this is called the "founder's effect").  
 
-We can try to group people by evaluating which SNP variants co-occur or seem to distinguish different groups. Going back to our candy example, we might find that a cherry flavor often co-occurs with chewy textures. These two features could help us to group our candy. We may have some candy that has a cherry flavor that are not chewy, but the two features together may help to create the optimal number of groups that we are trying to achieve for our candy sharing and pacing problems. We can use math to help us identify a more optimal number of population groups based on our SNPs. Clustering algorithms help us to reduce the mathematical distances of individuals within our groups or in other words, find clusters that have more similar individuals and keep the clusters generally less overlapping. So the data that we have has identified that 7 clusters generally distinguishes the individuals into groups quite well.  Since humans are quite genetically similar, allowing for individuals to overlap across the clusters is helpful. Therefore, as we will see an individual could have a portion of its SNPs overlap more closely with more than one cluster. 
+We can try to group people by evaluating which SNP variants co-occur or seem to distinguish different groups. Going back to our candy example, we might find that a cherry flavor often co-occurs with chewy textures. These two features could help us to group our candy. We may have some candy that has a cherry flavor that are not chewy, but the two features together may help to create the optimal number of groups that we are trying to achieve for our candy sharing and pacing problems. We can use math to help us identify a more optimal number of population groups based on our SNPs. Clustering algorithms help us to reduce the mathematical distances of individuals within our groups or in other words, find clusters that have more similar individuals, without the clusters overlapping too much. So the data that we have in this case study has been used to identify that 7 clusters generally distinguishes the individuals into groups quite well.  Since humans are quite genetically similar, allowing for individuals to overlap across the clusters is helpful. Therefore, as we will see an individual could have a portion of its SNPs overlap more closely with more than one cluster. 
 
 
 
@@ -480,22 +480,22 @@ This code specifies that the column names should be "pop" for column 1, "id" for
 
 :::
 
-Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row we can do so like this:
+Let's take a look at a few rows now. We can use the `slice` function to get the data for a single row. Say we want the 500th row, we can do so like this:
 
 ```{r}
 slice(ancestry_props, 500) 
 ```
 
 
-We can see that most of the genomic variation appears to match up with cluster 3 and 5. these have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual is mostly attributable to the 5th cluster, or in other words, this person would fit pretty well with that group based on genetic variation, however, other individuals do not group as easily.
+We can see that most of the genomic variation appears to match up with clusters 3 and 5. These have the largest numbers, with k5 showing a much higher proportion that is pretty close to 1. Therefore most of the genetic variation of this individual is mostly attributable to the 5th cluster, or in other words, this person would fit pretty well with that group based on genetic variation, however, other individuals do not group as easily.
 
-Let's take a look at another row, let's look at the 20th row.
+Let's take a look at another row; let's look at the 20th row.
 
 ```{r}
 slice(ancestry_props, 20) 
 ```
 
-Now this individual groups more with 2 clusters, with .38 for k3, and .62 for K6. In this case this person doesn't fit as well within an individual cluster, however, the proportion for each of these clusters, still allows us to identify their genetic variation relative to the other individuals. You can see that we could identify more ancestral groups than just 7 based on how much well an individual matches with these groups. 
+Now this individual groups more with 2 clusters, with .38 for k3, and .62 for K6. In this case this person doesn't fit as well within an individual cluster, however, the proportion for each of these clusters, still allows us to identify their genetic variation relative to the other individuals. You can see that we could identify more ancestral groups than just 7 based on how much variation each individual has within these groups. 
 
 ## Google Sheets
 
@@ -587,7 +587,7 @@ ancestry_props <- ancestry_props %>%
 
 ```
 
-We can check our work by using the `distinct` function again to see how unique values for `pop` we have now:
+We can check our work by using the `distinct` function again to see how many and what unique values for `pop` we have now:
 
 ```{r}
 distinct(ancestry_props, pop)
@@ -604,7 +604,7 @@ ancestry_props <- ancestry_props %>%
 
 ```
 
-Next we want to remove rows where we had NA values. We would always want to be careful about what these mean and if we should remove them. In our case we can't use them to recreate the plot, so we will drop them. Again this step could take quite a bit of time in Excel or Google Sheets (depending on how manually we did it) and we could accidentally remove rows that we don't want to remove!
+Next we want to remove rows where we had NA values. We always want to be careful about what these mean and if we should remove them. In our case we can't use them to recreate the plot, so we will drop them. Again this step could take quite a bit of time in Excel or Google Sheets (depending on how manually we did it) and we could accidentally remove rows that we don't want to remove!
 
 ```{r}
 
@@ -614,7 +614,7 @@ ancestry_props <- ancestry_props %>%
 ancestry_props_temp <- ancestry_props
 ```
 
-Now let's save our clean data using the write. table function. 
+Now let's save our clean data using the write.table function. 
 
 ```{r}
 write.table(ancestry_props, file = here("data/wrangled/ADMIXTURE_ancestry_props.Q"),
@@ -1050,9 +1050,9 @@ To visualize our data, we will first need to make it into a form called long for
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_36#slide=id.g3fa5dc926b3_0_36")
 ```
 
-In the example above, each sample originally had a single row for its data with different columns having different k proportions. Rows summed to 1. However, looking at the same data transformed to be long form, each sample now has multiple rows with only one column having proportions, but the corresponding value in the "subcategory" column telling you which k proportion that is.
+In the example above, each sample originally had a single row for its data with different columns having different k proportions. Rows summed to 1. However, looking at the same data transformed to be long form, each sample now has multiple rows with only one column having proportions, but the corresponding value in the "subcategory" column tells you which k proportion that is.
 
-This long form will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. e need to specify what columns to pivot and what to name the new column where the values will go and what to name the column were the original column names will be used as values. 
+This long form will allow us to work with all of the k columns at once. To do so we will use a function called `pivot_longer`. We need to specify (1: `cols`) what columns to pivot, (2: `values_to`) what to name the new column where the values will go, and (3: `names_to`) what to name the column were the original column names will be used as values. 
 
 
 ```{r}
@@ -1068,9 +1068,9 @@ head(ancestry_long)
 
 ```
 
-Nice now we have all our k values in one column and another column indicating what k it came from. 
+Nice! Now we have all our k values in one column and another column indicating what k it came from. 
 
-Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis and we want to color by what k it came from (`which_k`).  
+Now we will use this to make a plot like the one in the paper. We will use the `ggplot` function of the `ggplot2` package. This is a famous R package for making visualizations. First we need to specify our aesthetics with the `aes` function to indicate what data will be on what axis and how we might color or group our data. In our case we want `id`(which is the gene name)  on the y axis, `prop` on the x axis, and we want to color by what k it came from (`which_k`).  
 
 We will create a bar plot so we need to specify that with the `geom_bar` function. We need to tell R to plot the raw values of y, and we can do that using the `stat = "identity"` argument. Otherwise, it would count the number of rows for unique values in x. 
 
@@ -1083,9 +1083,13 @@ We will create a bar plot so we need to specify that with the `geom_bar` functio
 
 ```
 
-OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. We have some white lines between our rows of data on the plot. Our y axis isn't readable and we have different colors than the original plot.  
+OK not bad! We have made a plot that kinda looks like what we are trying to recreate pretty fast. However, we can do better. 
 
-OK first let's try to tackle those white lines. If we add an argument of `width = 1` to our `geom_bar()` function. this allows all the bars to touch each other with no space between, in other words they take up the full space (up to 1). We can see how this looks compared to a plot with a smaller width argument. 
+- We have some white lines between our rows of data on the plot.
+- Our y-axis isn't readable. 
+- We have different colors than the original plot.  
+
+OK first let's try to tackle those white lines. If we add an argument of `width = 1` to our `geom_bar()` function, this will allow all the bars to touch each other with no space between them. In other words they will take up the full space (up to 1). We can see how this looks compared to a plot with a smaller width argument. 
 
 First let's try a much smaller width of .1. Here we can see that this makes a large amount of gray or white space between all the groups. 
   
@@ -1108,7 +1112,7 @@ ancestry_long %>%
 ```
 Nice, that is looking more like the plot we are aiming for.
 
-Ok now let's try to tackle that y axis - it is basically impossible to see what is happening right now. Let's try filtering our data first to just one population to make sure we are seeing what we expect and then we will clean it up. We can use the `filter()` function to filter our data. We need to specify that we are looking for a specific string value such as "Amhara" for the rows of the `pop` column. There fore we can use `filter(pop == "Amhara")`. We need a double equal sign to tell R that we need a value exactly equal to the string. A single equal sign is often to indicate values for arguments like when we used `width = 1`, so when R need to know about a condition of equaling a value we need two equal signs. 
+Ok now let's try to tackle that y-axis - it is basically impossible to see what is happening right now. Let's try filtering our data first to just one population to make sure we are seeing what we expect and then we will clean it up. We can use the `filter()` function to filter our data. We need to specify that we are looking for a specific string value such as "Amhara" for the rows of the `pop` column. Therefore we can use `filter(pop == "Amhara")`. We need a double equal sign to tell R that we need a value exactly equal to the string. A single equal sign is often used to indicate values for arguments like when we used `width = 1`. So when R needs to know about a condition of equality or that a value needs to equal something specific, we need use two equal signs. 
 
 
 
@@ -1122,9 +1126,9 @@ ancestry_long %>% filter(pop == "Amhara" ) %>%
 
 
 
-We can see from this that the y-axis is value for the `id` column. We would instead like to have a label for the population.  
+We can see from this that the y-axis is the value for the `id` column. We would instead like to have a label for the population.  
 
-Let's stick with filtering to just this one population so we can really see what is happening. Let's remove the ID label and then we can add a label for the full population. To remove the current y axis, we can use the `theme()` function and use the `axis.text.y = element_blank()` argument to remove the values. This is a bit of a more complicated function. It has some specific requirements for how it is used, but it can change the look of nearly every aspect of a plot. See the [documentation for this function](https://ggplot2.tidyverse.org/reference/theme.html) to learn more. Basically, it can take many different options as things to modify, such as `axis.text.y`, which indicates that we want to modify the text of the y axis and `element_blank()` is used to remove it.  We can also remove our legend for the clusters as we don't have that in the plot we are trying to replicate. We can use `legend.position = "none"` for that. This may seem a bit tricky but programmers and scientists would look up what the documentation suggests to know how to do this. 
+Let's stick with filtering to just this one population so we can really see what is happening. Let's remove the ID label and then we can add a label for the full population. To remove the current y-axis, we can use the `theme()` function and use the `axis.text.y = element_blank()` argument to remove the values. This is a bit of a more complicated function. It has some specific requirements for how it is used, but it can change the look of nearly every aspect of a plot. See the [documentation for this function](https://ggplot2.tidyverse.org/reference/theme.html) to learn more. Basically, it can take many different options as things to modify, such as `axis.text.y`, which indicates that we want to modify the text of the y-axis and `element_blank()` is used to remove it.  We can also remove our legend for the clusters as we don't have that in the plot we are trying to replicate. We can use `legend.position = "none"` for that. This may seem a bit tricky but programmers and scientists would look up what the documentation suggests to know how to do this. 
 
 ```{r}
 ancestry_long %>% filter(pop == "Amhara") %>%
@@ -1137,7 +1141,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
 
 ```
 
-We still seem to have tick marks so let's get rid of those. We can use `axis.ticks = element_blank()` to do so, similar to how we removed the y axis text.
+We still seem to have tick marks so let's get rid of those. We can use `axis.ticks = element_blank()` to do so, similar to how we removed the y-axis text.
 
 
 
@@ -1152,7 +1156,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
         legend.position = "none") 
 
 ```
-Notice how it still says "id" on the left? This is the y axis label. We can remove that by renaming it to nothing  by adding `ylab = ""`. Notice that there is nothing between the quotes here. 
+Notice how it still says "id" on the left? This is the y-axis label. We can remove that by renaming it to nothing  by adding `ylab = ""`. Notice that there is nothing between the quotes here. 
 
 
 ```{r}
@@ -1168,7 +1172,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
 
 ```
 
-Nice! We are getting there. Now let's add the label for the population. This is a bit of an advanced method, but we can do so making something called a facet column using the `facet_col` function of the `ggforce` package. We need to specify what column we want to use, we know we want the `pop` column since we want to have our populations listed. We use a tilde or `~` to indicate what to use. Then we need to tell where we want this to be listed and to match the plot we are aiming for, we should use the left. We can use `strip.position = "left"` to do so (otherwise it will be at the top by default).
+Nice! We are getting there. Now let's add the label for the population. This is a bit of an advanced method, but we can do so making something called a facet column using the `facet_col` function of the `ggforce` package. We need to specify what column we want to use to label. We know we want the `pop` column since we want to have our populations listed. We use a tilde or `~` to indicate what to use. Then we need to tell where we want this to be listed and to match the plot we are aiming for, we should use the left. We can use `strip.position = "left"` to do so (otherwise it will be at the top by default).
 
 
 ```{r}
@@ -1185,7 +1189,7 @@ ancestry_long %>% filter(pop == "Amhara") %>%
              strip.position = "left")
 
 ```
-Nice! This is really starting to look good. One final thing we could do is rotate the text so that it isn't vertical to match the Nature Commentary figure. We could also get rid of the gray background. To do so we, we need to add a couple of arguments to the `theme` function. We can use the `strip.text.y.left` function to do this and we specify that we want the angle of the text to be zero using `element_text(angle = 0)`. To remove the background we can use `strip.background = "none"`.
+Nice! This is really starting to look good. One final thing we could do is rotate the text so that it isn't vertical to match the Nature Commentary figure. We could also get rid of the gray background. To do so we, we need to add a couple of arguments to the `theme` function. We can use the `strip.text.y.left` function to do this and we specify that we want the angle of the text to be zero using `element_text(angle = 0)`. To remove the background we can use `strip.background = element_blank()` (like we did earlier with the y-axis text).
 
 ```{r}
 ancestry_long %>% filter(pop == "Amhara") %>%
@@ -1222,7 +1226,7 @@ ancestry_long %>%
             scales = "free_y")
 
 ```
-Ok so this looks a bit odd because we need to tell R that is ok for our y axis populations to take up different amounts of space and to have different values for the y axis. We can allow for this using `scale = "free_y"` to let the y axis vary and `space = "free"` in the `facet_col` function to show in a relative manner how many samples are in each population based on the height. 
+Ok so this looks a bit odd because all of the populations have the same height even though some populations have more individuals than others. So we need to tell R that is ok for our y-axis populations to take up different amounts of space and to have different values for the y-axis. We can allow for this using `scale = "free_y"` to let the y axis vary and `space = "free"` in the `facet_col` function to show in a relative manner how many samples are in each population based on the height. 
 
 
 ```{r fig.width = 5, fig.height = 10}
@@ -1380,7 +1384,7 @@ max_k <- count(for_plot2, pop, k_name)  %>%
 max_k
 ```
 
-Nice! Now let's rename our column to be a bit more clear, let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for individuals in that population.
+Nice! Now let's rename our column to be a bit more clear. Let's call it `max_k_for_pop` because it indicates what was typically the cluster with the highest proportion for individuals in that population.
 ```{r}
 max_k <- max_k %>% rename(max_k_for_pop = k_name)
 
