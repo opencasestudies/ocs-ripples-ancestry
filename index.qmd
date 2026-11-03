@@ -611,7 +611,7 @@ Next we want to remove rows where we had NA values. We always want to be careful
 ancestry_props <- ancestry_props %>%
   tidyr::drop_na() # dropping a few samples that had no data
 
-ancestry_props_temp <- ancestry_props
+ancestry_props_temp <- ancestry_props #we won't need to save this given the way we're rearranging the data visualization section
 ```
 
 Now let's save our clean data using the write.table function. 
@@ -1042,9 +1042,158 @@ If you have been following along but stopped, we could load our wrangled data li
 ```{r, eval = FALSE}
 load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
+To visualize our data, we can use an R package that is meant specifically for plotting these admixture bar graphs.
 
+First, we will need to install the package `xadmix`:
 
-To visualize our data, we will first need to make it into a form called long form. 
+```{r}
+install.packages("xadmix")
+```
+
+Then we can load the package.
+
+```{r}
+library(xadmix)
+```
+
+```{r}
+xadmix::admix_barplot(ancestry_props, 
+                      K = 3:ncol(ancestry_props), 
+                      grouping = "pop", 
+                      individuals = 2, 
+                      names = FALSE, 
+                      palette = rev(c("#30A9E1",
+                                  "#A41252",
+                                  "#EC5D25", 
+                                  "#056EB5", 
+                                  "#2BA06A", 
+                                  "#2B284B", 
+                                  "#FFE6AD"))
+                    )
+```
+
+Show that `sortkey` argument will sort within the facets for that one column. 
+
+## Google Sheets
+
+Now we will use the imported data to make a plot like the one in the paper.
+
+* Navigate to the original "ADMIXTURE_ancestry_props" sheet if you are not already there. 
+* Select Columns A-I (the original data we imported).
+* Click the "Insert" menu option, then "Chart".
+
+Google Sheets will guess on what kind of chart you want and add it. It's going to look like a bar graph of sorts with thin, vertical strips of color representing the estimated ancestry proportions. The different colors represent the different ancestry clusters (k1, k2, etc.). Along the x-axis each sample is represented uniquely and labeled with their population (though not every sample is labeled). And there's a white bar in the middle with the sample IDs. 
+
+We will explore the "Setup" of this chart and "Customize" its appearance a little.
+
+Double click on the chart and the "Chart editor" panel will be opened on the right-hand side of the screen.
+
+* Notice that the "Chart type" is specified as "Column chart" which is we want. Google Sheets guessed well (mostly). However, we want stacking, and "Stacking" is set to "None" currently. Right now it appears that the white we see in the chart is because it's plotting each cluster for each sample with their own vertical line. With stacking, each bar / vertical line is split into colored segments to show how different sub-categories (the colors) contribute to the overall total. So without stacking, each bar will show some value between 0 and 1 and multiple bars (next to each other) will be needed to show the values for all of the sub-categories within one sample ID. With stacking, only one bar is needed for each sample ID and every bar will span the full 0 to 1 of the axis, with changes in color representing different proportions / values of the different sub-categories.
+
+```{r echo =FALSE}
+ottrpal::include_slide('https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_20#slide=id.g3fa5dc926b3_0_20')
+```
+
+* Switch the "Stacking" selection from "None" to "100%". Now the vertical white stripes are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
+* The X-axis shows "pop" with an additional label for "id". Click the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
+* If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
+* The "Series" section lists k1, k2, k3, k4, k5, k6, and k7 all as their own series.
+
+We can customize the plot to appear closer to the original plot. 
+
+* Click the "Customize" tab of the Chart editor panel.
+* Under "Series", select "k1" from the dropdown.
+* For Fill color, select the plus sign (`+` "add a custom color") and enter #30A9E1 in the "Hex" box.
+* Click the green "OK" button.
+* Using this table to find the appropriate Hex value, repeat the process for the remaining series (k2, k3, k4, k5, k6, and k7).
+
+| Cluster | Hex |
+| :----   | :-------: |
+| k2      | #A41252 |
+| k3      | #EC5D25 |
+| k4      | #056EB5 |
+| k5      | #2BA06A |
+| k6      | #2B284B |
+| k7      | #FFE6AD |
+
+Notice that you can drag the edges of the chart to expand the size of it -- making it wider and taller. 
+
+For the 3 remaining ways that the plot looks different than the commentary plot, we can discuss what you would do:
+
+1. The commentary plot has horizontal lines instead of vertical lines. 
+
+* Go back to the "Setup" tab of the "Chart editor".
+* For "Chart type", scroll down to the "Bar" section and select the furthest right option that shows stacked bars the full width of the plot.
+* Back on the Setup tab "Chart type" should say: "100% stacked bar chart".
+
+2. The population order does not match.
+
+* Recreate these graphing steps in the `Testing Sort 2` sheet (from the wrangling section). The population order should match at the end of it.
+
+3. Populations are named more than once 
+
+* There is nothing we can directly do for this plot to fix the issue. However, we can make a separate plot for each population and later combine them. This is a time consuming and repetitive process. For sake of the example, we will do this twice.
+* Navigate to the `Testing Filter 1` sheet (from the wrangling section). 
+* Create a chart with the data:
+  * Chart type "100% stacked bar chart"
+  * For the Y-axis "pop" within the "Setup" tab of the "Chart editor" panel, click the three dots and "Remove" to remove the population labels.
+  * Update the Series colors in the "Customize" tab
+  * Add "Amhara" under the "Title text" option of the "Chart & axis titles" section of the "Customize" tab.
+
+* Repeat the filtering process from the Data Wrangling section together with the building the chart process for the "Nama", "Rwandese", and "Han Chinese" populations all separately.
+
+:::{.emphasis_block}
+
+If you repeated this process for all 26 populations, you could combine the plots together to more closely recreate the plot from the commentary, but that requires a lot of manual work and repeated steps.
+
+:::
+
+:::
+
+# **Analysis**
+
+------------------------------------------------------------------------
+
+We want to find the average proportion of ancestry for each of the clusters for individuals within each population. Once we've done this, we can find which cluster represents the greatest proportion of ancestry for individuals within each population.
+
+::: {.panel-tabset}
+
+## R
+
+Explain use of anonymous functions and link to the style guide: https://style.tidyverse.org/functions.html#anonymous-functions
+
+```{r}
+avg_props <- ancestry_props %>% 
+  group_by(pop) %>% 
+  summarize(across(starts_with("k"), \(x) mean(x))) %>% 
+  rowwise() %>%
+  mutate(which_max_k = which.max(c_across(starts_with("k")))) %>%
+  mutate(which_max_k = paste0("k", which_max_k)) %>%
+  mutate(sumProps = rowSums(pick(starts_with("k"))))
+
+avg_props %>% 
+  print(n=nrow(avg_props), width = Inf)
+```
+
+## Google Sheets
+
+Finding the average proportion of each cluster for each population.
+
+:::
+
+# **Summary**
+
+------------------------------------------------------------------------
+
+# **Continued Learning**
+
+------------------------------------------------------------------------
+
+## **Reinforcement Exercise**
+
+While we have created an admixture bar graph in the Data Visualizaton section of this case study that resembles the original plot from the commentary, there are a couple of differences. We want to create an admixture bar graph that more closely matches the original plot from the commentary.
+
+To visualize our data in a way that more closely resembles the plot from the commentary, we will use `ggplot` to create the stacked bar graph from our data. This way, we'll have more control over the aesthetics of the plot. However, for `ggplot` to work well with the data, we will first need to make it into a form called long form. 
 
 ```{r, echo = FALSE}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_36#slide=id.g3fa5dc926b3_0_36")
@@ -1299,9 +1448,15 @@ ancestry_long %>%
 
 ```
 
+:::{.column-margin}
+Use the output from Data Analysis section instead now.
+:::
+
 <details>
 
 <summary>We took this a step further to add the majority cluster column for the geographical regions that was shown in the original figure. Click here to learn how we did this. </summary>
+
+One more thing that the original plot has that our plot doesn't have is a bar on the far side for each population. This bar is showing which cluster represents the greatest amount of ancestry for that population group of individuals in the sample. We can use our results from the Data Analysis section of the case study to add this.
 
 To do this we need to figure out what the top k cluster is for each population and region.
 
@@ -1437,106 +1592,6 @@ plot1 + plot2 +
 plot1 
 ```
 </details>
-
-## Google Sheets
-
-Now we will use the imported data to make a plot like the one in the paper.
-
-* Navigate to the original "ADMIXTURE_ancestry_props" sheet if you are not already there. 
-* Select Columns A-I (the original data we imported).
-* Click the "Insert" menu option, then "Chart".
-
-Google Sheets will guess on what kind of chart you want and add it. It's going to look like a bar graph of sorts with thin, vertical strips of color representing the estimated ancestry proportions. The different colors represent the different ancestry clusters (k1, k2, etc.). Along the x-axis each sample is represented uniquely and labeled with their population (though not every sample is labeled). And there's a white bar in the middle with the sample IDs. 
-
-We will explore the "Setup" of this chart and "Customize" its appearance a little.
-
-Double click on the chart and the "Chart editor" panel will be opened on the right-hand side of the screen.
-
-* Notice that the "Chart type" is specified as "Column chart" which is we want. Google Sheets guessed well (mostly). However, we want stacking, and "Stacking" is set to "None" currently. Right now it appears that the white we see in the chart is because it's plotting each cluster for each sample with their own vertical line. With stacking, each bar / vertical line is split into colored segments to show how different sub-categories (the colors) contribute to the overall total. So without stacking, each bar will show some value between 0 and 1 and multiple bars (next to each other) will be needed to show the values for all of the sub-categories within one sample ID. With stacking, only one bar is needed for each sample ID and every bar will span the full 0 to 1 of the axis, with changes in color representing different proportions / values of the different sub-categories.
-
-```{r echo =FALSE}
-ottrpal::include_slide('https://docs.google.com/presentation/d/1fmPgoGk8KCZvRQx9ljjti8Nn44JdA2G2yGm1BwmL7V8/edit?slide=id.g3fa5dc926b3_0_20#slide=id.g3fa5dc926b3_0_20')
-```
-
-* Switch the "Stacking" selection from "None" to "100%". Now the vertical white stripes are not visible in the chart and the Chart type was automatically updated to "100% stacked column chart". Every sample has a single vertical line where the proportions for each of the ancestry clusters is represented in that vertical line.
-* The X-axis shows "pop" with an additional label for "id". Click the circled "x" next to the "id" label to remove it. Now the chart doesn't have that white bar in the middle with the sample IDs. 
-* If you click the "Aggregate" checkbox, instead of plotting a separate vertical line for each sample, it will aggregate the data for all samples in a given "pop" (by default summing but can switch to averaging) and plot a single bar for each population. While this is cool to see, it's not what the commentary's plot looks like, so don't leave the "Aggregate" option checked.
-* The "Series" section lists k1, k2, k3, k4, k5, k6, and k7 all as their own series.
-
-We can customize the plot to appear closer to the original plot. 
-
-* Click the "Customize" tab of the Chart editor panel.
-* Under "Series", select "k1" from the dropdown.
-* For Fill color, select the plus sign (`+` "add a custom color") and enter #30A9E1 in the "Hex" box.
-* Click the green "OK" button.
-* Using this table to find the appropriate Hex value, repeat the process for the remaining series (k2, k3, k4, k5, k6, and k7).
-
-| Cluster | Hex |
-| :----   | :-------: |
-| k2      | #A41252 |
-| k3      | #EC5D25 |
-| k4      | #056EB5 |
-| k5      | #2BA06A |
-| k6      | #2B284B |
-| k7      | #FFE6AD |
-
-Notice that you can drag the edges of the chart to expand the size of it -- making it wider and taller. 
-
-For the 3 remaining ways that the plot looks different than the commentary plot, we can discuss what you would do:
-
-1. The commentary plot has horizontal lines instead of vertical lines. 
-
-* Go back to the "Setup" tab of the "Chart editor".
-* For "Chart type", scroll down to the "Bar" section and select the furthest right option that shows stacked bars the full width of the plot.
-* Back on the Setup tab "Chart type" should say: "100% stacked bar chart".
-
-2. The population order does not match.
-
-* Recreate these graphing steps in the `Testing Sort 2` sheet (from the wrangling section). The population order should match at the end of it.
-
-3. Populations are named more than once 
-
-* There is nothing we can directly do for this plot to fix the issue. However, we can make a separate plot for each population and later combine them. This is a time consuming and repetitive process. For sake of the example, we will do this twice.
-* Navigate to the `Testing Filter 1` sheet (from the wrangling section). 
-* Create a chart with the data:
-  * Chart type "100% stacked bar chart"
-  * For the Y-axis "pop" within the "Setup" tab of the "Chart editor" panel, click the three dots and "Remove" to remove the population labels.
-  * Update the Series colors in the "Customize" tab
-  * Add "Amhara" under the "Title text" option of the "Chart & axis titles" section of the "Customize" tab.
-
-* Repeat the filtering process from the Data Wrangling section together with the building the chart process for the "Nama", "Rwandese", and "Han Chinese" populations all separately.
-
-:::{.emphasis_block}
-
-If you repeated this process for all 26 populations, you could combine the plots together to more closely recreate the plot from the commentary, but that requires a lot of manual work and repeated steps.
-
-:::
-
-:::
-
-# **Analysis**
-
-------------------------------------------------------------------------
-
-::: {.panel-tabset}
-
-## R
-
-Finding the average proportion of each cluster for each population.
-
-## Google Sheets
-
-Finding the average proportion of each cluster for each population.
-
-:::
-
-# **Summary**
-
-------------------------------------------------------------------------
-
-# **Suggested Homework**
-
-------------------------------------------------------------------------
 
 # **Additional Information**
 
