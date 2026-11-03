@@ -1043,7 +1043,18 @@ If you have been following along but stopped, we could load our wrangled data li
 ```{r, eval = FALSE}
 load(here::here("data", "wrangled", "ADMIXTURE_ancestry_props.Q"))
 ```
-To visualize our data, we can use an R package that is meant specifically for plotting these admixture bar graphs.
+To visualize our data, we can use an R package called `xadmix` that is meant specifically for plotting these admixture bar graphs. We will use the `admix_barplot` function to create the graph. To do so, we will need to specify: 
+
+* Our data to plot.
+* The columns where the proportions of each k are represented (`K`).
+   * The function expects indices or numbers here. In our data these columns start in the third column and go until the end of the data or `ncol(ancestry_props)`
+* Which column should be used to group individuals together in the visualization (`grouping`).
+   * The function expects a column name here, so we specify "pop".
+* Where the IDs for the individuals (for the X-axis) are (`individuals`).
+    * The function expects and index or a number here, not a name, so we specify the second column.
+* Whether we want to show the names or IDs of the individuals (`names`).
+    * We will specify `FALSE` so that these are **not** shown in the plot. 
+* The color palette that we would like to use to represent each k (`palette`).
 
 ```{r}
 xadmix::admix_barplot(ancestry_props, 
@@ -1061,7 +1072,6 @@ xadmix::admix_barplot(ancestry_props,
                     )
 ```
 
-* Explain the arguments that are there and why we're using the values we're using
 * Show that `sortkey` argument will sort within the facets for that one column. 
 * Show that setting `noclip = TRUE` would make it so population labels are not cut-off, however they overlap.
   * Because this means it no longer returns an object, there's nothing we can do about it.
