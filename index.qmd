@@ -1072,6 +1072,7 @@ xadmix::admix_barplot(ancestry_props,
                     )
 ```
 
+avocado: 
 * Show that `sortkey` argument will sort within the facets for that one column. 
 * Show that setting `noclip = TRUE` would make it so population labels are not cut-off, however they overlap.
   * Because this means it no longer returns an object, there's nothing we can do about it.
@@ -1163,7 +1164,7 @@ We want to find the average proportion of ancestry for each of the clusters for 
 
 ## R
 
-Explain use of anonymous functions and link to the style guide: https://style.tidyverse.org/functions.html#anonymous-functions
+avocado Explain use of anonymous functions and link to the style guide: https://style.tidyverse.org/functions.html#anonymous-functions
 
 ```{r}
 avg_props <- ancestry_props %>% 
