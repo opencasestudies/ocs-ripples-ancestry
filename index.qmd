@@ -1065,7 +1065,7 @@ xadmix::admix_barplot(ancestry_props,
 * Show that `sortkey` argument will sort within the facets for that one column. 
 * Show that setting `noclip = TRUE` would make it so population labels are not cut-off, however they overlap.
   * Because this means it no longer returns an object, there's nothing we can do about it.
-  * However, we can instead use that the function is [splitting out and labeling these groups with `facet_grid`](https://github.com/lschoenm/xadmix/blob/3a59aac05a919208e21a2392d0a9076128d57bee/R/plots.R#L151-L154) and we can edit how those facet labels look by adding: `theme(strip.text.x = element_text(angle=90, hjust=1))` to the end, so they'l be angled, but visible.
+  * However, we can instead use that the function is [splitting out and labeling these groups with `facet_grid`](https://github.com/lschoenm/xadmix/blob/3a59aac05a919208e21a2392d0a9076128d57bee/R/plots.R#L151-L154) and we can edit how those facet labels look by adding: `theme(strip.text.x = element_text(angle=90, hjust=1))` to the end, so they will be angled, but visible.
 
 ## Google Sheets
 
@@ -1513,7 +1513,8 @@ Now, let's plot this, specifically we just want to have a color bar for each pop
 ```{r}
 to_plot2 <- full_join(ancestry_long, 
                       avg_props %>% 
-                        select(pop, max_k_for_pop)
+                        select(pop, max_k_for_pop),
+                      by = "pop"
                       )
 ```
 
@@ -1521,7 +1522,7 @@ To make this side plot, we will use a similar method as before, we want the same
 
 
 ```{r}
-plot2 <- to_ plot2 %>% 
+plot2 <- to_plot2 %>% 
     ggplot(aes(x = -1,
              y = row.names(.),
              fill = max_k_for_pop)) +
